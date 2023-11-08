@@ -4,6 +4,7 @@ import { cookies } from 'next/headers';
 import Providers from '@/redux/provider'
 
 import './globals.css'
+import './globals.scss'
 import Structure from '@/app/structure'
 import config from '@/config';
 import { getServerSession } from 'next-auth';

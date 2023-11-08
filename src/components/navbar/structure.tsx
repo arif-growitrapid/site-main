@@ -20,6 +20,7 @@ import { BiSun } from 'react-icons/bi';
 import { BsMoonStarsFill } from 'react-icons/bs';
 import { useAppSelector } from '@/redux/store';
 import { useAppDispatch } from '@/redux/store';
+import { setTheme } from '@/redux/slices/ui';
 export type NavItem = {
     title: string,
     link: string,
@@ -69,8 +70,9 @@ export default function Structure({
 }) {
     const { data: session, status } = useSession();
     const uiState = useAppSelector(state => state.ui);
+    let isDark = uiState.theme === "dark" ? true : false
 
-    const [isDark, setIsDark] = useState(uiState.theme === "dark" ? true : false);
+    // const [isDark, setIsDark] = useState(uiState.theme === "dark" ? true : false);
     // const context = useContext(GlobalContext);
 
     // navItems = [...navItems, ...(context.navbar.extraLinks || [])];
@@ -81,12 +83,16 @@ export default function Structure({
     const [menuItemIndex, setMenuItemIndex] = useState(-1);
     const ui_dispatch = useAppDispatch();
 
-    useEffect(() => {
+    // useEffect(() => {
+
+    // }, [isDark, theme, ui_dispatch])
+
+    function toggleTheme() {
         ui_dispatch({
-            type: isDark? "dark": "light",
-            payload: theme
+            type: setTheme.type,
+            payload: isDark? "light" : "dark" 
         })
-    }, [isDark])
+    }
 
     useEffect(() => {
         function func() {
@@ -208,7 +214,7 @@ export default function Structure({
                     })}
 
                     <button
-                        onClick={e => setIsDark(!isDark)}
+                        onClick={e => toggleTheme()}
                         className={style.avatar}
                         style={{
                             fontSize: "1.1em",
