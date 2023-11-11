@@ -14,79 +14,119 @@
     margin: 1em 0;
 }
 
+.learn_more_btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    outline: none;
+    border-radius: 10px;
+    padding: 0.5rem 1.5rem;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-primary-color);
+    color: var(--text-color);
+    font-size: .9em;
+    margin-top: .25em;
+}
+
 .blogs {
-    margin: 1em 2em 2em 2em;
-    z-index: 2;
+    margin: 2em 2em 0em 2em;
+}
 
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1em;
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-        .card {
-            max-width: 100%;
-            height: fit-content;
-            padding: 1em;
-            background-color: var(--tertiary-color);
-            border-radius: 12px;
+    div {
+        display: flex;
+        align-items: flex-end;
+        font-weight: bolder;
+        -webkit-text-stroke: 1.5px #000;
 
-            img {
-                border-radius: 12px;
-                aspect-ratio: 16/9;
-                width: 1080px;
-                height: auto;
-            }
-
-            .courseName {
-                font-size: 1em;
-                font-weight: 600;
-                padding: 0.5em 0;
-            }
-
-            .tags {
-                font-size: .6em;
-                font-weight: 300;
-                display: flex;
-                align-items: center;
-                flex-wrap: wrap;
-                gap: .5em;
-                margin: .5em 0 .5em 0;
-                
-                .tag {
-                    background: var(--bg-color);
-                    border-radius: 5px;
-                    padding: .5em 1.2em;
-                }
-            }
-
-            .desc {
-                font-size: .9em;
-                font-weight: 400;
-                color: rgba(var(--text-color-rgb), 0.7);
-                display: block;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                word-wrap: break-word;
-                max-height: 4.5rem;
-            }
-
-            .learn_more_btn {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                width: 100%;
-                outline: none;
-                border-radius: 0.375rem;
-                padding: 0.5rem 1.5rem;
-                background-color: var(--bg-color);
-                border: 1px solid var(--border-primary-color);
-                color: var(--text-color);
-                font-size: .9em;
-                margin-top: .25em;
-            }
+        h1 {
+            font-size: 1.8em;
         }
     }
+}
+
+.navigation {
+    gap: .5em;
+
+    div {
+        padding: 1em;
+        border: 1px solid var(--border-primary-color);
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    div:hover {
+        background: var(--tertiary-color);
+        transition: all .5s ease;
+    }
+}
+
+.trending {
+    margin-right: .5em;
+}
+
+.sliderContainer {
+    overflow: hidden;
+    margin-top: 1em;
+}
+
+.card {
+    width: 350px;
+    background: var(--tertiary-color);
+    display: flex;
+    flex-direction: column;
+    padding: .8em;
+    border-radius: 18px;
+
+    img {
+        width: 100%;
+        aspect-ratio: 16/9;
+        border-radius: 15px;
+    }
+
+    .tags {
+        display: flex;
+        width: 100%;
+        gap: .5em;
+        margin: .5em 0;
+
+        .tag {
+            background: var(--bg-color);
+            padding: .5em;
+            border-radius: 5px;
+            font-size: .7em;
+        }
+    }
+
+    h2 {
+        width: 100%;
+        font-size: 1.2em;
+        font-weight: 500;
+    }
+
+    p {
+        font-size: small;
+        margin: .5em 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media screen and (max-width: 490px) {
+    .title {
+        font-size: .8em;
+    }
+
+    .trending {
+        width: 40px !important;
+    }
+
 }

@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai";
 import 'swiper/css/navigation';
-import { Navigation, Autoplay, Pagination } from 'swiper/modules';
+import { Navigation, Autoplay } from 'swiper/modules';
 import { motion } from "framer-motion"
 import { SplitText } from './SplitText'
 import Image from 'next/image';

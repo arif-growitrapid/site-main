@@ -8,10 +8,10 @@ import Image, { ImageProps } from 'next/image';
 
 import style from './style.module.scss'
 
-import TeamBG from '@/assets/image/teamwork.jpg'
-import TeamBG2 from '@/assets/image/teamwork2.jpg'
-import GrowPlantsBG from '@/assets/image/grow_plants.jpg'
-import BeatleBG from '@/assets/image/beatle.jpg'
+import TeamBG from '../../../assets/image/teamwork.jpg'
+import TeamBG2 from '../../../assets/image/teamwork2.jpg'
+import GrowPlantsBG from '../../../assets/image/grow_plants.jpg'
+import BeatleBG from '../../../assets/image/beatle.jpg'
 
 const clientFetch = cache(client.fetch.bind(client));
 
