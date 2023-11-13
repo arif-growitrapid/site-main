@@ -10,7 +10,7 @@ import TeamWorkBG2 from '../../../assets/image/teamwork2.jpg'
 import Image from 'next/image';
 import { FaArrowRight } from 'react-icons/fa'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Autoplay, A11y } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai';
 
 type Props = {}

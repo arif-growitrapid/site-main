@@ -1,7 +1,7 @@
-import React, { cache } from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import client from '@/utils/sanity-client';
 import { groq } from 'next-sanity';
-import { BlogData } from '@/app/(admin)/admin/dashboard/blogs/page';
 import Content from '@/components/editor/content';
 import Stars from '@/components/stars';
 import style from './style.module.scss'
@@ -9,10 +9,10 @@ import formatDate from '@/utils/date';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { getBlogBySlug } from '@/functions/blog';
 
-const clientFetch = cache(client.fetch.bind(client));
 
-export default async function page({
+export default function Page({
     params
 }: {
     params: {
@@ -20,30 +20,37 @@ export default async function page({
     };
 }) {
     const { slug } = params;
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    const data = (await clientFetch<BlogData[]>(groq`*[_type == "blogs" && slug.current == "${slug}" && is_published == true] {
-        _id,
-        title,
-        description,
-        "image": image.asset->url,
-        "slug": slug.current,
-        is_published,
-        time_to_read,
-        "content": custom_content,
-        _createdAt,
-        _updatedAt,
-        author->{
-            ...,
-            "image": image.asset->url,
-            "slug": slug.current,
-        },
-        tags
-    }`))[0];
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const { type, data: blogData } = await getBlogBySlug(slug);
 
-    if (!data) {
-        return notFound();
+                if (type === "success") {
+                    setData(blogData);
+                    console.log(blogData);
+                } else {
+                    return notFound();
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchData();
+    }, [slug]);
+
+    if (loading) {
+        return <h1>Loading....</h1>;
     }
 
+    if (!data) {
+        return <h1>Blog not found</h1>;
+    }
     return (
         <div className={``}>
             <header className={`relative w-full pb-[11%] bg-[var(--tertiary-color)] `}>
@@ -55,7 +62,7 @@ export default async function page({
                 // }}
                 >
                     <Image
-                        src={data.image}
+                        src={data.thumbnail}
                         alt={data.title}
                         layout="fill"
                         objectFit="cover"
@@ -104,7 +111,7 @@ export default async function page({
                                 {data.author.name}
                             </p>
                             <p className={`text-xs text-[var(--text-color)]`}>
-                                Published On {formatDate(new Date(data._createdAt), "$df $MMMM, $yyyy", false)}
+                                Published On {formatDate(new Date(data.createdAt), "$df $MMMM, $yyyy", false)}
                             </p>
                         </div>
                     </div>
@@ -147,71 +154,71 @@ export default async function page({
     )
 }
 
-/**
- * Generating meta data for the page
- */
-type MetaDataProps = {
-    params: { slug: string };
-};
+// /**
+//  * Generating meta data for the page
+//  */
+// type MetaDataProps = {
+//     params: { slug: string };
+// };
 
-export async function generateMetadata({ params }: MetaDataProps): Promise<Metadata> {
-    const { slug } = params;
+// export async function generateMetadata({ params }: MetaDataProps): Promise<Metadata> {
+//     const { slug } = params;
 
-    const data = (await clientFetch<BlogData[]>(groq`*[_type == "blogs" && slug.current == "${slug}" && is_published == true] {
-        _id,
-        title,
-        description,
-        "image": image.asset->url,
-        "slug": slug.current,
-        is_published,
-        time_to_read,
-        "content": custom_content,
-        _createdAt,
-        _updatedAt,
-        author->{
-            ...,
-            "image": image.asset->url,
-            "slug": slug.current,
-        },
-        tags
-    }`))[0];
+//     const data = (await clientFetch<BlogData[]>(groq`*[_type == "blogs" && slug.current == "${slug}" && is_published == true] {
+//         _id,
+//         title,
+//         description,
+//         "image": image.asset->url,
+//         "slug": slug.current,
+//         is_published,
+//         time_to_read,
+//         "content": custom_content,
+//         _createdAt,
+//         _updatedAt,
+//         author->{
+//             ...,
+//             "image": image.asset->url,
+//             "slug": slug.current,
+//         },
+//         tags
+//     }`))[0];
 
-    if (data) {
-        return {
-            title: data.title,
-            description: data.description,
-            authors: [
-                {
-                    name: data.author.name,
-                    url: data.author.url,
-                }
-            ],
-            assets: [data.image],
-            openGraph: {
-                type: 'article',
-                title: data.title,
-                description: data.description,
-                images: [data.image],
-                authors: [data.author.name, data.author.url],
-                url: `https://www.growitrapid.com/blogs/${data.slug}`,
-                tags: data.tags,
-                section: 'Blogs',
-            },
-            twitter: {
-                site: '@site',
-                card: 'summary_large_image',
-                title: data.title,
-                description: data.description,
-                images: [data.image],
-            },
-            appleWebApp: {
-                title: data.title,
-            },
-        }
-    } else {
-        return {
-            title: 'Grow It Rapid',
-            description: 'Grow It Rapid',
-        }
-    }
-}
+//     if (data) {
+//         return {
+//             title: data.title,
+//             description: data.description,
+//             authors: [
+//                 {
+//                     name: data.author.name,
+//                     url: data.author.url,
+//                 }
+//             ],
+//             assets: [data.image],
+//             openGraph: {
+//                 type: 'article',
+//                 title: data.title,
+//                 description: data.description,
+//                 images: [data.image],
+//                 authors: [data.author.name, data.author.url],
+//                 url: `https://www.growitrapid.com/blogs/${data.slug}`,
+//                 tags: data.tags,
+//                 section: 'Blogs',
+//             },
+//             twitter: {
+//                 site: '@site',
+//                 card: 'summary_large_image',
+//                 title: data.title,
+//                 description: data.description,
+//                 images: [data.image],
+//             },
+//             appleWebApp: {
+//                 title: data.title,
+//             },
+//         }
+//     } else {
+//         return {
+//             title: 'Grow It Rapid',
+//             description: 'Grow It Rapid',
+//         }
+//     }
+// }
