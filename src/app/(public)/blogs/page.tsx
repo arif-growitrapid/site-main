@@ -1,7 +1,6 @@
 'use client'
 import client from '@/utils/sanity-client';
 import React, { cache, useRef } from 'react'
-import { groq } from 'next-sanity';
 import Link from 'next/link';
 import Stars from '@/components/stars';
 import style from './page.module.scss'

@@ -1,7 +1,5 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import client from '@/utils/sanity-client';
-import { groq } from 'next-sanity';
 import Content from '@/components/editor/content';
 import Stars from '@/components/stars';
 import style from './style.module.scss'
@@ -10,6 +8,7 @@ import Image from 'next/image';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getBlogBySlug } from '@/functions/blog';
+import ToolBar from './components/ToolBar';
 
 
 export default function Page({
@@ -51,17 +50,12 @@ export default function Page({
     if (!data) {
         return <h1>Blog not found</h1>;
     }
+
     return (
         <div className={``}>
             <header className={`relative w-full pb-[11%] bg-[var(--tertiary-color)] `}>
 
-                <div className={`${style.bg__image} absolute right-0 top-0 h-full w-full md:w-[50%] bg-cover bg-bottom`}
-                // style={{
-                //     // backgroundImage: `url(${BG.src})`,
-                //     backgroundImage: `url(${data.image})`,
-                // }}
-                >
-                    <Image
+                <div className={`${style.bg__image} absolute right-0 top-0 h-full w-full md:w-[50%] bg-cover bg-bottom`}>                    <Image
                         src={data.thumbnail}
                         alt={data.title}
                         layout="fill"
@@ -150,6 +144,10 @@ export default function Page({
                     <Content data={data.content || ""} />
                 </div>
             </div>
+
+            <div className={style.toolbarContainer}>
+                <ToolBar blogId={data._id} likes={data.likes} likedBy={data.liked_by}></ToolBar>
+            </div>
         </div>
     )
 }
@@ -164,24 +162,7 @@ export default function Page({
 // export async function generateMetadata({ params }: MetaDataProps): Promise<Metadata> {
 //     const { slug } = params;
 
-//     const data = (await clientFetch<BlogData[]>(groq`*[_type == "blogs" && slug.current == "${slug}" && is_published == true] {
-//         _id,
-//         title,
-//         description,
-//         "image": image.asset->url,
-//         "slug": slug.current,
-//         is_published,
-//         time_to_read,
-//         "content": custom_content,
-//         _createdAt,
-//         _updatedAt,
-//         author->{
-//             ...,
-//             "image": image.asset->url,
-//             "slug": slug.current,
-//         },
-//         tags
-//     }`))[0];
+//     const data = await getBlogBySlug(slug);
 
 //     if (data) {
 //         return {
