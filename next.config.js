@@ -13,7 +13,8 @@ const nextConfig = {
             'cdn.dribbble.com',
             'cdn.fakercloud.com',
             'cdn.sanity.io',
-            'loremflickr.com' 
+            'loremflickr.com',
+            'lh3.googleusercontent.com' 
         ]
     },
     compiler: {

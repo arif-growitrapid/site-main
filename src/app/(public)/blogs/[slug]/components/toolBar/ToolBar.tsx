@@ -3,8 +3,9 @@ import style from './style.module.scss';
 import { BiHeart, BiCommentDetail, BiSave, BiShareAlt } from 'react-icons/bi';
 import { MdBugReport } from 'react-icons/md';
 import { FcLike } from "react-icons/fc";
-import { likeBlog as likeBlogApi } from '@/functions/blog'; // Assuming you have an API function for liking a blog post
+import { likeBlog as likeBlogApi, removeLikeBlog as unLikeBlogApi } from '@/functions/blog'; // Assuming you have an API function for liking a blog post
 import { useSession } from 'next-auth/react';
+import Comments from '../comments/Comments';
 
 interface ToolBarProps {
   blogId: string;
@@ -15,11 +16,13 @@ interface ToolBarProps {
 export default function ToolBar({ blogId, likes, likedBy }: ToolBarProps) {
   const likeText = useRef<HTMLParagraphElement>(null);
   const likeBtn = useRef<HTMLDivElement>(null);
+  const commentBox = useRef<HTMLDivElement>(null)
+
   const { data: session, status } = useSession();
+
   const [likedTheBlog, setLikedTheBlog] = useState(false);
 
   useEffect(() => {
-    // Check if the current user is in the likedBy array
     if (status === "authenticated" && likedBy.find(user => user.id === session?.user?.id)) {
       setLikedTheBlog(true);
     }
@@ -29,7 +32,6 @@ export default function ToolBar({ blogId, likes, likedBy }: ToolBarProps) {
     try {
       if (status === "authenticated") {
         if (!likedTheBlog) {
-          // Make an API call to like the blog post
           if (likeText.current) {
             likeText.current.innerText = String(Number(likeText.current.innerText) + 1);
           }
@@ -46,12 +48,11 @@ export default function ToolBar({ blogId, likes, likedBy }: ToolBarProps) {
             alert("You Already Liked The Blog");
           }
         } else {
-          // Make an API call to unlike the blog post
-          // await unlikeBlogApi(blogId); // Uncomment this line if you have an API function for unliking
           if (likeText.current) {
             likeText.current.innerText = String(Number(likeText.current.innerText) - 1);
           }
           setLikedTheBlog(false);
+          await unLikeBlogApi(blogId);
         }
       } else {
         alert("Please Sign In To Like The Blog");
@@ -61,42 +62,52 @@ export default function ToolBar({ blogId, likes, likedBy }: ToolBarProps) {
     }
   }
 
+  async function openCommentBox() {
+    commentBox.current.style.scale = "1"
+  }
+
   return (
-    <div className={style.toolBar}>
-      <div>
-        {likedTheBlog ? (
-          <FcLike
-            ref={likeBtn}
-            onClick={likeBlog}
-            size={25}
-            className={style.icon}
-          />
-        ) : (
-          <BiHeart
-            onClick={likeBlog}
-            size={25}
-            className={style.icon}
-          />
-        )}
+    <>
+      <div className={style.toolBar}>
+        <div>
+          {likedTheBlog ? (
+            <FcLike
+              ref={likeBtn}
+              onClick={likeBlog}
+              size={25}
+              className={style.icon}
+            />
+          ) : (
+            <BiHeart
+              onClick={likeBlog}
+              size={25}
+              className={style.icon}
+            />
+          )}
 
-        <p ref={likeText}>{likes}</p>
-      </div>
+          <p ref={likeText}>{likes}</p>
+        </div>
 
-      <div>
-        <BiCommentDetail size={25} className={style.icon} />
-      </div>
+        <div>
+          <BiCommentDetail onClick={openCommentBox} size={25} className={style.icon} />
+        </div>
 
-      <div>
-        <BiSave size={25} className={style.icon} />
-      </div>
+        <div>
+          <BiSave size={25} className={style.icon} />
+        </div>
 
-      <div>
-        <BiShareAlt size={25} className={style.icon} />
-      </div>
+        <div>
+          <BiShareAlt size={25} className={style.icon} />
+        </div>
 
-      <div>
-        <MdBugReport size={25} className={style.icon} />
+        <div>
+          <MdBugReport size={25} className={style.icon} />
+        </div>
       </div>
-    </div>
+      
+      <div ref={commentBox} className={style.commentContainerOverlay}>
+        <Comments userProfile={session?.user.image} userName={session?.user.name} />
+      </div>
+    </>
   );
 }

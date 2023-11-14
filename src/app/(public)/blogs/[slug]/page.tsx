@@ -8,8 +8,8 @@ import Image from 'next/image';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getBlogBySlug } from '@/functions/blog';
-import ToolBar from './components/ToolBar';
-
+import ToolBar from './components/toolBar/ToolBar';
+import Comments from './components/comments/Comments';
 
 export default function Page({
     params
@@ -148,6 +148,8 @@ export default function Page({
             <div className={style.toolbarContainer}>
                 <ToolBar blogId={data._id} likes={data.likes} likedBy={data.liked_by}></ToolBar>
             </div>
+
+            
         </div>
     )
 }
