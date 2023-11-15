@@ -63,7 +63,10 @@ export default function ToolBar({ blogId, likes, likedBy }: ToolBarProps) {
   }
 
   async function openCommentBox() {
-    commentBox.current.style.scale = "1"
+    commentBox.current.style.opacity = "1"
+    commentBox.current.style.pointerEvents = "all"
+
+    commentBox.current.firstChild.style.scale = "1"
   }
 
   return (

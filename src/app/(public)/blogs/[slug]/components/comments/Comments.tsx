@@ -6,7 +6,9 @@ import Image from 'next/image';
 export default function Comments({userProfile, userName}) {
   const commentsContainer = useRef(null)
   function closeCommentsSection() {
-    commentsContainer.current.parentNode.style.scale = "0"
+    commentsContainer.current.parentNode.style.opacity = "0"
+    commentsContainer.current.parentNode.style.pointerEvents = "none"
+    commentsContainer.current.style.scale = "0"
   }
   return (
     <div ref={commentsContainer} className={styles.commentsContainer}>

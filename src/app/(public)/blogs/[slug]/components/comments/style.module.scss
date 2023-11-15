@@ -6,6 +6,8 @@
     border-right: 1px solid var(--border-primary-color);
     border-radius: 15px;
     padding: 1em;
+    transition: all .5s ease;
+    scale: 0;
 
 
     nav {
