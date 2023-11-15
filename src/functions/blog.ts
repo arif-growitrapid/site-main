@@ -1,5 +1,4 @@
 "use server";
-
 import { DBBlogPostType } from "@/types/blog";
 import { ObjectId, WithId } from "mongodb";
 import { Response, ServerFunctionResponse } from "./functions";

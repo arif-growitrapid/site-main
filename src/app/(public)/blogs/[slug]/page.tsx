@@ -7,7 +7,7 @@ import formatDate from '@/utils/date';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getBlogBySlug } from '@/functions/blog';
+import { getBlogBySlug, viewBlog } from '@/functions/blog';
 import ToolBar from './components/toolBar/ToolBar';
 import Comments from './components/comments/Comments';
 
@@ -40,6 +40,14 @@ export default function Page({
             }
         }
 
+        async function addView() {
+            const response = await fetch("https://api.ipify.org/?format=json")
+            const data = await response.json();
+            const viewRes = await viewBlog(slug, data.ip)
+            console.log(viewRes)
+        }
+        addView()
+
         fetchData();
     }, [slug]);
 
@@ -56,11 +64,11 @@ export default function Page({
             <header className={`relative w-full pb-[11%] bg-[var(--tertiary-color)] `}>
 
                 <div className={`${style.bg__image} absolute right-0 top-0 h-full w-full md:w-[50%] bg-cover bg-bottom`}>                    <Image
-                        src={data.thumbnail}
-                        alt={data.title}
-                        layout="fill"
-                        objectFit="cover"
-                    />
+                    src={data.thumbnail}
+                    alt={data.title}
+                    layout="fill"
+                    objectFit="cover"
+                />
                 </div>
 
                 <div className={`absolute h-full w-[52%] bottom-auto right-auto hidden md:block`}>
@@ -100,13 +108,13 @@ export default function Page({
                                 alt={data.author.name}
                             />
                         </div>
-                        <div className={`ml-2`}>
+                        <div className={`mx-2`}>
                             <p className={`text-sm text-[var(--text-color)]`}>
                                 {data.author.name}
                             </p>
                             <p className={`text-xs text-[var(--text-color)]`}>
                                 Published On {formatDate(new Date(data.createdAt), "$df $MMMM, $yyyy", false)}
-                            </p>
+                             </p>
                         </div>
                     </div>
 
@@ -146,10 +154,10 @@ export default function Page({
             </div>
 
             <div className={style.toolbarContainer}>
-                <ToolBar blogId={data._id} likes={data.likes} likedBy={data.liked_by}></ToolBar>
+                <ToolBar blogId={data._id} likes={data.likes} likedBy={data.liked_by} savedBy={data.saved_by}></ToolBar>
             </div>
 
-            
+
         </div>
     )
 }
