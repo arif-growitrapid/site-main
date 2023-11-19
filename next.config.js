@@ -14,7 +14,8 @@ const nextConfig = {
             'cdn.fakercloud.com',
             'cdn.sanity.io',
             'loremflickr.com',
-            'lh3.googleusercontent.com' 
+            'lh3.googleusercontent.com' ,
+            'picsum.photos'
         ]
     },
     compiler: {

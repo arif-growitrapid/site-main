@@ -1,6 +1,6 @@
 'use client'
-import client from '@/utils/sanity-client';
-import React, { cache, useRef } from 'react'
+import { BiHeart, BiSave, BiCommentDetail, BiShareAlt } from 'react-icons/bi';
+import React, { useRef, useEffect, useState } from 'react'
 import Link from 'next/link';
 import Stars from '@/components/stars';
 import style from './page.module.scss'
@@ -11,23 +11,33 @@ import { FaArrowRight } from 'react-icons/fa'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai';
+import { filterBlogs } from '@/functions/blog';
+import { formatLikes } from '@/utils/formatter';
 
 type Props = {}
-const clientFetch = cache(client.fetch.bind(client));
-
 export default function Page({ }: Props) {
     const navigationPrevRef = useRef<HTMLDivElement>(null)
     const navigationNextRef = useRef<HTMLDivElement>(null)
+    const [trendingBlogs, setTrendingBlogs] = useState()
 
-    // const blogsData = (await clientFetch(groq`*[ _type == "blogs" ] | order(order asc) {
-    //     _id,
-    //     _updatedAt,
-    //     title,
-    //     description,
-    //     "slug": slug.current,
-    //     "image": image.asset->url,
-    //     tags
-    // }`));
+    useEffect(() => {
+        async function getTrending() {
+            try {
+                const { status, data } = await filterBlogs("likes", 20, 0);
+
+                if (data) {
+                    setTrendingBlogs(data.blogs)
+                    console.log(data.blogs)
+                }
+            } catch (error) {
+                console.error('Error fetching trending blogs', error);
+            }
+        }
+
+        getTrending();
+    }, [])
+
+
 
     return (
         <>
@@ -148,195 +158,53 @@ export default function Page({ }: Props) {
                     }}
                     modules={[Navigation]}
                 >
+                    {trendingBlogs ? trendingBlogs.map((element, index) => (
+                        <SwiperSlide key={element.id} id={element.id} className={style.card}>
+                            <Image width={1080} height={720} src={element.thumbnail} />
+                            <p className={style.tags}>
+                                {element.tags.map((tag, index) => (
+                                    <span key={index} className={style.tag}>
+                                        {tag}
+                                    </span>
+                                ))}
+                            </p>
 
-                    <SwiperSlide className={style.card}>
-                        <Image width={1080} height={720} src={"https://cdn.pixabay.com/photo/2019/10/28/21/21/halloween-4585684_640.jpg"} />
-                        <p className={style.tags}>
-                            <span className={style.tag}>
-                                Coding
-                            </span>
-                            <span className={style.tag}>
-                                Developing
-                            </span>
-                            <span className={style.tag}>
-                                Programing
-                            </span>
-                        </p>
+                            <h2>{element.title}</h2>
+                            <p className={style.desc}>{element.excerpt}</p>
+                            <Link href={`/blogs/hello}`} className={style['learn_more_btn']}>
+                                <div>
+                                    <span>Read Now</span>
+                                </div>
 
-                        <h2>Full Stack Web Development Course</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab aliquid voluptate, explicabo aspernatur doloribus cumque, rem quod, quos cupiditate illum tenetur assumenda excepturi veniam. Delectus repudiandae veniam recusandae ducimus distinctio!</p>
-                        <Link href={`/blogs/hello}`} className={style['learn_more_btn']}>
-                            <div>
-                                <span>Read Now</span>
+                                <div>
+                                    <FaArrowRight className={`inline-block ml-2`} />
+                                </div>
+                            </Link>
+                            
+                            <div className={style.blogInfo}>
+                                <div>
+                                    <BiHeart size={25} className={style.icon} />
+                                    <p>{formatLikes(element.likes)}</p>
+                                </div>
+
+                                <div>
+                                    <BiCommentDetail size={25} className={style.icon} />
+                                </div>
+
+                                <div>
+                                    <BiSave size={25} className={style.icon} />
+                                </div>
+
+                                <div>
+                                    <BiShareAlt size={25} className={style.icon} />
+                                </div>
                             </div>
 
-                            <div>
-                                <FaArrowRight className={`inline-block ml-2`} />
-                            </div>
-                        </Link>
-                    </SwiperSlide>
+                            
+                        </SwiperSlide>
+                    )) : "Loading"}
 
-                    <SwiperSlide className={style.card}>
-                        <Image width={1080} height={720} src={"https://cdn.pixabay.com/photo/2019/10/28/21/21/halloween-4585684_640.jpg"} />
-                        <p className={style.tags}>
-                            <span className={style.tag}>
-                                Coding
-                            </span>
-                            <span className={style.tag}>
-                                Developing
-                            </span>
-                            <span className={style.tag}>
-                                Programing
-                            </span>
-                        </p>
 
-                        <h2>Full Stack Web Development Course</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab aliquid voluptate, explicabo aspernatur doloribus cumque, rem quod, quos cupiditate illum tenetur assumenda excepturi veniam. Delectus repudiandae veniam recusandae ducimus distinctio!</p>
-                        <Link href={`/blogs/hello}`} className={style['learn_more_btn']}>
-                            <div>
-                                <span>Read Now</span>
-                            </div>
-
-                            <div>
-                                <FaArrowRight className={`inline-block ml-2`} />
-                            </div>
-                        </Link>
-                    </SwiperSlide>
-
-                    <SwiperSlide className={style.card}>
-                        <Image width={1080} height={720} src={"https://cdn.pixabay.com/photo/2019/10/28/21/21/halloween-4585684_640.jpg"} />
-                        <p className={style.tags}>
-                            <span className={style.tag}>
-                                Coding
-                            </span>
-                            <span className={style.tag}>
-                                Developing
-                            </span>
-                            <span className={style.tag}>
-                                Programing
-                            </span>
-                        </p>
-
-                        <h2>Full Stack Web Development Course</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab aliquid voluptate, explicabo aspernatur doloribus cumque, rem quod, quos cupiditate illum tenetur assumenda excepturi veniam. Delectus repudiandae veniam recusandae ducimus distinctio!</p>
-                        <Link href={`/blogs/hello}`} className={style['learn_more_btn']}>
-                            <div>
-                                <span>Read Now</span>
-                            </div>
-
-                            <div>
-                                <FaArrowRight className={`inline-block ml-2`} />
-                            </div>
-                        </Link>
-                    </SwiperSlide>
-
-                    <SwiperSlide className={style.card}>
-                        <Image width={1080} height={720} src={"https://cdn.pixabay.com/photo/2019/10/28/21/21/halloween-4585684_640.jpg"} />
-                        <p className={style.tags}>
-                            <span className={style.tag}>
-                                Coding
-                            </span>
-                            <span className={style.tag}>
-                                Developing
-                            </span>
-                            <span className={style.tag}>
-                                Programing
-                            </span>
-                        </p>
-
-                        <h2>Full Stack Web Development Course</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab aliquid voluptate, explicabo aspernatur doloribus cumque, rem quod, quos cupiditate illum tenetur assumenda excepturi veniam. Delectus repudiandae veniam recusandae ducimus distinctio!</p>
-                        <Link href={`/blogs/hello}`} className={style['learn_more_btn']}>
-                            <div>
-                                <span>Read Now</span>
-                            </div>
-
-                            <div>
-                                <FaArrowRight className={`inline-block ml-2`} />
-                            </div>
-                        </Link>
-                    </SwiperSlide>
-
-                    <SwiperSlide className={style.card}>
-                        <Image width={1080} height={720} src={"https://cdn.pixabay.com/photo/2019/10/28/21/21/halloween-4585684_640.jpg"} />
-                        <p className={style.tags}>
-                            <span className={style.tag}>
-                                Coding
-                            </span>
-                            <span className={style.tag}>
-                                Developing
-                            </span>
-                            <span className={style.tag}>
-                                Programing
-                            </span>
-                        </p>
-
-                        <h2>Full Stack Web Development Course</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab aliquid voluptate, explicabo aspernatur doloribus cumque, rem quod, quos cupiditate illum tenetur assumenda excepturi veniam. Delectus repudiandae veniam recusandae ducimus distinctio!</p>
-                        <Link href={`/blogs/hello}`} className={style['learn_more_btn']}>
-                            <div>
-                                <span>Read Now</span>
-                            </div>
-
-                            <div>
-                                <FaArrowRight className={`inline-block ml-2`} />
-                            </div>
-                        </Link>
-                    </SwiperSlide>
-
-                    <SwiperSlide className={style.card}>
-                        <Image width={1080} height={720} src={"https://cdn.pixabay.com/photo/2019/10/28/21/21/halloween-4585684_640.jpg"} />
-                        <p className={style.tags}>
-                            <span className={style.tag}>
-                                Coding
-                            </span>
-                            <span className={style.tag}>
-                                Developing
-                            </span>
-                            <span className={style.tag}>
-                                Programing
-                            </span>
-                        </p>
-
-                        <h2>Full Stack Web Development Course</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab aliquid voluptate, explicabo aspernatur doloribus cumque, rem quod, quos cupiditate illum tenetur assumenda excepturi veniam. Delectus repudiandae veniam recusandae ducimus distinctio!</p>
-                        <Link href={`/blogs/hello}`} className={style['learn_more_btn']}>
-                            <div>
-                                <span>Read Now</span>
-                            </div>
-
-                            <div>
-                                <FaArrowRight className={`inline-block ml-2`} />
-                            </div>
-                        </Link>
-                    </SwiperSlide>
-
-                    <SwiperSlide className={style.card}>
-                        <Image width={1080} height={720} src={"https://cdn.pixabay.com/photo/2019/10/28/21/21/halloween-4585684_640.jpg"} />
-                        <p className={style.tags}>
-                            <span className={style.tag}>
-                                Coding
-                            </span>
-                            <span className={style.tag}>
-                                Developing
-                            </span>
-                            <span className={style.tag}>
-                                Programing
-                            </span>
-                        </p>
-
-                        <h2>Full Stack Web Development Course</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab aliquid voluptate, explicabo aspernatur doloribus cumque, rem quod, quos cupiditate illum tenetur assumenda excepturi veniam. Delectus repudiandae veniam recusandae ducimus distinctio!</p>
-                        <Link href={`/blogs/hello}`} className={style['learn_more_btn']}>
-                            <div>
-                                <span>Read Now</span>
-                            </div>
-
-                            <div>
-                                <FaArrowRight className={`inline-block ml-2`} />
-                            </div>
-                        </Link>
-                    </SwiperSlide>
                 </Swiper>
 
                 <Link href={`#`} className={style['load_more_btn']}>
