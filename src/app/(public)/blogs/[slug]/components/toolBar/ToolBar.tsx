@@ -30,7 +30,7 @@ export default function ToolBar({ blogId, likes, likedBy, savedBy }: ToolBarProp
     }
   }, [status, likedBy, session]);
 
-  async function likeBlog() {
+  async function toggleLikeBlog() {
     try {
       if (status === 'authenticated') {
         if (!likedTheBlog) {
@@ -83,21 +83,16 @@ export default function ToolBar({ blogId, likes, likedBy, savedBy }: ToolBarProp
           if (res.type !== 'success') {
             setSavedTheBlog(false); // Revert UI if API request fails
             alert(res.message);
-          }
+          } 
         } else {
-          setSavedTheBlog(false)
-          alert("UNsaved The Blog")
+          setSavedTheBlog(false); // Update UI immediately for unsaving
+          const res = await unsaveBlog(blogId);
+          console.log(res);
 
-          // setSavedTheBlog(false); // Update UI immediately for unsaving
-          // const res = await unsaveBlog(blogId);
-          // console.log(res);
-
-          // if (res.type === 'success') {
-          //   alert('Unsaved The Blog Successfully');
-          // } else {
-          //   setSavedTheBlog(true); // Revert UI if API request fails
-          //   alert(res.message);
-          // }
+          if (res.type !== 'success') {
+            setSavedTheBlog(true);
+            alert(res.message);
+          }
         }
       } else {
         alert('Please Sign In To Save/Unsave The Blog');
@@ -114,9 +109,9 @@ export default function ToolBar({ blogId, likes, likedBy, savedBy }: ToolBarProp
       <div className={style.toolBar}>
         <div>
           {likedTheBlog ? (
-            <FcLike ref={likeBtn} onClick={likeBlog} size={25} className={style.icon} />
+            <FcLike ref={likeBtn} onClick={toggleLikeBlog} size={25} className={style.icon} />
           ) : (
-            <BiHeart onClick={likeBlog} size={25} className={style.icon} />
+            <BiHeart onClick={toggleLikeBlog} size={25} className={style.icon} />
           )}
 
           <p ref={likeText}>{likes}</p>
