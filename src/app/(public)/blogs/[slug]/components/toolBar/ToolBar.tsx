@@ -7,6 +7,7 @@ import { IoIosSave } from 'react-icons/io';
 import { likeBlog as likeBlogApi, removeLikeBlog as unLikeBlogApi, saveBlog, unsaveBlog } from '@/functions/blog';
 import { useSession } from 'next-auth/react';
 import Comments from '../comments/Comments';
+import { formatNumbers, parseNumbers } from '@/utils/formatter';
 
 interface ToolBarProps {
   blogId: string;
@@ -44,14 +45,14 @@ export default function ToolBar({ blogId, likes, likedBy, savedBy }: ToolBarProp
 
           if (res.type === 'error') {
             if (likeText.current) {
-              likeText.current.innerText = String(Number(likeText.current.innerText) - 1);
+              likeText.current.innerText = String(Number(parseNumbers(likeText.current.innerText)) - 1);
             }
             setLikedTheBlog(false);
             alert('You Already Liked The Blog');
           }
         } else {
           if (likeText.current) {
-            likeText.current.innerText = String(Number(likeText.current.innerText) - 1);
+            likeText.current.innerText = String(Number(parseNumbers(likeText.current.innerText)) - 1);
           }
           setLikedTheBlog(false);
           await unLikeBlogApi(blogId);
@@ -114,7 +115,7 @@ export default function ToolBar({ blogId, likes, likedBy, savedBy }: ToolBarProp
             <BiHeart onClick={toggleLikeBlog} size={25} className={style.icon} />
           )}
 
-          <p ref={likeText}>{likes}</p>
+          <p ref={likeText}>{formatNumbers(likes)}</p>
         </div>
 
         <div>

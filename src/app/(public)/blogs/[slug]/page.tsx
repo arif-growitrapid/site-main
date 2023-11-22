@@ -9,7 +9,6 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getBlogBySlug, viewBlog } from '@/functions/blog';
 import ToolBar from './components/toolBar/ToolBar';
-import Comments from './components/comments/Comments';
 
 export default function Page({
     params

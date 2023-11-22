@@ -15,7 +15,9 @@ const nextConfig = {
             'cdn.sanity.io',
             'loremflickr.com',
             'lh3.googleusercontent.com' ,
-            'picsum.photos'
+            'picsum.photos',
+            'avatars.githubusercontent.com',
+            'cloudflare-ipfs.com'
         ]
     },
     compiler: {
