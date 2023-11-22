@@ -52,14 +52,14 @@ const BlogCard: React.FC<BlogCardProps> = ({ blogs, type }) => {
               <div className={style.content}>
                 <div className={style.profileContainer}>
                   {element ? (
-                    <Image className={style.profilePic} width={100} height={100} src={element.author.image} alt='profile pic' />
+                    <Image className={style.profilePic} width={50} height={50} src={element.author.image} alt='profile pic' />
                   ) : (
                     <Skeleton width={50} height={50} circle={true} style={{ marginRight: '1em' }} containerClassName={style.profilePic} />
                   )}
 
                   <div className={style.profileInfo}>
-                    <div className={style.authorName}>{element?.author.name || <Skeleton width={`${Math.floor(Math.random() * (100 - 20 + 1)) + 20}px`} />}</div>
-                    <div className={style.subtext}>{element?.author.email || <Skeleton width={`${Math.floor(Math.random() * (100 - 20 + 1)) + 20}px`} />}</div>
+                    <div className={style.authorName}>{element?.author.name || <Skeleton width={`${Math.floor(Math.random() * (150 - 50 + 1)) + 50}px`} />}</div>
+                    <div className={style.subtext}>{element?.author.email || <Skeleton width={`${Math.floor(Math.random() * (150 - 50 + 1)) + 50}px`} />}</div>
                   </div>
                 </div>
 

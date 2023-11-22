@@ -9,8 +9,8 @@ import BlogCard from './components/BlogCard';
 type Props = {}
 export default function Page({ }: Props) {
     
-    const [trendingBlogs, setTrendingBlogs] = useState([undefined, undefined, undefined])
-    const [popularBlogs, setPopularBlogs] = useState([undefined, undefined, undefined])
+    const [trendingBlogs, setTrendingBlogs] = useState(Array(3).fill(undefined))
+    const [popularBlogs, setPopularBlogs] = useState(Array(20).fill(undefined))
 
     useEffect(() => {
         async function fetchData() {
