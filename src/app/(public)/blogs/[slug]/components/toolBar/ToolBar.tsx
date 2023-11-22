@@ -33,37 +33,44 @@ export default function ToolBar({ blogId, likes, likedBy, savedBy }: ToolBarProp
 
   async function toggleLikeBlog() {
     try {
-      if (status === 'authenticated') {
-        if (!likedTheBlog) {
-          if (likeText.current) {
-            likeText.current.innerText = String(Number(likeText.current.innerText) + 1);
-          }
-          setLikedTheBlog(true);
+      if (status !== 'authenticated') {
+        alert('Please Sign In To Like The Blog');
+        return;
+      }
+  
+      if (likedTheBlog) {
+        // Unlike the blog
+        if (likeText.current) {
+          likeText.current.innerText = formatNumbers(Number(parseNumbers(likeText.current.innerText)) - 1);
+          console.log(likeText.current.innerText, parseNumbers(likeText.current.innerText), Number(parseNumbers(likeText.current.innerText)) - 1, formatNumbers(Number(parseNumbers(likeText.current.innerText)) + 1))
 
-          const res = await likeBlogApi(blogId);
-          console.log(res);
-
-          if (res.type === 'error') {
-            if (likeText.current) {
-              likeText.current.innerText = String(Number(parseNumbers(likeText.current.innerText)) - 1);
-            }
-            setLikedTheBlog(false);
-            alert('You Already Liked The Blog');
-          }
-        } else {
+        }
+        setLikedTheBlog(false);
+        await unLikeBlogApi(blogId);
+      } else {
+        // Like the blog
+        if (likeText.current) {
+          likeText.current.innerText = formatNumbers(Number(parseNumbers(likeText.current.innerText)) + 1);
+          console.log(likeText.current.innerText, parseNumbers(likeText.current.innerText), Number(parseNumbers(likeText.current.innerText)) + 1, formatNumbers(Number(parseNumbers(likeText.current.innerText)) + 1))
+        }
+        setLikedTheBlog(true);
+  
+        const res = await likeBlogApi(blogId);
+        console.log(res);
+  
+        if (res.type === 'error') {
           if (likeText.current) {
             likeText.current.innerText = String(Number(parseNumbers(likeText.current.innerText)) - 1);
           }
           setLikedTheBlog(false);
-          await unLikeBlogApi(blogId);
+          alert('You Already Liked The Blog');
         }
-      } else {
-        alert('Please Sign In To Like The Blog');
       }
     } catch (error) {
       console.error('Error liking/unliking blog:', error);
     }
   }
+  
 
   async function openCommentBox() {
     commentBox.current.style.opacity = '1';
