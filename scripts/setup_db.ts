@@ -22,6 +22,7 @@ const db = {
     root_name: "root",
     blog_name: "blog",
     static_db_name: "static_db",
+    courses_name: "courses",
     default_document_collection_name: "default_document_collection",
 }
 
@@ -130,9 +131,43 @@ export default async function setup_db() {
                 } as DBBlogPostType;
             });
         });
+
         await create_collection(client, db.blog_name, "posts", mock_posts.flat(1));
         await create_collection(client, db.blog_name, "tags", []);
         await create_collection(client, db.blog_name, "categories", []);
+
+        
+        // Create Courses COllection
+        const mock_courses = Array.from({ length: 10 }, () => {
+            const id = new ObjectId();
+            return {
+                _id: id,
+                title: faker.lorem.words(),
+                description: faker.lorem.paragraph(),
+                instructors: faker.company.name(),
+                total_enrolled_students: faker.number.int(80000000),
+                rating: faker.number.int(5),
+                duration: faker.number.int(89) + " Hours",
+                experience: faker.lorem.sentence(),
+                reviews: faker.number.int(),
+                what_you_will_learn: Array.from({ length: 4 }, () => faker.lorem.sentence()),
+                tags: Array.from({ length: 10 }, () => faker.lorem.word()),
+                avg_salary: faker.number.int(80000000),
+                job_openings: faker.number.int(900000000),
+                guarantee_percentage: faker.number.int(50000000),
+                outcomes: faker.lorem.paragraph(),
+                catalogs: Array.from({ length: 3 }, () => ({
+                    title: faker.lorem.words(),
+                    link: faker.internet.url(),
+                    duration: faker.number.int(5),
+                    rating: faker.number.int(5),
+                    internalTags: Array.from({ length: 15 }, () => faker.lorem.word()),
+                    whatYouWillLearn: Array.from({ length: 4 }, () => faker.lorem.sentence()),
+                })),
+            };
+        });
+
+        await create_collection(client, db.courses_name, "courses", mock_courses);
 
         client.close();
         return true;
