@@ -136,15 +136,21 @@ export default async function setup_db() {
         await create_collection(client, db.blog_name, "tags", []);
         await create_collection(client, db.blog_name, "categories", []);
 
-        
+
         // Create Courses COllection
         const mock_courses = Array.from({ length: 10 }, () => {
             const id = new ObjectId();
             return {
                 _id: id,
+                meta: {
+                    provider: "coursera",
+                    slug: faker.lorem.slug(),
+                    is_published: true
+                },
                 title: faker.lorem.words(),
                 description: faker.lorem.paragraph(),
                 instructors: faker.company.name(),
+                thumbnail: faker.image.url(),
                 total_enrolled_students: faker.number.int(80000000),
                 rating: faker.number.int(5),
                 duration: faker.number.int(89) + " Hours",
@@ -167,7 +173,7 @@ export default async function setup_db() {
             };
         });
 
-        await create_collection(client, db.courses_name, "courses", mock_courses);
+        await create_collection(client, db.courses_name, "coursera", mock_courses);
 
         client.close();
         return true;

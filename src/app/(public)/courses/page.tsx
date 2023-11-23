@@ -1,6 +1,6 @@
 "use client"
 import client from '@/utils/sanity-client';
-import React, { cache } from 'react'
+import React, { useEffect } from 'react'
 import { groq } from 'next-sanity';
 import Link from 'next/link';
 import Stars from '@/components/stars';
@@ -9,15 +9,35 @@ import TeamWorkBG2 from '../../../assets/image/teamwork2.jpg'
 import Image from 'next/image';
 import { FaArrowRight } from 'react-icons/fa'
 import { useState } from 'react';
+import CoursesDisplayCard from './components/CourseDisplayCards';
+import { filterCourse } from '@/functions/courses';
 
 type Props = {}
-const clientFetch = cache(client.fetch.bind(client));
 
-const page: React.FC<any> = () => {
+const Page: React.FC<any> = () => {
+
+    const [trendingCourses, setTrendingCourses] = useState(Array(3).fill(undefined))
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const result = await filterCourse('coursera', {}, 20);
+                if (result.status === 200) {
+                    const {type, data} = result
+                    console.log(data.data, "BULLI")
+
+                    setTrendingCourses(data)
+                }
+            } catch (error) {
+                console.error('Error fetching courses BULL:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
 
     const options = { levels: ["Easy", "Medium", "Hard"], price: ["Free", "Paid"], Type: ["Career Path", "Skill Path", "Course"], lessons: ["0-5", "5-15", "15+"], projects: ["Practise Projects", "Portfolio Project"] }
-
     const [selectedOptions, setSelectedOptions] = useState([]);
 
     const handleCheckboxChange = (option) => {
@@ -182,26 +202,7 @@ const page: React.FC<any> = () => {
                 </div>
             </main>
 
-            <div className={`${style.certificate}`}>
-                <Image className={style.ImgContent} src={'https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bGFuZHNjYXBlJTIwbWFufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60'} width={500} height={100} alt='hello' />
-
-                <div className={style.textContent}>
-                    <h2 className={`text-lg font-semibold`}>Explore Trending PPT Courses</h2>
-                    <p className='text-sm leading-4 text-[var(--dark-primary-color)]'>Enroll in the University of Michigan's Specialization for a preview of related degree program content, aiding your decision on the right fit.</p>
-                    <div className={style.btns}>
-                        <Link href={`/courses/PPT-COurses`} className={`${style['load_more_btn']} ${style['load_more_btn_half']}`}>
-                            <div>
-                                <span>Enroll Now !!</span>
-                            </div>
-
-                            <div>
-                                <FaArrowRight className={`inline-block ml-2`} />
-                            </div>
-                        </Link>
-
-                    </div>
-                </div>
-            </div>
+            <CoursesDisplayCard courses={trendingCourses} type='carousel' />
 
             <div className={style.allCourses}>
                 <div className={style.navbar}>
@@ -221,24 +222,24 @@ const page: React.FC<any> = () => {
                             <p>Clear Filters</p>
                         </div>
                         <div className={style.filterOptions}>
-                        {Object.keys(options).map((category) => (
-                            <div key={category} className={style.category}>
-                                <h4>{category}</h4>
-                                {options[category].map((option:any) => (
-                                    <div className={style.options} key={option}>
-                                        <label>
-                                            <input
-                                                type="checkbox"
-                                                value={option}
-                                                checked={selectedOptions.includes(option)}
-                                                onChange={() => handleCheckboxChange(option)}
-                                            />
-                                            {option}
-                                        </label>
-                                    </div>
-                                ))}
-                            </div>
-                        ))}
+                            {Object.keys(options).map((category) => (
+                                <div key={category} className={style.category}>
+                                    <h4>{category}</h4>
+                                    {options[category].map((option: any) => (
+                                        <div className={style.options} key={option}>
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    value={option}
+                                                    checked={selectedOptions.includes(option)}
+                                                    onChange={() => handleCheckboxChange(option)}
+                                                />
+                                                {option}
+                                            </label>
+                                        </div>
+                                    ))}
+                                </div>
+                            ))}
                         </div>
                     </div>
                     <div className={style.coursesDisplay}></div>
@@ -248,4 +249,4 @@ const page: React.FC<any> = () => {
     )
 }
 
-export default page;
+export default Page;
