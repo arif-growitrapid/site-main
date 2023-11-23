@@ -7,7 +7,7 @@ import Stars from '@/components/stars';
 import style from './page.module.scss'
 import TeamWorkBG2 from '../../../assets/image/teamwork2.jpg'
 import Image from 'next/image';
-import { FaArrowRight } from 'react-icons/fa'
+import { FaArrowRight, FaFilter } from 'react-icons/fa'
 import { useState } from 'react';
 import CoursesDisplayCard from './components/CourseDisplayCards';
 import { filterCourse } from '@/functions/courses';
@@ -206,44 +206,17 @@ const Page: React.FC<any> = () => {
 
             <div className={style.allCourses}>
                 <div className={style.navbar}>
-                    <div>
+                    <div className={style.title}>
                         <h2>All Courses</h2>
-                        <p>41 results</p>
+                        <p>41 results</p>                        
                     </div>
+
                     <div className={style.form}>
                         <input type={'text'} placeholder={"Search What You Wanna Learn Today !!"} />
                     </div>
                 </div>
 
-                <div className={style.container}>
-                    <div className={style.filter}>
-                        <div className={style.row}>
-                            <h3>Filters</h3>
-                            <p>Clear Filters</p>
-                        </div>
-                        <div className={style.filterOptions}>
-                            {Object.keys(options).map((category) => (
-                                <div key={category} className={style.category}>
-                                    <h4>{category}</h4>
-                                    {options[category].map((option: any) => (
-                                        <div className={style.options} key={option}>
-                                            <label>
-                                                <input
-                                                    type="checkbox"
-                                                    value={option}
-                                                    checked={selectedOptions.includes(option)}
-                                                    onChange={() => handleCheckboxChange(option)}
-                                                />
-                                                {option}
-                                            </label>
-                                        </div>
-                                    ))}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                    <div className={style.coursesDisplay}></div>
-                </div>
+                <CoursesDisplayCard courses={trendingCourses} type='cards' titleNeeded={false} bgColor={"var(--bg-color)"} swapTheme={true}/>
             </div>
         </>
     )

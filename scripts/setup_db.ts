@@ -149,7 +149,10 @@ export default async function setup_db() {
                 },
                 title: faker.lorem.words(),
                 description: faker.lorem.paragraph(),
-                instructors: faker.company.name(),
+                instructors: {
+                    name: faker.company.name(),
+                    image: faker.image.avatar()
+                },
                 thumbnail: faker.image.url(),
                 total_enrolled_students: faker.number.int(80000000),
                 rating: faker.number.int(5),
