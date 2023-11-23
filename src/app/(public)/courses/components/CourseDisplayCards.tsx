@@ -107,7 +107,7 @@ const CoursesDisplayCard: React.FC<CourseCardProps> = ({ courses, type, titleNee
                   )}
 
                   {element ? (
-                    <Link href={`/courses/${element?.slug}`} className={style['learn_more_btn']}>
+                    <Link href={`/courses/${element.meta.slug}`} className={style['learn_more_btn']}>
                       <div>
                         <span>Enroll Now</span>
                       </div>

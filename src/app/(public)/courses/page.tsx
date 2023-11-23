@@ -36,18 +36,6 @@ const Page: React.FC<any> = () => {
         fetchData();
     }, []);
 
-
-    const options = { levels: ["Easy", "Medium", "Hard"], price: ["Free", "Paid"], Type: ["Career Path", "Skill Path", "Course"], lessons: ["0-5", "5-15", "15+"], projects: ["Practise Projects", "Portfolio Project"] }
-    const [selectedOptions, setSelectedOptions] = useState([]);
-
-    const handleCheckboxChange = (option) => {
-        if (selectedOptions.includes(option)) {
-            setSelectedOptions(selectedOptions.filter((item) => item !== option));
-        } else {
-            setSelectedOptions([...selectedOptions, option]);
-        }
-    };
-
     return (
         <>
             <div>
