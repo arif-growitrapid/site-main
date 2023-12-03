@@ -147,32 +147,96 @@ export default async function setup_db() {
                     slug: faker.lorem.slug(),
                     is_published: true
                 },
-                title: faker.lorem.words(),
-                description: faker.lorem.paragraph(),
-                instructors: {
-                    name: faker.company.name(),
-                    image: faker.image.avatar()
-                },
-                thumbnail: faker.image.url(),
-                total_enrolled_students: faker.number.int(80000000),
-                rating: faker.number.int(5),
-                duration: faker.number.int(89) + " Hours",
-                experience: faker.lorem.sentence(),
-                reviews: faker.number.int(),
-                what_you_will_learn: Array.from({ length: 4 }, () => faker.lorem.sentence()),
-                tags: Array.from({ length: 10 }, () => faker.lorem.word()),
-                avg_salary: faker.number.int(80000000),
-                job_openings: faker.number.int(900000000),
-                guarantee_percentage: faker.number.int(50000000),
-                outcomes: faker.lorem.paragraph(),
-                catalogs: Array.from({ length: 3 }, () => ({
-                    title: faker.lorem.words(),
-                    link: faker.internet.url(),
-                    duration: faker.number.int(5),
-                    rating: faker.number.int(5),
-                    internalTags: Array.from({ length: 15 }, () => faker.lorem.word()),
-                    whatYouWillLearn: Array.from({ length: 4 }, () => faker.lorem.sentence()),
-                })),
+                "title": "Google Project Management: Professional Certificate",
+                "description": "Start your path to a career in project management. In this program, you’ll learn in-demand skills that will have you job-ready in less than six months. No degree or experience is required.",
+                "instructors": "Google Career Certificates",
+                "total_enrolled_students": "1,326,192",
+                "rating": "4.8",
+                "duration": "6 months at 10 hours a week",
+                "experience": "Beginner level",
+                "reviews": "(91,642 reviews)",
+                "what_you_will_learn": [
+                    "Gain an immersive understanding of the practices and skills needed to succeed in an entry-level project management role",
+                    "Learn how to create effective project documentation and artifacts throughout the various phases of a project",
+                    "Learn the foundations of Agile project management, with a focus on implementing Scrum events, building Scrum artifacts, and understanding Scrum roles",
+                    "Practice strategic communication, problem-solving, and stakeholder management through real-world scenarios"
+                ],
+                "tags": [
+                    "Project Management",
+                    "Change Management",
+                    "Strategic Thinking",
+                    "Career Development",
+                    "Organizational Culture",
+                    "Risk Management",
+                    "Quality Management",
+                    "Project Execution",
+                    "Agile Management",
+                    "Problem Solving",
+                    "Coaching",
+                    "Scrum",
+                    "Influencing",
+                    "Effective Communication",
+                    "Stakeholder Management",
+                    "Business Writing",
+                    "Project Charter",
+                    "Procurement",
+                    "Task Estimation",
+                    "Project Planning"
+                ],
+                "avg_salary": "$77,000+",
+                "job_openings": "715,000+",
+                "guarantee_percentage": "75%",
+                "outcomes": "Receive professional-level training from GoogleDemonstrate your proficiency in portfolio-ready projectsEarn an employer-recognized certificate from GoogleQualify for in-demand job titles: Project Manager, Project Coordinator, Project Assistant",
+                "catalogs": [
+                    {
+                        "title": "Foundations of Project Management",
+                        "link": "https://www.coursera.org/learn/project-management-foundations?specialization=google-project-management",
+                        "duration": "18 hours",
+                        "rating": "4.9 ",
+                        "internalTags": "[\"Project Management\",\"Risk Management\",\"Strategic Thinking\",\"Quality Management\",\"Project Execution\",\"Procurement\",\"Risk Management\",\"Strategic Thinking\",\"Task Estimation\",\"Project Planning\",\"Project Management\",\"Strategic Thinking\",\"Business Writing\",\"Stakeholder Management\",\"Project Charter\",\"Agile Management\",\"Problem Solving\",\"Coaching\",\"Scrum\",\"Influencing\",\"Project Management\",\"Problem Solving\",\"Quality Management\",\"Effective Communication\",\"Stakeholder Management\",\"Project Management\",\"Change Management\",\"Strategic Thinking\",\"Career Development\",\"Organizational Culture\"]",
+                        "whatYouWillLearn": "[\"Describe project management skills, roles, and responsibilities across a variety of industries\",\"Explain the project management life cycle and compare different program management methodologies \",\"Define organizational structure and organizational culture and explain how it impacts project management.\",\"Understand the significance of the initiation phase of the project life cycle.\",\"Understand the key components of project charters and develop a project charter for project initiation.\",\"Complete a stakeholder analysis and utilize RACI charts to define and communicate project team member responsibilities.\",\"Evaluate various project management tools to meet project needs. \",\"Describe the components of the project planning phase and their significance.\",\"Identify tools and best practices to build a project plan and risk management plan. \",\"Describe how to estimate, track, and maintain a budget.\",\"Draft a communication plan and explain how to manage it.\",\"Implement the key quality management concepts of quality standards, quality planning, quality assurance, and quality control.\",\"Demonstrate how to prioritize and analyze data and how to communicate a project’s data-informed story. \",\"Discuss the stages of team development and how to manage team dynamics.\",\"Describe the steps of the closing process and create project closing documentation.\",\"Explain the Agile project management approach and philosophy, including values and principles.\",\"Discuss the pillars of Scrum and how they support Scrum values.\",\"Describe the five important Scrum events and how to set up each event for a Scrum team.\",\"Explain how to coach an Agile team and help them overcome challenges.\",\"Complete a project charter, filling out key information including a project summary, SMART goals, scope, benefits, and costs.\",\"Examine project documentation and conduct research to identify tasks for a project and organize those project tasks and milestones in a project plan.\",\"Determine quality standards and evaluate against those standards to ensure that the project is achieving the required level of quality.\",\"Develop effective stakeholder reports by applying storytelling strategies to describe data.\"]"
+                    },
+                    {
+                        "title": "Project Initiation: Starting a Successful Project",
+                        "link": "https://www.coursera.org/learn/project-initiation-google?specialization=google-project-management",
+                        "duration": "4.9 ",
+                        "rating": "4.8 ",
+                        "internalTags": "[\"Project Management\",\"Risk Management\",\"Strategic Thinking\",\"Quality Management\",\"Project Execution\",\"Procurement\",\"Risk Management\",\"Strategic Thinking\",\"Task Estimation\",\"Project Planning\",\"Project Management\",\"Strategic Thinking\",\"Business Writing\",\"Stakeholder Management\",\"Project Charter\",\"Agile Management\",\"Problem Solving\",\"Coaching\",\"Scrum\",\"Influencing\",\"Project Management\",\"Problem Solving\",\"Quality Management\",\"Effective Communication\",\"Stakeholder Management\",\"Project Management\",\"Change Management\",\"Strategic Thinking\",\"Career Development\",\"Organizational Culture\"]",
+                        "whatYouWillLearn": "[\"Describe project management skills, roles, and responsibilities across a variety of industries\",\"Explain the project management life cycle and compare different program management methodologies \",\"Define organizational structure and organizational culture and explain how it impacts project management.\",\"Understand the significance of the initiation phase of the project life cycle.\",\"Understand the key components of project charters and develop a project charter for project initiation.\",\"Complete a stakeholder analysis and utilize RACI charts to define and communicate project team member responsibilities.\",\"Evaluate various project management tools to meet project needs. \",\"Describe the components of the project planning phase and their significance.\",\"Identify tools and best practices to build a project plan and risk management plan. \",\"Describe how to estimate, track, and maintain a budget.\",\"Draft a communication plan and explain how to manage it.\",\"Implement the key quality management concepts of quality standards, quality planning, quality assurance, and quality control.\",\"Demonstrate how to prioritize and analyze data and how to communicate a project’s data-informed story. \",\"Discuss the stages of team development and how to manage team dynamics.\",\"Describe the steps of the closing process and create project closing documentation.\",\"Explain the Agile project management approach and philosophy, including values and principles.\",\"Discuss the pillars of Scrum and how they support Scrum values.\",\"Describe the five important Scrum events and how to set up each event for a Scrum team.\",\"Explain how to coach an Agile team and help them overcome challenges.\",\"Complete a project charter, filling out key information including a project summary, SMART goals, scope, benefits, and costs.\",\"Examine project documentation and conduct research to identify tasks for a project and organize those project tasks and milestones in a project plan.\",\"Determine quality standards and evaluate against those standards to ensure that the project is achieving the required level of quality.\",\"Develop effective stakeholder reports by applying storytelling strategies to describe data.\"]"
+                    },
+                    {
+                        "title": "Project Planning: Putting It All Together",
+                        "link": "https://www.coursera.org/learn/project-planning-google?specialization=google-project-management",
+                        "duration": "(73,995 ratings)",
+                        "rating": "4.8 ",
+                        "internalTags": "[\"Project Management\",\"Risk Management\",\"Strategic Thinking\",\"Quality Management\",\"Project Execution\",\"Procurement\",\"Risk Management\",\"Strategic Thinking\",\"Task Estimation\",\"Project Planning\",\"Project Management\",\"Strategic Thinking\",\"Business Writing\",\"Stakeholder Management\",\"Project Charter\",\"Agile Management\",\"Problem Solving\",\"Coaching\",\"Scrum\",\"Influencing\",\"Project Management\",\"Problem Solving\",\"Quality Management\",\"Effective Communication\",\"Stakeholder Management\",\"Project Management\",\"Change Management\",\"Strategic Thinking\",\"Career Development\",\"Organizational Culture\"]",
+                        "whatYouWillLearn": "[\"Describe project management skills, roles, and responsibilities across a variety of industries\",\"Explain the project management life cycle and compare different program management methodologies \",\"Define organizational structure and organizational culture and explain how it impacts project management.\",\"Understand the significance of the initiation phase of the project life cycle.\",\"Understand the key components of project charters and develop a project charter for project initiation.\",\"Complete a stakeholder analysis and utilize RACI charts to define and communicate project team member responsibilities.\",\"Evaluate various project management tools to meet project needs. \",\"Describe the components of the project planning phase and their significance.\",\"Identify tools and best practices to build a project plan and risk management plan. \",\"Describe how to estimate, track, and maintain a budget.\",\"Draft a communication plan and explain how to manage it.\",\"Implement the key quality management concepts of quality standards, quality planning, quality assurance, and quality control.\",\"Demonstrate how to prioritize and analyze data and how to communicate a project’s data-informed story. \",\"Discuss the stages of team development and how to manage team dynamics.\",\"Describe the steps of the closing process and create project closing documentation.\",\"Explain the Agile project management approach and philosophy, including values and principles.\",\"Discuss the pillars of Scrum and how they support Scrum values.\",\"Describe the five important Scrum events and how to set up each event for a Scrum team.\",\"Explain how to coach an Agile team and help them overcome challenges.\",\"Complete a project charter, filling out key information including a project summary, SMART goals, scope, benefits, and costs.\",\"Examine project documentation and conduct research to identify tasks for a project and organize those project tasks and milestones in a project plan.\",\"Determine quality standards and evaluate against those standards to ensure that the project is achieving the required level of quality.\",\"Develop effective stakeholder reports by applying storytelling strategies to describe data.\"]"
+                    },
+                    {
+                        "title": "Project Execution: Running the Project",
+                        "link": "https://www.coursera.org/learn/project-execution-google?specialization=google-project-management",
+                        "duration": "73,995 ratings",
+                        "rating": "4.8 ",
+                        "internalTags": "[\"Project Management\",\"Risk Management\",\"Strategic Thinking\",\"Quality Management\",\"Project Execution\",\"Procurement\",\"Risk Management\",\"Strategic Thinking\",\"Task Estimation\",\"Project Planning\",\"Project Management\",\"Strategic Thinking\",\"Business Writing\",\"Stakeholder Management\",\"Project Charter\",\"Agile Management\",\"Problem Solving\",\"Coaching\",\"Scrum\",\"Influencing\",\"Project Management\",\"Problem Solving\",\"Quality Management\",\"Effective Communication\",\"Stakeholder Management\",\"Project Management\",\"Change Management\",\"Strategic Thinking\",\"Career Development\",\"Organizational Culture\"]",
+                        "whatYouWillLearn": "[\"Describe project management skills, roles, and responsibilities across a variety of industries\",\"Explain the project management life cycle and compare different program management methodologies \",\"Define organizational structure and organizational culture and explain how it impacts project management.\",\"Understand the significance of the initiation phase of the project life cycle.\",\"Understand the key components of project charters and develop a project charter for project initiation.\",\"Complete a stakeholder analysis and utilize RACI charts to define and communicate project team member responsibilities.\",\"Evaluate various project management tools to meet project needs. \",\"Describe the components of the project planning phase and their significance.\",\"Identify tools and best practices to build a project plan and risk management plan. \",\"Describe how to estimate, track, and maintain a budget.\",\"Draft a communication plan and explain how to manage it.\",\"Implement the key quality management concepts of quality standards, quality planning, quality assurance, and quality control.\",\"Demonstrate how to prioritize and analyze data and how to communicate a project’s data-informed story. \",\"Discuss the stages of team development and how to manage team dynamics.\",\"Describe the steps of the closing process and create project closing documentation.\",\"Explain the Agile project management approach and philosophy, including values and principles.\",\"Discuss the pillars of Scrum and how they support Scrum values.\",\"Describe the five important Scrum events and how to set up each event for a Scrum team.\",\"Explain how to coach an Agile team and help them overcome challenges.\",\"Complete a project charter, filling out key information including a project summary, SMART goals, scope, benefits, and costs.\",\"Examine project documentation and conduct research to identify tasks for a project and organize those project tasks and milestones in a project plan.\",\"Determine quality standards and evaluate against those standards to ensure that the project is achieving the required level of quality.\",\"Develop effective stakeholder reports by applying storytelling strategies to describe data.\"]"
+                    },
+                    {
+                        "title": "Agile Project Management",
+                        "link": "https://www.coursera.org/learn/agile-project-management?specialization=google-project-management",
+                        "duration": "21 hours",
+                        "rating": "4.8 ",
+                        "internalTags": "[\"Project Management\",\"Risk Management\",\"Strategic Thinking\",\"Quality Management\",\"Project Execution\",\"Procurement\",\"Risk Management\",\"Strategic Thinking\",\"Task Estimation\",\"Project Planning\",\"Project Management\",\"Strategic Thinking\",\"Business Writing\",\"Stakeholder Management\",\"Project Charter\",\"Agile Management\",\"Problem Solving\",\"Coaching\",\"Scrum\",\"Influencing\",\"Project Management\",\"Problem Solving\",\"Quality Management\",\"Effective Communication\",\"Stakeholder Management\",\"Project Management\",\"Change Management\",\"Strategic Thinking\",\"Career Development\",\"Organizational Culture\"]",
+                        "whatYouWillLearn": "[\"Describe project management skills, roles, and responsibilities across a variety of industries\",\"Explain the project management life cycle and compare different program management methodologies \",\"Define organizational structure and organizational culture and explain how it impacts project management.\",\"Understand the significance of the initiation phase of the project life cycle.\",\"Understand the key components of project charters and develop a project charter for project initiation.\",\"Complete a stakeholder analysis and utilize RACI charts to define and communicate project team member responsibilities.\",\"Evaluate various project management tools to meet project needs. \",\"Describe the components of the project planning phase and their significance.\",\"Identify tools and best practices to build a project plan and risk management plan. \",\"Describe how to estimate, track, and maintain a budget.\",\"Draft a communication plan and explain how to manage it.\",\"Implement the key quality management concepts of quality standards, quality planning, quality assurance, and quality control.\",\"Demonstrate how to prioritize and analyze data and how to communicate a project’s data-informed story. \",\"Discuss the stages of team development and how to manage team dynamics.\",\"Describe the steps of the closing process and create project closing documentation.\",\"Explain the Agile project management approach and philosophy, including values and principles.\",\"Discuss the pillars of Scrum and how they support Scrum values.\",\"Describe the five important Scrum events and how to set up each event for a Scrum team.\",\"Explain how to coach an Agile team and help them overcome challenges.\",\"Complete a project charter, filling out key information including a project summary, SMART goals, scope, benefits, and costs.\",\"Examine project documentation and conduct research to identify tasks for a project and organize those project tasks and milestones in a project plan.\",\"Determine quality standards and evaluate against those standards to ensure that the project is achieving the required level of quality.\",\"Develop effective stakeholder reports by applying storytelling strategies to describe data.\"]"
+                    },
+                    {
+                        "title": "Capstone: Applying Project Management in the Real World",
+                        "link": "https://www.coursera.org/learn/applying-project-management?specialization=google-project-management",
+                        "duration": "4.8 ",
+                        "rating": "4.8 ",
+                        "internalTags": "[\"Project Management\",\"Risk Management\",\"Strategic Thinking\",\"Quality Management\",\"Project Execution\",\"Procurement\",\"Risk Management\",\"Strategic Thinking\",\"Task Estimation\",\"Project Planning\",\"Project Management\",\"Strategic Thinking\",\"Business Writing\",\"Stakeholder Management\",\"Project Charter\",\"Agile Management\",\"Problem Solving\",\"Coaching\",\"Scrum\",\"Influencing\",\"Project Management\",\"Problem Solving\",\"Quality Management\",\"Effective Communication\",\"Stakeholder Management\",\"Project Management\",\"Change Management\",\"Strategic Thinking\",\"Career Development\",\"Organizational Culture\"]",
+                        "whatYouWillLearn": "[\"Describe project management skills, roles, and responsibilities across a variety of industries\",\"Explain the project management life cycle and compare different program management methodologies \",\"Define organizational structure and organizational culture and explain how it impacts project management.\",\"Understand the significance of the initiation phase of the project life cycle.\",\"Understand the key components of project charters and develop a project charter for project initiation.\",\"Complete a stakeholder analysis and utilize RACI charts to define and communicate project team member responsibilities.\",\"Evaluate various project management tools to meet project needs. \",\"Describe the components of the project planning phase and their significance.\",\"Identify tools and best practices to build a project plan and risk management plan. \",\"Describe how to estimate, track, and maintain a budget.\",\"Draft a communication plan and explain how to manage it.\",\"Implement the key quality management concepts of quality standards, quality planning, quality assurance, and quality control.\",\"Demonstrate how to prioritize and analyze data and how to communicate a project’s data-informed story. \",\"Discuss the stages of team development and how to manage team dynamics.\",\"Describe the steps of the closing process and create project closing documentation.\",\"Explain the Agile project management approach and philosophy, including values and principles.\",\"Discuss the pillars of Scrum and how they support Scrum values.\",\"Describe the five important Scrum events and how to set up each event for a Scrum team.\",\"Explain how to coach an Agile team and help them overcome challenges.\",\"Complete a project charter, filling out key information including a project summary, SMART goals, scope, benefits, and costs.\",\"Examine project documentation and conduct research to identify tasks for a project and organize those project tasks and milestones in a project plan.\",\"Determine quality standards and evaluate against those standards to ensure that the project is achieving the required level of quality.\",\"Develop effective stakeholder reports by applying storytelling strategies to describe data.\"]"
+                    }
+                ]
             };
         });
 
