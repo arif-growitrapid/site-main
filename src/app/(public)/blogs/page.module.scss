@@ -1,360 +1,278 @@
-.load_more_btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    outline: none;
-    border-radius: 0.375rem;
-    padding: 0.5rem 1.5rem;
-    background-color: var(--tertiary-color);
-    border: 1px solid var(--border-primary-color);
-    color: var(--text-color);
-    font-size: .9em;
-    margin-top: .25em;
-    margin: 1em 0;
-}
-
-.learn_more_btn {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    outline: none;
-    border-radius: 10px;
-    padding: 0.5rem 1.5rem;
-    background-color: var(--bg-color);
-    border: 1px solid var(--border-primary-color);
-    color: var(--text-color);
-    font-size: .9em;
-    margin: .5em .8em .5em .8em;
-}
-
-.blogs {
-    margin: 2em 2em 0em 2em;
-}
-
-.title {
+.aboutUs {
+    padding: 0em 0 2em 0;
+    height: fit-content;
+    background: #101420;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-
-    div {
-        display: flex;
-        align-items: flex-end;
-        h1 {
-            font-size: 1.8em;
-        }
-    }
-}
-
-.navigation {
-    gap: .5em;
-
-    div {
-        padding: 1em;
-        border: 1px solid var(--border-primary-color);
-        border-radius: 8px;
-        cursor: pointer;
-    }
-
-    div:hover {
-        background: var(--tertiary-color);
-        transition: all .5s ease;
-    }
-}
-
-.trending {
-    margin-right: .5em;
-}
-
-.sliderContainer {
-    overflow: hidden;
-    margin: 1em 0 3em 0;
-}
-
-.card {
-    width: 350px;
-    background: var(--tertiary-color);
-    display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    border-radius: 18px;
-    height: 35em;
 
-    .blogInfo {
-        border: 1px solid var(--border-primary-color);
-        border-bottom-right-radius: 15px;
-        border-bottom-left-radius: 15px;
-        width: 100%;
-        overflow: hidden;
-
+    .eBooks {
+        width: 95%;
+        height: 50vh;
+        background: rgb(24, 34, 47);
+        position: relative;
+        border-radius: 20px;
+        padding: 2em;
+        margin-top: 1em;
         display: flex;
-        align-items: center;
-        justify-content: center;
+        z-index: 5;
 
-        font-size: 1em;
-        background: var(--bg-color);
-        padding: 1em 2em;
-    }
-
-    .blogInfo div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0em 1em;
-        border-right: 1px solid var(--border-primary-color);
-    }
-
-    .blogInfo div:last-child {
-        border: none !important;
-    }
-
-    .icon {
-        cursor: pointer;
-        transition: all .5s ease;
-        box-sizing: content-box;
-        /* Ensure padding doesn't affect overall size */
-        padding: .5em;
-        /* adjust padding as needed */
-
-        &:hover {
-            background-color: var(--tertiary-color);
-            border-radius: 50%;
-            /* to create a circular background */
-
-        }
-    }
-
-    .thumbnailCard {
-        width: calc(100% - 1.6em);
-        aspect-ratio: 16/9;
-        margin: .8em;
-        border-radius: 15px;
-    }
-
-
-    .tags {
-        display: flex;
-        width: 100%;
-        gap: 0.5em;
-        padding: 0 .8em 0 .8em;
-        overflow: hidden; // Add this line
-        max-height: 3.8em; // Adjust the max-height value based on your design
-        flex-wrap: wrap;
-        margin: 0.5em 0;
-
-        .loader {
+        .left {
+            width: 100%;
+            height: 100%;
+            position: relative;
             display: flex;
-            width: 100%;
-            gap: 0.5em;
-            padding: 0 .8em 0 .8em;
-            overflow: hidden; // Add this line
-            max-height: 3.8em; // Adjust the max-height value based on your design
-            flex-wrap: wrap;
-            margin: 0.5em 0;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            input {
+                width: 60%;
+                padding: 1em;
+                font-size: 1.5rem;
+                border-radius: 20px;
+                background: #10141F;
+                margin-top: .5em;
+                border: none;
+                outline: none;
+            }
+
+            h1 {
+                font-size: 4rem;
+                font-weight: 800;
+                line-height: 1.2;
+                color: #949a9c;
+                width: 100%;
+                text-align: center;
+
+                span {
+                    color: #20344D;
+                }
+            }
         }
 
-        .tag {
-            background: var(--bg-color);
-            padding: 0.5em;
-            border-radius: 5px;
-            font-size: 0.6em;
+        .right {
+            width: 40%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            right: 0;
+            border-radius: 20px;
+            bottom: 0;
+            z-index: 2;
+
+            .blob1 {
+                width: 308px;
+                height: 308px;
+                background: rgba(251, 39, 39, 0.5);
+                filter: blur(150px);
+                bottom: 0%;
+                right: 0%;
+                position: absolute;
+            }
         }
     }
 
-    h2 {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+    .eBooks::before,
+    .eBooks::after {
+        content: " ";
         width: 100%;
-        font-size: 1.2em;
-        padding: 0 .8em 0 .8em;
-        font-weight: 500;
-    }
-
-    .desc {
-        font-size: small;
-        margin: .5em 0;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        margin: 0 1.2em 0 1.2em;
-        text-overflow: ellipsis;
-    }
-}
-
-
-.horizontalCards {
-    width: 100%;
-    margin-top: 1em;
-    min-height: fit-content !important;
-    display: flex;
-    align-items: center;
-    /* Make children stretch to the height of the container */
-    background: var(--tertiary-color);
-    border-radius: 18px;
-
-    .text {
-        width: calc(100% - 1.6em);
-    }
-
-    .content {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
-        width: 60%;
-        gap: 0.25em;
-        margin: 0em 0.8em 0 .8em;
         height: 100%;
-        /* Make content take 100% height */
+        position: absolute;
+        top: 3%;
+        left: 1%;
+        z-index: -1;
+        background: #fff;
+        border-radius: 20px;
+        border: 2px solid #10141F;
+        transform: translateZ(-50px);
+        /* Adjust the translateZ value for the desired depth */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        /* Adjust the box-shadow for a shadow effect */
     }
 
-    .profileContainer {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .eBooks::after {
+        background: rgb(24, 34, 47);
+        left: 0;
+        top: 0;
     }
 
-    .profilePic {
-        border-radius: 100%;
-        /* to create a circular image */
-        margin-right: 0.5em;
-        width: 50px;
-        height: 50px;
-    }
-
-    .profileInfo {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .authorName {
-        font-size: 1em;
-        font-weight: bold;
-        margin-bottom: 0.2em;
-    }
-
-    .subtext {
-        font-size: 0.8em;
-        color: gray;
-    }
-
-    .thumbnail {
-        width: calc(40% - 1.6em);
-        aspect-ratio: 16/9;
-        padding: 0.8em;
-        border-radius: 30px;
-    }
-
-    .learn_more_btn {
+    .swiper {
         width: 100%;
-    }
+        height: 100%;
+        cursor: grab;
+        margin-top: 1em;
 
-    .desc,
-    .tags,
-    .learn_more_btn {
-        margin: 0;
-    }
+        >div {
+            display: flex;
+            align-items: center;
+        }
 
-    h2 {
-        padding: 0;
-        font-size: 1.2em;
-    }
+        .swiperSlider {
+            margin: 1.5em 0;
+            position: relative;
+            min-width: 350px;
+            height: 500px;
+            background: rgb(24, 34, 47);
+            border-radius: 20px;
+            padding: .4em .8em 0em .8em;
+            margin-left: 1em;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
 
-    .desc {
-        font-size: .8em;
-    }
-}
-
-@media screen and (max-width: 1250px) {
-    .horizontalCards {
-        .content {
-
-            h2 {
-                display: -webkit-box;
+            .tags {
+                display: flex;
+                flex-wrap: wrap;
+                font-size: .7rem;
+                margin: 0;
+                gap: .5em;
+                display: -webkit-inline-box;
+                -webkit-box-orient: horizontal;
+                overflow: hidden;
                 -webkit-line-clamp: 1;
-                -webkit-box-orient: vertical;
+                max-height: 6em;
                 overflow: hidden;
-                text-overflow: ellipsis;
+
+                .tag {
+                    background: #10141F;
+                    padding: .5em 1em;
+                    height: fit-content;
+                    border-radius: 5px;
+                    margin: 0;
+                }
             }
 
-            .desc {
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
+            .thumbContainer {
+                width: 100%;
+                min-height: 200px;
+                border-radius: 15px;
+                aspect-ratio: 16/9;
             }
-        }
-    }
-}
 
-@media screen and (max-width: 1100px) {
-
-    .popularBlogs {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 1em;
-        flex-wrap: wrap;
-    }
-
-    .horizontalCards {
-        flex-direction: column;
-        width: 100%;
-        min-height: 33em;
-
-        .thumbnail {
-            width: 100%;
-        }
-
-        .content {
-            width: 100%;
-            padding: .8em;
-
-            h2 {
+            .blogInfo {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
                 font-size: 1em;
-                font-weight: bolder;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
+
+                div {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    background: #20344D;
+                    border-radius: 5px;
+                    padding: .5em;
+                    gap: .5em;
+
+                    p {
+                        margin: 0;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                        -webkit-line-clamp: 3;
+                    }
+
+                }
+
+
+                div:first-child {
+                    border-bottom-left-radius: 20px;
+                }
+
+                div:last-child {
+                    border-bottom-right-radius: 20px;
+                }
+
+                .icon {
+                    cursor: pointer;
+                    transition: all .5s ease;
+                    box-sizing: content-box;
+                    padding: .25em;
+                    // background-color: green;
+
+                    &:hover {
+                        background-color: #10141F;
+                        border-radius: 50%;
+                    }
+                }
+
+
             }
 
-            .desc {
-                font-size: .8em;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
+            div {
+                margin: .5em .25em .5em 0;
+
+                h2 {
+                    font-size: 1.08rem;
+                    font-weight: 500;
+                    cursor: pointer;
+                    display: inline-block;
+                    position: relative;
+                    z-index: 9;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    -webkit-line-clamp: 2;
+                }
+
+                h2:after {
+                    content: '';
+                    position: absolute;
+                    border-radius: 5px;
+                    width: 100%;
+                    height: 100%;
+                    transform: scaleX(0);
+                    // height: 2px;
+                    z-index: -1;
+                    bottom: 0;
+                    left: 0;
+                    background-color: #20344D;
+                    transform-origin: bottom right;
+                    transition: transform 0.25s ease-out;
+                }
+
+                h2:hover:after {
+                    transform: scaleX(1);
+                    transform-origin: bottom left;
+                }
+
+                h2:hover {
+                    color: #fff;
+                    transition: all .5s ease;
+                    padding: .2em 0em .2em 1em;
+                    font-weight: 700;
+                }
+
+                h2:not(:hover) {
+                    padding: .2em 0em;
+                    transition: all .5s ease;
+                }
+
+                p {
+                    color: #ffffff77;
+                    font-size: .8rem;
+                    margin-top: .5em;
+                }
             }
+
+            div::after {
+                content: " ";
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 2.5%;
+                left: 3%;
+                background: #fff;
+                border-radius: 20px;
+                z-index: -1;
+                border: 2px solid #10141F;
+            }
+
+
         }
     }
-}
-
-@media screen and (max-width: 900px) {
-    .popularBlogs {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .popularBlogs {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-@media screen and (max-width: 490px) {
-    .title {
-        font-size: .8em;
-    }
-
-    .trending {
-        width: 40px !important;
-    }
-
 }

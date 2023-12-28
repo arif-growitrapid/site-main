@@ -102,11 +102,11 @@ const menuItems = [
     //     items: [
     //     ]
     // },
-    {
-        name: "Terms & Policy",
-        link: config.links.terms_policy,
-        icon: null
-    }
+    // {
+    //     name: "Terms & Policy",
+    //     link: config.links.terms_policy,
+    //     icon: null
+    // }
 ] as ({
     name: string;
     link: string;
@@ -124,8 +124,7 @@ const menuItems = [
 })[];
 
 export default function getNavItems({
-    services,
-    terms
+    services
 }: {
     services: {
         _id: string;
@@ -140,17 +139,6 @@ export default function getNavItems({
             item_slug: string;
         }[];
     }[];
-    terms: {
-        _id: string;
-        title: string;
-        tagline: string;
-        sno: number;
-        items: {
-            title: string;
-            slug: string;
-            description: string;
-        }[];
-    }[];
 }): NavItem[] {
 
     return [
@@ -162,101 +150,67 @@ export default function getNavItems({
             items: null,
         },
         {
-            title: "Discover",
+            title: "Blogs",
+            icon: null,
+            link: "/blogs",
+            isMegaMenu: false,
+            items: null,
+        },
+        {
+            title: "Courses",
+            icon: null,
+            link: "/courses",
+            isMegaMenu: false,
+            items: null,
+        },
+        {
+            title: "Resources",
             icon: null,
             link: "/",
             isMegaMenu: true,
             onlyMobile: true,
             items: <div>
                 <Link className={``} href={`/about`}>
-                    <p className={``}>About Us</p>
+                    <p className={``}>E-Books</p>
                     <FaUpRightFromSquare className={`inline-block align-baseline`} />
                 </Link>
 
                 <Link className={``} href={`/blog`}>
-                    <p className={``}>Blog</p>
+                    <p className={``}>Cheat Sheets</p>
                     <FaUpRightFromSquare className={`inline-block align-baseline`} />
                 </Link>
 
                 <Link className={``} href={`/courses`}>
-                    <p className={``}>Courses</p>
-                    <FaUpRightFromSquare className={`inline-block align-baseline`} />
-                </Link>
-
-                <Link className={``} href={`/services`}>
-                    <p className={``}>Services</p>
-                    <FaUpRightFromSquare className={`inline-block align-baseline`} />
-                </Link>
-
-                <Link className={``} href={`/terms-policy`}>
-                    <p className={``}>Terms & Policy</p>
-                    <FaUpRightFromSquare className={`inline-block align-baseline`} />
-                </Link>
-
-                <Link className={``} href={`/contact`}>
-                    <p className={``}>Contact Us</p>
-                    <FaUpRightFromSquare className={`inline-block align-baseline`} />
-                </Link>
-
-                <Link className={``} href={`/faq`}>
-                    <p className={``}>FAQ</p>
+                    <p className={``}>Roadmaps</p>
                     <FaUpRightFromSquare className={`inline-block align-baseline`} />
                 </Link>
             </div>
         },
         {
-            title: "Discover",
+            title: "Resources",
             icon: null,
             link: "/",
             isMegaMenu: false,
             onlyDesktop: true,
             items: [
                 {
-                    title: "About Us",
+                    title: "E-Books",
                     icon: null,
                     link: `/about`,
                     isMegaMenu: false,
                     items: null
                 },
                 {
-                    title: "Blogs",
+                    title: "Roadmaps",
                     icon: null,
                     link: `/blogs`,
                     isMegaMenu: false,
                     items: null
                 },
                 {
-                    title: "Courses",
+                    title: "Cheatsheets",
                     icon: null,
                     link: `/courses`,
-                    isMegaMenu: false,
-                    items: null
-                },
-                {
-                    title: "Services",
-                    icon: null,
-                    link: `#services`,
-                    isMegaMenu: false,
-                    items: null
-                },
-                {
-                    title: "Terms & Policy",
-                    icon: null,
-                    link: `/terms-policy`,
-                    isMegaMenu: false,
-                    items: null
-                },
-                {
-                    title: "Contact Us",
-                    icon: null,
-                    link: `/contact`,
-                    isMegaMenu: false,
-                    items: null
-                },
-                {
-                    title: "FAQs",
-                    icon: null,
-                    link: `/faqs`,
                     isMegaMenu: false,
                     items: null
                 }
@@ -292,36 +246,6 @@ export default function getNavItems({
                     ))}
                 </div>
             })),
-        },
-        {
-            title: "Terms & Policy",
-            icon: null,
-            link: "/",
-            isMegaMenu: false,
-            items: (terms.map((term) => {
-                return term.items.map((item, index) => ({
-                    title: term.title,
-                    icon: null,
-                    link: `/terms-policy/${item.slug}`,
-                    isMegaMenu: false,
-                    items: null
-                }))
-            })).flat()
-        },
-        {
-            title: "Blogs",
-            icon: null,
-            link: "/blogs",
-            isMegaMenu: false,
-            items: null,
-        },
-        {
-            title: "Courses",
-            icon: null,
-            link: "/courses",
-            isMegaMenu: false,
-            items: null,
-        },
-        
+        },       
     ];
 }

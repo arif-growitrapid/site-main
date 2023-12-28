@@ -63,7 +63,6 @@ export default function RootLayout({
 
       <body className={`${inter.className} ${inter.variable} ${barlow.variable} ${roboto.variable} ${theme?.value === "light" ? "" : "dark"}`}>
 
-        <Navbar />
         <TopProgressBar />
 
         <div className={`fixed w-full h-full top-0 left-0 z-[999999999] pointer-events-none`}>
@@ -82,11 +81,10 @@ export default function RootLayout({
           >Site Feedback</Link>
 
         </div>
-
         {children}
 
-        <CookieBanner />
-        <Footer theme={theme?.value === "light" ? "light" : "dark"} />
+        {/* <CookieBanner /> */}
+        {/* <Footer theme={theme?.value === "light" ? "light" : "dark"} /> */}
       </body>
     </html>
   )

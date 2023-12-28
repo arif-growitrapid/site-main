@@ -60,59 +60,40 @@ const BlogCard: React.FC<BlogCardProps> = ({ blogs, type }) => {
           </div>
         </div>
         <div className={style.popularBlogs}>
-          <SkeletonTheme baseColor='var(--bg-color)' highlightColor='var(--tertiary-color)'>
-            {blogs?.map((element, index) => (
-              <div key={index} className={`${style.horizontalCards}`}>
-                {element ? (
-                  <Image width={1080} height={720} src={element.thumbnail} className={style.thumbnail} alt={element.title} />
-                ) : (
-                  <Skeleton height={'100%'} containerClassName={style.thumbnail} />
-                )}
+        {blogs?.map((card, index) => (
+              <SwiperSlide key={index} className={style.swiperSlider}>
+                <div
+                  style={{
+                    backgroundImage: `url(${card.url})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                  className={`${style.thumbContainer}`}
+                ></div>
+                <div>
+                  <h2><a href='#'>{card.title}</a></h2>
+                  <p>New Blog Description in today's dynamic job market, where first impressions matter more than ever, your professional online presence can be just as vital as your traditional resume. Enter LinkedIn, the social network for professionals.</p>
+                </div>
 
-                <div className={style.content}>
-                  <div className={style.profileContainer}>
-                    {element ? (
-                      <Image className={style.profilePic} width={50} height={50} src={element.author.image} alt='profile pic' />
-                    ) : (
-                      <Skeleton width={50} height={50} circle={true} style={{ marginRight: '1em' }} containerClassName={style.profilePic} />
-                    )}
-
-                    <div className={style.profileInfo}>
-                      <div className={style.authorName}>{element?.author.name || <Skeleton width={`${Math.floor(Math.random() * (150 - 50 + 1)) + 50}px`} />}</div>
-                      <div className={style.subtext}>{element?.author.email || <Skeleton width={`${Math.floor(Math.random() * (150 - 50 + 1)) + 50}px`} />}</div>
-                    </div>
+                <div className={style.blogInfo}>
+                  <div>
+                    <BiHeart size={25} className={style.icon} />
+                    <p>{formatNumbers(4254950)}</p>
                   </div>
 
-                  {element ? (
-                    <>
-                      <h2>{element?.title}</h2>
-                      <p className={style.desc}>{element?.excerpt}</p>
-                    </>
-                  ) : (
-                    <>
-                      <Skeleton width={'100%'} height={'2em'} containerClassName={style.text} />
-                      <Skeleton width={`${Math.floor(Math.random() * (100 - 20 + 1)) + 20}%`} height={'2em'} containerClassName={style.text} />
-                      <Skeleton width={'100%'} height={'1em'} containerClassName={style.text} />
-                      <Skeleton width={`${Math.floor(Math.random() * (100 - 20 + 1)) + 20}%`} height={'1em'} containerClassName={style.text} />
-                    </>
-                  )}
 
-                  {element ? (
-                    <Link href={`/blogs/${element?.slug}`} className={style['learn_more_btn']}>
-                      <div>
-                        <span>Read Now</span>
-                      </div>
-                      <div>
-                        <FaArrowRight className={`inline-block ml-2`} />
-                      </div>
-                    </Link>
-                  ) : (
-                    <Skeleton containerClassName={style['learn_more_btn']} />
-                  )}
+                  <div>
+                    <BiSave size={25} className={style.icon} />
+                    <p>{formatNumbers(96485214525)}</p>
+                  </div>
+
+                  <div>
+                    <MdOutlineRemoveRedEye size={25} className={style.icon} />
+                    <p>{formatNumbers(86248562)}</p>
+                  </div>
                 </div>
-              </div>
+              </SwiperSlide>
             ))}
-          </SkeletonTheme>
         </div>
       </>
     );

@@ -17,7 +17,10 @@ $shadows-big: multiple-box-shadow(100);
 
 .container {
     position: relative;
+    top: 0;
+    left: 0;
     width: 100%;
+    // z-index: 999;
     height: 100%;
     overflow: hidden;
 

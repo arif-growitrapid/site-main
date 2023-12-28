@@ -1,9 +1,29 @@
 @use '@/utils/utils' as *;
 
+.signInBtn {
+    background-color: #20344D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5em 1em;
+    gap: .5em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signInBtn:hover {
+    background-color: rgba(16, 20, 31, 0.639);
+    transition: all .8s ease;
+}
+.signInBtn:not(:hover) {
+    background-color: #20344D;
+    transition: all .8s ease;
+}
+
 .header {
     width: 100%;
     height: auto;
-    position: sticky;
+    // position: sticky;
     z-index: 999999;
     top: 0;
     left: 0;
@@ -17,12 +37,13 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-around !important;
         gap: 2em;
         white-space: pre-wrap;
+        font-family: 'Inter';
+        
 
-        background-color: var(--tertiary-color);
-        border-bottom: 1px solid var(--border-primary-color);
+        // border-bottom: 1px solid var(--border-primary-color);
 
         .hamburger {
             display: flex;
@@ -101,17 +122,16 @@
         }
 
         .links {
-            flex-grow: 1;
             display: none;
             flex-direction: row;
             align-items: center;
             vertical-align: top;
-            gap: 0em;
+            gap: 1em;
+            font-weight: 500;
 
             .link_item {
                 color: var(--text-color);
                 font-size: 0.9em;
-                font-weight: 400;
                 text-decoration: none;
                 transition: all 0.1s ease-in-out;
                 position: relative;
@@ -131,9 +151,9 @@
             .box {
                 .dropdown_box {
                     position: absolute;
-                    top: 90%;
+                    top: 8%;
                     left: 0;
-                    z-index: 999;
+                    z-index: 99;
                     height: auto;
                     min-width: 150px;
                     display: flex;
@@ -145,7 +165,7 @@
 
                     border: 1px solid var(--border-primary-color);
                     border-radius: 10px;
-                    background-color: var(--tertiary-color);
+                    background-color: #20344D;
                     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.55);
 
                     transform: scale(0) translateX(-50%);
@@ -178,7 +198,7 @@
 
                 .mega_box {
                     position: absolute;
-                    top: 90%;
+                    top: 8%;
                     left: 50%;
                     z-index: 99;
                     height: auto;
@@ -193,7 +213,7 @@
 
                     border: 1px solid var(--border-primary-color);
                     border-radius: 10px;
-                    background-color: var(--tertiary-color);
+                    background-color: #20344D;
                     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.55);
 
                     transform: scaleY(0) translateX(-50%);
@@ -318,6 +338,7 @@
 
         .avatar {
             display: flex;
+            z-index: 99;
             flex-direction: row;
             align-items: center;
             vertical-align: top;
@@ -363,7 +384,7 @@
 
         .dropdown {
             position: absolute;
-            top: 90%;
+            top: 5%;
             right: 20px;
             z-index: 99;
             height: auto;
@@ -416,16 +437,7 @@
                         background-color: var(--hover-color);
                     }
 
-                    .avatar {
-                        position: relative;
-                        height: calc(100% - 6px);
-                        aspect-ratio: 1;
-                        border-radius: 50%;
-
-                        background-size: cover;
-                        background-repeat: no-repeat;
-                        background-position: center;
-                    }
+                
 
                     .name {
                         display: flex;
@@ -438,7 +450,6 @@
 
                         span {
                             // font-family: 'Concert One', cursive;
-                            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
                             font-size: 1em;
                             font-weight: 600;
                             margin: 0;
@@ -550,7 +561,6 @@
 
                         span {
                             // font-family: 'Concert One', cursive;
-                            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
                             font-size: 0.7em;
                             font-weight: 600;
                             margin: 0;
@@ -809,7 +819,7 @@
             }
 
             &[data-open="true"] {
-                background-color: rgba(var(--dark-bg-color-rgb), 0.5);
+                background-color: #10141F;
                 pointer-events: all;
 
                 .menu {

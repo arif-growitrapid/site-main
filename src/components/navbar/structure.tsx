@@ -1,6 +1,6 @@
 'use client';
 
-import React, { isValidElement, useContext, useEffect, useRef, useState } from 'react'
+import React, { isValidElement, useEffect, useRef, useState } from 'react'
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -90,7 +90,7 @@ export default function Structure({
     function toggleTheme() {
         ui_dispatch({
             type: setTheme.type,
-            payload: isDark? "light" : "dark" 
+            payload: isDark ? "light" : "dark"
         })
     }
 
@@ -138,11 +138,13 @@ export default function Structure({
                     <div className={`${style.bottomicon} ${isMenuOpened && style.active}`}></div>
                 </div>
 
-                <Link className={`${style.logo}`} href="/" style={{ color: "var(--primary-color)" }}>
-                    <div>
-                        <Image src={isDark ? DarkLogo : LightLogo} alt="Logo" height={25} />
-                    </div>
-                </Link>
+                <div>
+                    <Link className={`${style.logo}`} href="/" style={{ color: "var(--primary-color)" }}>
+                        <div>
+                            <Image src={isDark ? DarkLogo : LightLogo} alt="Logo" height={25} />
+                        </div>
+                    </Link>
+                </div>
 
                 <div className={style.links} onClick={e => e.stopPropagation()}>
                     {navItems.map((item, index) => {
@@ -185,7 +187,7 @@ export default function Structure({
                                 </div>
                                 {button.iconOnly ? null :
                                     <div className={`text-sm`} style={{ width: "auto" }}>
-                                        <span>SIGN IN</span>
+                                        <span> IN</span>
                                     </div>
                                 }
                             </button>
@@ -206,7 +208,7 @@ export default function Structure({
                                 </div>
                                 {button.iconOnly ? null :
                                     <div className={`text-sm`} style={{ width: "auto" }}>
-                                        <span>SIGN IN</span>
+                                        <span>Get Started</span>
                                     </div>
                                 }
                             </div>
@@ -241,18 +243,13 @@ export default function Structure({
                         <Link href={config.links.signin} className='no-after'>
                             <div
                                 style={{ justifyContent: "center" }}
-                                className={`
-                                    w-auto h-7 rounded-full
-                                    flex gap-2 items-center justify-center
-                                    px-2 border-[1px] border-solid border-[var(--border-primary-color)]
-                                    hover:bg-[var(--hover-color)] transition-colors duration-300 ease-in-out
-                                `}
+                                className={style.signInBtn}
                             >
                                 <div className={`fill-[var(--text-color)]`} style={{ fontSize: "1em" }}>
                                     <svg className={`fill-[var(--text-color)]`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="1em" width="1em"><path d="M352 96h64c17.7 0 32 14.3 32 32V384c0 17.7-14.3 32-32 32H352c-17.7 0-32 14.3-32 32s14.3 32 32 32h64c53 0 96-43 96-96V128c0-53-43-96-96-96H352c-17.7 0-32 14.3-32 32s14.3 32 32 32zm-7.5 177.4c4.8-4.5 7.5-10.8 7.5-17.4s-2.7-12.9-7.5-17.4l-144-136c-7-6.6-17.2-8.4-26-4.6s-14.5 12.5-14.5 22v72H32c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H160v72c0 9.6 5.7 18.2 14.5 22s19 2 26-4.6l144-136z" /></svg>
                                 </div>
                                 <div className={`text-sm`} style={{ width: "auto" }}>
-                                    <span>SIGN IN</span>
+                                    <span>Get Started</span>
                                 </div>
                             </div>
                         </Link>
@@ -302,10 +299,10 @@ export default function Structure({
                                 <Link href={config.links.signin}>
                                     <div className={style.chip} style={{ justifyContent: "center" }}>
                                         <div className={style.avatar} style={{ fontSize: "1.1em", height: 20 }}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="1em" width="1em"><path d="M352 96h64c17.7 0 32 14.3 32 32V384c0 17.7-14.3 32-32 32H352c-17.7 0-32 14.3-32 32s14.3 32 32 32h64c53 0 96-43 96-96V128c0-53-43-96-96-96H352c-17.7 0-32 14.3-32 32s14.3 32 32 32zm-7.5 177.4c4.8-4.5 7.5-10.8 7.5-17.4s-2.7-12.9-7.5-17.4l-144-136c-7-6.6-17.2-8.4-26-4.6s-14.5 12.5-14.5 22v72H32c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H160v72c0 9.6 5.7 18.2 14.5 22s19 2 26-4.6l144-136z" /></svg>
-                                        </div>
-                                        <div className={style.name} style={{ width: "auto" }}>
-                                            <span>SIGN IN</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+                                            <div className={style.name} style={{ width: "auto" }}>
+                                                <span>Get Started</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </Link>
