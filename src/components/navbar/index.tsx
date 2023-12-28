@@ -36,10 +36,10 @@ export default function Navbar() {
       });
   }, []); // Empty dependency array ensures the effect runs once, similar to componentDidMount
 
-  if (services === null) {
-    // Data is still loading
-    return null;
-  }
+  // if (services === null) {
+  //   // Data is still loading
+  //   return null;
+  // }
 
   const menuItems = getNavItems({
     services

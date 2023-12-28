@@ -21,7 +21,7 @@
     .blob2 {
         bottom: 0%;
         left: 0%;
-        z-index: 99;
+        z-index: 9;
     }
 
     .stars {
@@ -105,6 +105,7 @@
         width: 100%;
         height: 100%;
         cursor: grab;
+        z-index: 9;
 
         .swiperSlider {
             margin: 1.5em 0;
@@ -314,6 +315,12 @@
     }
 }
 
+@media screen and (max-width: 600px) {
+    .workflow .numbers {
+        bottom: -5% !important;
+    }
+}
+
 @media screen and (max-width: 580px) {
     .parent {
         height: fit-content !important;
@@ -409,7 +416,7 @@
     background-size: cover;
     height: fit-content;
     position: relative;
-    padding-bottom: 5%;
+    padding-bottom: 5em;
     border-bottom-width: 10px;
     border-bottom-style: dashed;
     border-bottom-color: #fff;
@@ -483,11 +490,7 @@
         }
 
         .btns {
-            margin: -1em !important;
-
-            button {
-                margin: 0 !important;
-            }
+            margin-top: .8em;
         }
     }
 
@@ -504,6 +507,7 @@
             height: fit-content;
             background: #10141F;
             border-radius: 20px;
+            border: 2px solid #000;
             padding: .4em .8em 0em .8em;
             margin-left: 1em;
 
@@ -565,6 +569,7 @@
             div {
                 margin: .5em .25em .5em 0;
 
+
                 h2 {
                     font-size: 1.08rem;
                     font-weight: 500;
@@ -613,21 +618,20 @@
                     margin-top: .5em;
                 }
             }
+        }
 
-            div::after {
-                content: " ";
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                top: 2.5%;
-                left: 3%;
-                background: #fff;
-                border-radius: 20px;
-                z-index: -1;
-                border: 2px solid #10141F;
-            }
-
-
+        
+        .swiperSlider::before {
+            content: " ";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 2.5%;
+            left: 3%;
+            background: #fff;
+            border-radius: 20px;
+            z-index: -1;
+            border: 2px solid #10141F;
         }
     }
 
@@ -636,7 +640,8 @@
         height: fit-content;
         background: #10141F;
         position: relative;
-        margin: 2em;
+        margin-top: .5em;
+        margin-bottom: 2em;
         border-radius: 20px;
         padding: 2em;
         z-index: 5;
@@ -746,7 +751,7 @@
 
     .headline {
         width: 50vw;
-        margin-top: 3em;
+        margin: 3em 0 .5em 0;
     }
 
     .editorContainer {
@@ -770,6 +775,10 @@
                 border-radius: 10px;
                 padding: .5em 1em;
                 border: 2px solid #000;
+            }
+
+            .tab::after {
+                content: " Courses";
             }
 
             .tab:hover {
@@ -1047,7 +1056,7 @@
 
 @media screen and (max-width: 700px) {
     .headline {
-        width: 80% !important;
+        width: 90% !important;
         margin-bottom: -1em;
     }
 
@@ -1055,14 +1064,6 @@
         h1 {
             font-size: 2.5rem !important;
         }
-    }
-
-    .blogs .btns button {
-        font-size: .8rem;
-    }
-
-    .workflow .headline {
-        width: 60% !important;
     }
 }
 
@@ -1113,10 +1114,7 @@
         font-size: 2rem !important;
     }
 
-    .headline {
-        margin-top: .5em !important;
-        width: 70% !important;
-    }
+
 
     .courseContainer, .eBooks {
         h1 {
@@ -1149,4 +1147,62 @@
     margin-top: 1em;
     position: relative;
     z-index: 9;
+}
+
+
+@media screen and (max-width: 500px) {
+    .blogs .headline {
+        margin-top: -2em;
+    }
+
+    .editorContainer {
+        margin-bottom: 1em;
+    }
+
+    .courses .headline {
+        margin: 2em 0 1em 0;
+    }
+
+    .tab::after {
+        content: " " !important;
+    }
+
+    .workflow .btns, .services .btns {
+        margin-top: -.5em;
+    }
+
+    .blogs .swiper {
+        margin: 0em;
+    }
+    .btns {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        gap: .25em !important;
+    }
+    .btns button {
+        font-size: .8rem;
+        display: flex;
+        align-items: center;
+        margin: 0 !important;
+        justify-content: center;
+        width: 100%;        
+    }
+
+    .blogs .btns {
+        margin-top: 1.5em !important;
+    }
+
+    .workflow .headline {
+        margin-top: -2em !important;
+        width: 90% !important;
+    }
+    .services .title {
+        margin-top: 2em;
+    }
+
+    .eBooks .btns {
+        width: 100%;
+        margin-top: .5em !important;
+    }
 }
