@@ -1,9 +1,10 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Stars from '@/components/stars';
 import style from './page.module.scss'
 import TeamWorkBG2 from '../../../assets/image/teamwork2.jpg'
-import { filterBlogs } from '@/functions/blog';
+import { filterBlogs, searchForBlog } from '@/functions/blog';
+
 import BlogCard from './components/BlogCard';
 import Navbar from '@/components/navbar';
 import { SwiperSlide, Swiper } from 'swiper/react';
@@ -12,12 +13,15 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { Navigation } from 'swiper/modules';
 import { formatNumbers } from '@/utils/formatter';
 import Skeleton from 'react-loading-skeleton';
+import { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 type Props = {}
 export default function Page({ }: Props) {
 
-    const [trendingBlogs, setTrendingBlogs] = useState(Array(3).fill(undefined))
-    const [popularBlogs, setPopularBlogs] = useState(Array(20).fill(undefined))
+    const [trendingBlogs, setTrendingBlogs] = useState(Array(10).fill(undefined))
+    const [searchedBlogs, setsearchedBlogs] = useState(Array(20).fill(undefined))
+    const searchBox = useRef(null)
 
     useEffect(() => {
         async function fetchData() {
@@ -27,8 +31,6 @@ export default function Page({ }: Props) {
 
                 if (trendingResponse.status === 200 && popularResponse.status === 200) {
                     setTrendingBlogs(trendingResponse.data.blogs);
-                    setPopularBlogs(popularResponse.data?.blogs);
-                    console.log(trendingResponse.data.blogs)
                 }
             } catch (error) {
                 console.error('Error fetching blogs', error);
@@ -38,15 +40,28 @@ export default function Page({ }: Props) {
         fetchData();
     }, []);
 
+    async function search() {
+        let query = searchBox.current.value
+        console.log(query)
+        const response = await searchForBlog(query, 100, 0)
+        console.log(response)
+        setsearchedBlogs(response.data.blogs)
+    }
+
 
     return (
-        <>
+        <SkeletonTheme baseColor="#10141F" highlightColor="#161b27">
             <div className={style.aboutUs}>
                 <Navbar></Navbar>
                 <div className={style.eBooks}>
                     <div className={style.left}>
-                        <h1>GROWITRAPID RESOURCES !!</h1>
-                        <input type='text' placeholder='Search For Blogs' />
+                        <h1>GROWITRAPID RESOURCES</h1>
+                        <div className={style.searchbar}>
+                            <input ref={searchBox} type='text' placeholder='Search For Blogs' />
+                            <button onClick={search}>
+                                <img src='https://www.jsmastery.pro/assets/resources/icons/magnifying-glass.svg'></img>
+                            </button>
+                        </div>
                     </div>
                     <div className={style.right}>
                         <div className={style.blob1}></div>
@@ -76,7 +91,7 @@ export default function Page({ }: Props) {
                                         }}
                                         className={`${style.thumbContainer}`}
                                     ></div>
-    
+
                                     <div className={style.tags}>
                                         {
                                             card?.tags.map((item, index) => {
@@ -88,22 +103,58 @@ export default function Page({ }: Props) {
                                         <h2><a href={`blogs/${card?.slug}`}>{card?.title}</a></h2>
                                         <p>{card?.excerpt}</p>
                                     </div>
-    
+
                                     <div className={style.blogInfo}>
                                         <div>
                                             <BiHeart size={25} className={style.icon} />
                                             <p>{formatNumbers(card?.likes)}</p>
                                         </div>
-    
-    
+
+
                                         <div>
                                             <BiSave size={25} className={style.icon} />
                                             <p>{formatNumbers(card?.saves)}</p>
                                         </div>
-    
+
                                         <div>
                                             <MdOutlineRemoveRedEye size={25} className={style.icon} />
                                             <p>{formatNumbers(card?.viewed_by.length)}</p>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                            )
+                        } else {
+                            return (
+                                <SwiperSlide key={index} className={style.swiperSlider}>
+                                    <Skeleton className={`${style.thumbContainer}`}></Skeleton>
+
+                                    <div className={style.skeletonTags}>
+                                        {
+                                            [1, 1, 1, 1, 1, 1, 1].map((item, index) => {
+                                                return (<Skeleton key={index} width={Math.floor(Math.random() * 100) + 10} className={style.skeletonTag}></Skeleton>)
+                                            })
+                                        }
+                                    </div>
+                                    <div>
+                                        <h2><a href={`blogs/${card?.slug}`}><Skeleton></Skeleton></a></h2>
+                                        <p><Skeleton count={3}></Skeleton></p>
+                                    </div>
+
+                                    <div className={style.blogInfo}>
+                                        <div>
+                                            <BiHeart size={25} className={style.icon} />
+                                            <p><Skeleton width={30}></Skeleton></p>
+                                        </div>
+
+
+                                        <div>
+                                            <BiSave size={25} className={style.icon} />
+                                            <p><Skeleton width={30}></Skeleton></p>
+                                        </div>
+
+                                        <div>
+                                            <MdOutlineRemoveRedEye size={25} className={style.icon} />
+                                            <p><Skeleton width={30}></Skeleton></p>
                                         </div>
                                     </div>
                                 </SwiperSlide>
@@ -113,6 +164,6 @@ export default function Page({ }: Props) {
                     })}
                 </Swiper>
             </div>
-        </>
+        </SkeletonTheme>
     )
 }

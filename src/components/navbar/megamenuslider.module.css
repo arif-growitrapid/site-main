@@ -1,0 +1,102 @@
+.sm_box[data-hide=true] .holder .link_item {
+  transform: translateX(-50%);
+}
+.sm_box .holder {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+}
+.sm_box .holder .link_item,
+.sm_box .holder a {
+  white-space: nowrap;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+  transform: translateX(0);
+  transition: background-color 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+.sm_box .holder .link_item::after,
+.sm_box .holder a::after {
+  display: none;
+}
+.sm_box .holder .link_item:hover,
+.sm_box .holder a:hover {
+  background-color: var(--hover-color);
+  text-decoration: none;
+}
+.sm_box .holder .link_item .icon,
+.sm_box .holder a .icon {
+  height: 1.5em;
+  width: 1.5em;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background-color: var(--hover-color);
+  color: var(--text-color);
+  transition: background-color 0.25s ease-in-out;
+}
+.sm_box .holder .link_item .text,
+.sm_box .holder a .text {
+  flex-grow: 1;
+  font-size: 1em;
+  font-weight: 500;
+  color: var(--text-color);
+}
+.sm_box .holder .dropdown_holder .sm_dropdown {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  max-height: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.25s ease-in-out, max-height 0.25s ease-in-out, padding 0.25s ease-in-out, margin 0.25s ease-in-out;
+  border: 1px solid var(--border-primary-color);
+  border-radius: 1em 1em;
+  margin: 0;
+  padding: 0;
+}
+.sm_box .holder .dropdown_holder[data-open=true] .sm_dropdown {
+  transform: scaleY(1);
+  max-height: 100vh;
+  padding: 0.5em;
+  margin: 0.5em 0;
+}
+.sm_box .holder .mega_box_holder .mega_box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  background-color: var(--tertiary-color);
+  transform: translateX(110%);
+  transition: transform 0.25s ease-in-out;
+}
+.sm_box .holder .mega_box_holder .mega_box[data-open=true] {
+  pointer-events: all;
+  transform: translateX(0);
+}
+.sm_box .holder .mega_box_holder .mega_box .mega_box_container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+}
+.sm_box .holder .mega_box_holder .mega_box .mega_box_container .mega_box_content {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 1em;
+}/*# sourceMappingURL=megamenuslider.module.css.map */

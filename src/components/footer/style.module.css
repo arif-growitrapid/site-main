@@ -1,0 +1,33 @@
+.socialLinks {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  vertical-align: top;
+}
+@media screen and (max-width: 430px) {
+  .socialLinks {
+    flex-wrap: wrap;
+  }
+}
+.socialLinks::after, .socialLinks::before {
+  content: "";
+  display: block;
+  flex-grow: 1;
+  height: 2px;
+  background-color: var(--border-primary-color);
+}
+@media screen and (max-width: 430px) {
+  .socialLinks::after, .socialLinks::before {
+    display: none;
+  }
+}
+.socialLinks svg {
+  fill: var(--primary-color);
+}
+.socialLinks :hover svg {
+  fill: var(--link-secondary-color);
+}
+.socialLinks a::after {
+  display: none;
+}/*# sourceMappingURL=style.module.css.map */

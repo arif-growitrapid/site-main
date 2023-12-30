@@ -9,6 +9,8 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getBlogBySlug, viewBlog } from '@/functions/blog';
 import ToolBar from './components/toolBar/ToolBar';
+import Navbar from '@/components/navbar';
+import { formatNumbers } from '@/utils/formatter';
 
 export default function Page({
     params
@@ -25,6 +27,7 @@ export default function Page({
         async function fetchData() {
             try {
                 const { type, data: blogData } = await getBlogBySlug(slug);
+                console.log(blogData)
 
                 if (type === "success") {
                     setData(blogData);
@@ -60,93 +63,57 @@ export default function Page({
 
     return (
         <div className={``}>
-            <header className={`relative w-full pb-[11%] bg-[var(--tertiary-color)] `}>
+            <header>
+                <main className={style.hero}>
+                    <div className={style.blob1}></div>
+                    <div className={style.blob2}></div>
 
-                <div className={`${style.bg__image} absolute right-0 top-0 h-full w-full md:w-[50%] bg-cover bg-bottom`}>                    <Image
-                    src={data.thumbnail}
-                    alt={data.title}
-                    layout="fill"
-                    objectFit="cover"
-                />
-                </div>
+                    <div className={style.parent}>
+                        <Navbar />
 
-                <div className={`absolute h-full w-[52%] bottom-auto right-auto hidden md:block`}>
-                    <svg
-                        className={`absolute w-auto h-full right-0 translate-x-[25%]`}
-                        viewBox="0 0 984 686"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path className={`fill-[var(--tertiary-color)]`} d="M829.645582,-3.55271368e-14 C818.959194,11.9356039 808.954818,24.8206121 799.721248,38.7211139 C723.226254,157.53566 739.861725,301.270975 797.809751,426.687474 C804.958442,442.184984 814.61534,462.120894 818.944183,473.423703 C844.673456,540.503061 856.345675,600.855141 881.916718,667.40505 C761.006678,679.138421 646.665221,685.004119 538.890625,685.004119 L0,685.004119 L0,685.004119 L0,0.00411925189 Z"></path>
-                    </svg>
-
-                    <div className={`absolute top-0 left-0 h-full w-full`}>
-                        <Stars />
-                    </div>
-                </div>
-
-                <div className={`relative z-20 px-6 py-10 pt-24 md:max-w-5xl mx-auto`}>
-                    <h1 className={`md:max-w-[50%] text-4xl text-center md:text-left leading-tight font-semibold text-[var(--dark-text-color)] md:text-current`}>{data.title}</h1>
-
-                    <p className={`md:max-w-[50%] mt-4 text-center md:text-left text-[var(--text-color)]`}>
-                        {data.description}
-                    </p>
-
-                    <p className={`md:max-w-[50%] text-center md:text-left text-[var(--text-color)]`}>
-                        {data.tags.map((tag, index) => (
-                            <span key={index} className={`inline-block px-2 py-1 mt-2 mr-2 text-xs font-semibold rounded-md bg-[var(--bg-color)] text-[var(--text-color)]`}>
-                                {tag}
-                            </span>
-                        ))}
-                    </p>
-
-                    <div className={`flex items-center justify-center md:justify-start mt-4`}>
-                        <div className={`flex items-center`}>
-                            <img
-                                className={`w-10 h-10 rounded-full`}
-                                src={data.author.image}
-                                alt={data.author.name}
-                            />
+                        <h1>{data?.title}</h1>
+                        <p>{data?.excerpt}</p>
+                        <div className={style.btns}>
+                            <button>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-200h80v-40h40q17 0 28.5-11.5T600-280v-120q0-17-11.5-28.5T560-440H440v-40h160v-80h-80v-40h-80v40h-40q-17 0-28.5 11.5T360-520v120q0 17 11.5 28.5T400-360h120v40H360v80h80v40ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-560v-160H240v640h480v-480H520ZM240-800v160-160 640-640Z" /></svg>
+                                More About Author
+                            </button>
+                            <button>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M517-518 347-688l57-56 113 113 227-226 56 56-283 283ZM280-220l278 76 238-74q-5-9-14.5-15.5T760-240H558q-27 0-43-2t-33-8l-93-31 22-78 81 27q17 5 40 8t68 4q0-11-6.5-21T578-354l-234-86h-64v220ZM40-80v-440h304q7 0 14 1.5t13 3.5l235 87q33 12 53.5 42t20.5 66h80q50 0 85 33t35 87v40L560-60l-280-78v58H40Zm80-80h80v-280h-80v280Z" /></svg>
+                                Contribute To Author
+                            </button>
                         </div>
-                        <div className={`mx-2`}>
-                            <p className={`text-sm text-[var(--text-color)]`}>
-                                {data.author.name}
-                            </p>
-                            <p className={`text-xs text-[var(--text-color)]`}>
-                                Published On {formatDate(new Date(data.createdAt), "$df $MMMM, $yyyy", false)}
-                             </p>
+
+
+                        <div className={style.stars}>
+                            <Stars></Stars>
+                        </div>
+                        <div className={style.numbers}>
+                            <div>
+                                <h2 className={style.numeric}>68%</h2>
+                                <p className={`line-clamp-2 ${style.text}`}>Graduates Recieved Jobs</p>
+                            </div>
+
+                            <div>
+                                <h2 className={style.numeric}>80k</h2>
+                                <p className={`line-clamp-2 ${style.text}`}>Avg $ Salary In India</p>
+                            </div>
+
+                            <div>
+                                <h2 className={style.numeric}>1.2k</h2>
+                                <p className={`line-clamp-2 ${style.text}`}>Total Enrolled Studnets</p>
+                            </div>
+
+                            <div>
+                                <h2 className={style.numeric}>4.8</h2>
+                                <p className={`line-clamp-2 ${style.text}`}>Rating by 42k</p>
+                            </div>
                         </div>
                     </div>
-
-                </div>
-
-                <div className={`absolute w-full -bottom-2 z-30`}>
-                    <svg
-                        preserveAspectRatio="xMinYMin meet"
-                        className={`w-full hidden md:block`}
-                        version="1.0"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlnsXlink="http://www.w3.org/1999/xlink"
-                        viewBox="0 0 1440 158"
-                    >
-                        <defs></defs>
-                        <path className={`fill-[var(--bg-color)]`} fillRule="evenodd" d="M1440-27h2v185H0V8c88-20.667 267.333 3 538 71s571.333 45.333 902-68v-38z"></path>
-                    </svg>
-
-                    <svg
-                        preserveAspectRatio="xMinYMin meet"
-                        className={`w-full block md:hidden`}
-                        version="1.1"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlnsXlink="http://www.w3.org/1999/xlink"
-                        viewBox="0 0 375 50"
-                    >
-                        <defs></defs>
-                        <path className={`fill-[var(--bg-color)]`} fillRule="evenodd" d="M376 .414V50H0V5.48C141.126 31.757 266.126 30.182 375 .756l1-.342z"></path>
-                    </svg>
-                </div>
+                </main>
             </header>
 
-            <div className={`pb-4`}>
+            <div className={`py-20`}>
                 <div className={`max-w-4xl mx-auto px-10`}>
                     <Content data={data.content || ""} />
                 </div>

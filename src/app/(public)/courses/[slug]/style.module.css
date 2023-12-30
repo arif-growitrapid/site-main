@@ -1,0 +1,350 @@
+@media screen and (max-width: 768px) {
+  .bg__image::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: rgba(var(--dark-bg-color-rgb), 0.3);
+  }
+}
+
+.header {
+  background: rgb(24, 34, 47);
+}
+
+.load_more_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  outline: none;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1.5rem;
+  background-color: #101420;
+  border: 1px solid var(--border-primary-color);
+  color: var(--text-color);
+  font-size: 0.8em;
+  margin: 0.5em 0 0 1em;
+  z-index: 10;
+}
+
+.courses .accordion .accordion-item {
+  border: 1px solid var(--border-primary-color);
+  margin: 10px 0;
+  border-radius: 4px;
+}
+.courses .accordion .accordion-item .accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  cursor: pointer;
+  background-color: rgb(24, 34, 47);
+  transition: background-color 0.3s;
+}
+.courses .accordion .accordion-item .accordion-header svg {
+  font-size: 1.2rem;
+  transition: transform 0.3s;
+}
+.courses .accordion .accordion-item .accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 10px;
+  /* Remove default padding */
+  border-top: 1px solid var(--border-primary-color);
+  background-color: rgb(24, 34, 47);
+  transition: max-height 0.5s ease, padding 0.5s ease;
+  /* Updated transition */
+}
+.courses .accordion .accordion-item .accordion-content .points {
+  list-style-type: circle;
+  padding-left: 1em;
+  color: var(--dark-primary-color);
+}
+.courses .accordion .accordion-item .accordion-content.open {
+  max-height: 1000px;
+  /* Set a maximum height to allow for sliding */
+  padding: 10px;
+  /* Restore padding on open */
+}
+
+.courseInfo {
+  padding: 1em 3em 1em 3em;
+  z-index: 99;
+  margin-top: -5%;
+  position: relative;
+  background: #101420;
+}
+.courseInfo .about {
+  margin: 1em 0;
+}
+.courseInfo .about .points {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  list-style-type: circle;
+  padding-left: 1em;
+  gap: 0.5em;
+  color: var(--dark-primary-color);
+}
+.courseInfo .about .details {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 1rem 0;
+}
+.courseInfo .outcomes {
+  margin-top: 2em;
+}
+.courseInfo .outcomes .careerInfo {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+.courseInfo .outcomes .certificate {
+  background: rgb(24, 34, 47);
+  border: 1px solid var(--border-primary-color);
+  border-radius: 12px;
+  margin: 3em 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+}
+.courseInfo .outcomes .certificate .textContent {
+  width: 50%;
+  padding: 1em;
+}
+.courseInfo .outcomes .certificate .textContent p {
+  width: 80%;
+}
+.courseInfo .outcomes .certificate .ImgContent {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  height: 100%;
+}
+.courseInfo .outcomes .certificate .ImgContent .certificateImg {
+  height: 150%;
+  width: 60%;
+  border-radius: 12px;
+  margin-right: 1em;
+}
+.courseInfo .outcomes .outcomesTextContent,
+.courseInfo .outcomes .outcomesImgContent {
+  width: 50%;
+}
+.courseInfo .outcomes .outcomesImgContent {
+  background: rgb(24, 34, 47);
+  border: 1px solid var(--border-primary-color);
+  border-radius: 12px;
+  position: relative;
+  padding: 0.5em;
+}
+.courseInfo .outcomes .benefits {
+  padding-left: 2em;
+  list-style-type: circle;
+  color: var(--dark-primary-color);
+}
+.courseInfo .outcomes .Img {
+  height: 30vh;
+  width: 100%;
+  border-radius: 12px;
+}
+.courseInfo .outcomes .outcomeInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1em 0.5em;
+}
+.courseInfo .outcomes .outcomeInfo div {
+  width: 33.33%;
+  text-align: center;
+  border-right: 2px solid var(--border-primary-color);
+}
+.courseInfo .outcomes .outcomeInfo div:last-child {
+  border-right: none;
+}
+.courseInfo .outcomes .outcomeInfo p {
+  color: var(--dark-primary-color);
+}
+.courseInfo .filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgb(24, 34, 47);
+  border-radius: 12px;
+  padding: 0.5em;
+  border: 1px solid var(--border-primary-color);
+}
+.courseInfo .filter .filterText {
+  cursor: pointer;
+  padding: 0.5em;
+}
+.courseInfo .filter .filterText:hover {
+  background-color: var(--dark-hover-color);
+  transition: all 0.5s ease;
+  border-radius: 12px;
+}
+.courseInfo .filter .filterText:not(:hover) {
+  background-color: transparent;
+  transition: all 0.5s ease;
+  border-radius: 0px;
+}
+.courseInfo .testimonials .title {
+  text-align: center;
+  margin: 2em 0 1.5em 0;
+}
+.courseInfo .testimonials .stories {
+  margin: 2em 0 2em 0;
+}
+.courseInfo .testimonials .slideContainer {
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding-bottom: 3%;
+}
+.courseInfo .testimonials .slide {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  background: rgb(24, 34, 47);
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+  border-radius: 12px;
+  padding: 0.5em;
+  max-width: 25vw;
+}
+@media screen and (max-width: 1050px) {
+  .courseInfo .testimonials .slide {
+    max-width: 40vw;
+  }
+}
+@media screen and (max-width: 800px) {
+  .courseInfo .testimonials .slide {
+    max-width: 60vw;
+  }
+}
+@media screen and (max-width: 600px) {
+  .courseInfo .testimonials .slide {
+    max-width: 90vw;
+  }
+}
+.courseInfo .testimonials .profilePic {
+  border-radius: 100%;
+}
+.courseInfo .testimonials .profileInfo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 0.8em;
+  border-radius: 12px;
+  padding: 0.5em 1em 0.5em 1em;
+  background: #10141f;
+  border: 1px solid var(--border-primary-color);
+}
+.courseInfo .testimonials .testimonial {
+  border-radius: 12px;
+  padding: 0.5em 1em;
+  background: #101420;
+  border: 1px solid var(--border-primary-color);
+  margin-top: 0.5em;
+  font-size: 0.8em;
+  height: 25svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  -webkit-line-clamp: 6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+.courseInfo .testimonials .profileName {
+  display: flex;
+  flex-direction: column;
+}
+.courseInfo .testimonials .profileName h2 {
+  font-weight: 600;
+  font-size: 1em;
+  line-height: 1;
+}
+.courseInfo .testimonials .profileInfo p {
+  font-weight: 300;
+  font-size: 0.8em;
+}
+
+@media screen and (max-width: 800px) {
+  .careerInfo {
+    flex-direction: column-reverse;
+  }
+  .careerInfo .outcomesTextContent,
+  .careerInfo .outcomesImgContent {
+    width: 100% !important;
+  }
+  .certificate .textContent {
+    width: 100%;
+    padding: 1em;
+  }
+  .certificate .textContent p {
+    width: 100% !important;
+  }
+}
+@media screen and (max-width: 600px) {
+  .points {
+    grid-template-columns: 1fr !important;
+  }
+}
+@media screen and (max-width: 650px) {
+  .certificate {
+    flex-direction: column-reverse;
+    height: -moz-fit-content !important;
+    height: fit-content !important;
+  }
+  .certificate .ImgContent {
+    width: 100% !important;
+    margin: 0;
+    justify-content: center !important;
+  }
+  .certificate .ImgContent img {
+    margin: 1em 1em 0em 1em;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .certificate .textContent {
+    width: 100% !important;
+    padding: 1em;
+  }
+  .certificate .textContent p {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 750px) {
+  .details {
+    flex-direction: column;
+  }
+  .details > div {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 700px) {
+  .outcomeInfo {
+    flex-direction: column;
+  }
+  .outcomeInfo div {
+    border-right: none !important;
+    padding: 1em;
+    border-bottom: 2px solid var(--border-primary-color);
+    width: 100% !important;
+    text-align: left;
+  }
+  .outcomeInfo div:last-child {
+    border-bottom: none;
+  }
+}/*# sourceMappingURL=style.module.css.map */

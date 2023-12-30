@@ -222,3 +222,16 @@ div {
 //         scrollbar-width: thin;
 //     }
 // }
+
+::-webkit-scrollbar {
+    width: 20px; /* Set the width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #6B7280; /* Color of the thumb */
+    border-radius: 4px; /* Round corners of the thumb */
+}
+
+::-webkit-scrollbar-track {
+    background-color: #1F2937; /* Color of the track */
+}

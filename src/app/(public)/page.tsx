@@ -9,14 +9,6 @@ import { formatNumbers } from '@/utils/formatter';
 import { testimonials } from './utils/testimonials';
 import { workflow } from './utils/workflow';
 
-import Image from 'next/image'
-import Blog from '@/components/showcase/blogs';
-
-import BG from '@/assets/image/bg.webp'
-import Link from 'next/link'
-import { FaArrowRight } from 'react-icons/fa'
-import ExpandExplorer from '@/components/showcase/expand_explorer'
-
 import style from './page.module.scss'
 import Stars from '@/components/stars'
 import Navbar from '@/components/navbar';

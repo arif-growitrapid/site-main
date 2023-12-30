@@ -1,30 +1,36 @@
-"use client"
-import client from '@/utils/sanity-client';
-import React, { useEffect } from 'react'
-import { groq } from 'next-sanity';
-import Link from 'next/link';
+'use client'
+import React, { useEffect, useRef, useState } from 'react'
 import Stars from '@/components/stars';
 import style from './page.module.scss'
-import TeamWorkBG2 from '../../../assets/image/teamwork2.jpg'
-import Image from 'next/image';
-import { FaArrowRight, FaFilter } from 'react-icons/fa'
-import { useState } from 'react';
-import CoursesDisplayCard from './components/CourseDisplayCards';
+import { MdWorkHistory } from "react-icons/md";
+import { PiStudentFill } from "react-icons/pi";
 import { filterCourse } from '@/functions/courses';
+import CoursesDisplayCard from './components/CourseDisplayCards';
+import BlogCard from './components/BlogCard';
+import Navbar from '@/components/navbar';
+import { SwiperSlide, Swiper } from 'swiper/react';
+import { FaStar } from "react-icons/fa";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { Navigation } from 'swiper/modules';
+import { formatNumbers } from '@/utils/formatter';
+import Skeleton from 'react-loading-skeleton';
+import { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 type Props = {}
+export default function Page({ }: Props) {
 
-const Page: React.FC<any> = () => {
-
-    const [trendingCourses, setTrendingCourses] = useState(Array(3).fill(undefined))
+    const [trendingCourses, setTrendingCourses] = useState(Array(10).fill(undefined))
+    const [searchedCourses, setsearchedCourses] = useState(Array(20).fill(undefined))
+    const searchBox = useRef(null)
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const result = await filterCourse('coursera', {}, 20);
                 if (result.status === 200) {
-                    const {type, data} = result
-                    console.log(data.data, "BULLI")
+                    const { type, data } = result
+                    console.log(data, "BULLI")
 
                     setTrendingCourses(data)
                 }
@@ -36,178 +42,133 @@ const Page: React.FC<any> = () => {
         fetchData();
     }, []);
 
+    async function search() {
+        let query = searchBox.current.value
+        console.log(query)
+        const response = await searchForBlog(query, 100, 0)
+        console.log(response)
+        setsearchedCourses(response.data.blogs)
+    }
+
+
     return (
-        <>
-            <div>
-                <header className={`relative w-full pb-[11%] bg-[var(--tertiary-color)] `}>
-
-                    <div className={`${style.bg__image} absolute right-0 top-0 h-full w-full md:w-[50%] bg-cover bg-bottom`}
-                        style={{
-                            // backgroundImage: `url(${BG.src})`,
-                            backgroundImage: `url(${TeamWorkBG2.src})`,
-                        }}
-                    />
-
-
-                    <div className={`absolute h-full w-[52%] bottom-auto right-auto hidden md:block`}>
-                        <svg
-                            className={`absolute w-auto h-full right-0 translate-x-[25%]`}
-                            viewBox="0 0 984 686"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path className={`fill-[var(--tertiary-color)]`} d="M829.645582,-3.55271368e-14 C818.959194,11.9356039 808.954818,24.8206121 799.721248,38.7211139 C723.226254,157.53566 739.861725,301.270975 797.809751,426.687474 C804.958442,442.184984 814.61534,462.120894 818.944183,473.423703 C844.673456,540.503061 856.345675,600.855141 881.916718,667.40505 C761.006678,679.138421 646.665221,685.004119 538.890625,685.004119 L0,685.004119 L0,685.004119 L0,0.00411925189 Z"></path>
-                        </svg>
-
-                        <div className={`absolute top-0 left-0 h-full w-full`}>
-                            <Stars />
+        <SkeletonTheme baseColor="#10141F" highlightColor="#161b27">
+            <div className={style.aboutUs}>
+                <Navbar></Navbar>
+                <div className={style.eBooks}>
+                    <div className={style.left}>
+                        <h1>GROWITRAPID FREE COURSES</h1>
+                        <div className={style.searchbar}>
+                            <input ref={searchBox} type='text' placeholder='Search For Courses' />
+                            <button onClick={search}>
+                                <img src='https://www.jsmastery.pro/assets/resources/icons/magnifying-glass.svg'></img>
+                            </button>
                         </div>
                     </div>
-
-
-                    <div className={`relative z-20 px-6 py-24 md:max-w-5xl mx-auto`}>
-                        <h1 className={`md:max-w-[50%] text-5xl text-center md:text-left leading-tight font-semibold text-[var(--dark-text-color)] md:text-current`}>Our Courses</h1>
-
-                        <p className={`mt-4 text-center md:text-left text-[var(--dark-text-color)] md:text-current max-w-[500px]`}>Explore an abundance of knowledge and stay captivated with our courses. Within our educational offerings, you'll uncover a vast array of insights, expert guidance, and thought-provoking content covering a wide range of subjects.</p>
-                    </div>
-
-                    <div className={`absolute w-full -bottom-2 z-30`}>
-                        <svg
-                            preserveAspectRatio="xMinYMin meet"
-                            className={`w-full hidden md:block`}
-                            version="1.0"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlnsXlink="http://www.w3.org/1999/xlink"
-                            viewBox="0 0 1440 158"
-                        >
-                            <defs></defs>
-                            <path className={`fill-[var(--bg-color)]`} fill-rule="evenodd" d="M1440-27h2v185H0V8c88-20.667 267.333 3 538 71s571.333 45.333 902-68v-38z"></path>
-                        </svg>
-
-                        <svg
-                            preserveAspectRatio="xMinYMin meet"
-                            className={`w-full block md:hidden`}
-                            version="1.1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlnsXlink="http://www.w3.org/1999/xlink"
-                            viewBox="0 0 375 50"
-                        >
-                            <defs></defs>
-                            <path className={`fill-[var(--bg-color)]`} fill-rule="evenodd" d="M376 .414V50H0V5.48C141.126 31.757 266.126 30.182 375 .756l1-.342z"></path>
-                        </svg>
-                    </div>
-                </header>
-            </div>
-
-            <main className={style.courses}>
-                <div className={style.gridContainer}>
-                    <div className={style.boxA}>
-                        <div className={style.content}>
-                            <h2 className={`text-xl font-bold z-10`}>Full Stack Web Development</h2>
-                            <p className={`text-sm z-10 my-2`}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum suscipit nemo quae commodi earum vitae quod cum. Distinctio cum officiis iusto omnis dolorum doloremque maxime, deleniti libero earum, sed natus. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt nisi veniam unde fuga mollitia repellat, qui officia asperiores beatae minima quisquam inventore eveniet voluptas quos? Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quasi obcaecati optio consectetur temporibus magni.</p>
-                            <div className={style.btns}>
-                                <Link href={`#`} className={style['load_more_btn']}>
-                                    <div>
-                                        <span>Enroll Now !!</span>
-                                    </div>
-
-                                    <div>
-                                        <FaArrowRight className={`inline-block ml-2`} />
-                                    </div>
-                                </Link>
-                                <Link href={`#`} className={style['load_more_btn']}>
-                                    <div>
-                                        <span>Enroll Now !!</span>
-                                    </div>
-
-                                    <div>
-                                        <FaArrowRight className={`inline-block ml-2`} />
-                                    </div>
-                                </Link>
-                            </div>
-                        </div>
-                        <Image
-                            src={"https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGF0YSUyMHNjaWVuY2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60"}
-                            width={500}
-                            height={500}
-                            className={`absolute inset-0 w-full h-full object-cover object-center z-0`}
-                        />
-                        <div className={`${style.card__overlay}`}>
-
-                        </div>
-                    </div>
-                    <div className={style.boxB}>
-                        <div className={style.content}>
-                            <h2 className={`text-lg font-bold z-10`}>Full Stack Web Development</h2>
-                            <p className={`text-sm z-10`}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum suscipit nemo quae commodi earum vitae quod cum. Distinctio cum officiis iusto omnis dolorum doloremque maxime, deleniti libero earum, sed natus.</p>
-                        </div>
-                        <Image
-                            src={"https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGF0YSUyMHNjaWVuY2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60"}
-                            width={500}
-                            height={500}
-                            className={`absolute inset-0 w-full h-full object-cover object-center z-0`}
-                        />
-                        <div className={`${style.card__overlay}`}></div>
-                    </div>
-                    <div className={style.boxC}>
-                        <div className={style.content}>
-                            <h2 className={`text-lg font-bold z-10`}>Full Stack Web Development</h2>
-                            <p className={`text-sm z-10`}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum suscipit nemo quae commodi earum vitae quod cum. Distinctio cum officiis iusto omnis dolorum doloremque maxime, deleniti libero earum, sed natus.</p>
-                        </div>
-                        <Image
-                            src={"https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGF0YSUyMHNjaWVuY2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60"}
-                            width={500}
-                            height={500}
-                            className={`absolute inset-0 w-full h-full object-cover object-center z-0`}
-                        />
-                        <div className={`${style.card__overlay}`}></div>
-                    </div>
-                    <div className={style.boxD}>
-                        <div className={style.content}>
-                            <h2 className={`text-lg font-bold z-10`}>Full Stack Web Development</h2>
-                            <p className={`text-sm z-10`}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum suscipit nemo quae commodi earum vitae quod cum. Distinctio cum officiis iusto omnis dolorum doloremque maxime, deleniti libero earum, sed natus.</p>
-                        </div>
-                        <Image
-                            src={"https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGF0YSUyMHNjaWVuY2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60"}
-                            width={500}
-                            height={500}
-                            className={`absolute inset-0 w-full h-full object-cover object-center z-0`}
-                        />
-                        <div className={`${style.card__overlay}`}></div>
-                    </div>
-                    <div className={style.boxE}>
-                        <div className={style.content}>
-                            <h2 className={`text-lg font-bold z-10`}>Full Stack Web Development</h2>
-                            <p className={`text-sm z-10`}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum suscipit nemo quae commodi earum vitae quod cum. Distinctio cum officiis iusto omnis dolorum doloremque maxime, deleniti libero earum, sed natus.</p>
-                        </div>
-                        <Image
-                            src={"https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGF0YSUyMHNjaWVuY2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60"}
-                            width={500}
-                            height={500}
-                            className={`absolute inset-0 w-full h-full object-cover object-center z-0`}
-                        />
-                        <div className={`${style.card__overlay}`}></div>
-                    </div>
-                </div>
-            </main>
-
-            <CoursesDisplayCard courses={trendingCourses} type='carousel' />
-
-            <div className={style.allCourses}>
-                <div className={style.navbar}>
-                    <div className={style.title}>
-                        <h2>All Courses</h2>
-                        <p>41 results</p>                        
-                    </div>
-
-                    <div className={style.form}>
-                        <input type={'text'} placeholder={"Search What You Wanna Learn Today !!"} />
+                    <div className={style.right}>
+                        <div className={style.blob1}></div>
                     </div>
                 </div>
 
-                <CoursesDisplayCard courses={trendingCourses} type='cards' titleNeeded={false} bgColor={"var(--bg-color)"} swapTheme={true}/>
+                <Swiper
+                    slidesPerView={"auto"}
+                    spaceBetween={10}
+                    className={style.swiper}
+                    freeMode={true}
+                    loop={true}
+                    centeredSlides={true}
+                    mousewheel={{ releaseOnEdges: true }}
+                >
+
+                    {trendingCourses.map((card, index) => {
+                        console.log(card)
+                        if (card) {
+                            return (
+                                <SwiperSlide key={index} className={style.swiperSlider}>
+                                    <div
+                                        style={{
+                                            backgroundImage: `url(https://random.imagecdn.app/1600/900)`,
+                                            backgroundSize: "cover",
+                                            backgroundPosition: "center",
+                                        }}
+                                        className={`${style.thumbContainer}`}
+                                    ></div>
+
+                                    <div className={style.tags}>
+                                        {
+                                            card?.tags.map((item, index) => {
+                                                return (<div key={index} className={style.tag}>{item}</div>)
+                                            })
+                                        }
+                                    </div>
+                                    <div>
+                                        <h2><a href={`courses/${card?.meta.slug}`}>{card?.title}</a></h2>
+                                        <p>{card?.description}</p>
+                                    </div>
+
+                                    <div className={style.blogInfo}>
+                                        <div>
+                                            <PiStudentFill size={25} className={style.icon} />
+                                            <p>{formatNumbers(parseInt((card?.total_enrolled_students || '').replace(/,/g, '')))}</p>
+                                        </div>
+
+
+                                        <div>
+                                            <MdWorkHistory size={25} className={style.icon} />
+                                            <p>{card?.guarantee_percentage}</p>
+                                        </div>
+
+                                        <div>
+                                            <FaStar size={25} className={style.icon} />
+                                            <p>{formatNumbers(card?.rating)}</p>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                            )
+                        } else {
+                            return (
+                                <SwiperSlide key={index} className={style.swiperSlider}>
+                                    <Skeleton className={`${style.thumbContainer}`}></Skeleton>
+
+                                    <div className={style.skeletonTags}>
+                                        {
+                                            [1, 1, 1, 1, 1, 1, 1].map((item, index) => {
+                                                return (<Skeleton key={index} width={Math.floor(Math.random() * 100) + 10} className={style.skeletonTag}></Skeleton>)
+                                            })
+                                        }
+                                    </div>
+                                    <div>
+                                        <h2><a href={`courses/${card?.meta.slug}`}><Skeleton></Skeleton></a></h2>
+                                        <p><Skeleton count={3}></Skeleton></p>
+                                    </div>
+
+                                    <div className={style.blogInfo}>
+                                        <div>
+                                            <PiStudentFill size={25} className={style.icon} />
+                                            <p><Skeleton width={30}></Skeleton></p>
+                                        </div>
+
+
+                                        <div>
+                                            <MdWorkHistory size={25} className={style.icon} />
+                                            <p><Skeleton width={30}></Skeleton></p>
+                                        </div>
+
+                                        <div>
+                                            <FaStar size={25} className={style.icon} />
+                                            <p><Skeleton width={30}></Skeleton></p>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                            )
+                        }
+
+                    })}
+                </Swiper>
+
+                {/* <CoursesDisplayCard courses={trendingCourses} type='cards' titleNeeded={false} bgColor={"var(--bg-color)"} swapTheme={true}/> */}
+
             </div>
-        </>
+        </SkeletonTheme>
     )
 }
-
-export default Page;

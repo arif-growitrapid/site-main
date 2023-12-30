@@ -1,0 +1,339 @@
+@import url("https://fonts.googleapis.com/css2?family=Patua+One&display=swap");
+.md {
+  width: 100%;
+  height: auto;
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: 16px !important;
+  background-color: transparent !important;
+  border: none;
+  color: rgb(var(--text-color));
+  font-family: var(--font-barlow);
+  --font: var(--font-barlow);
+}
+@media screen and (min-width: 600px) {
+  .md {
+    font-size: 18px !important;
+  }
+}
+.md ::-moz-selection {
+  background: rgba(0, 255, 215, 0.5607843137) !important;
+}
+.md ::selection {
+  background: rgba(0, 255, 215, 0.5607843137) !important;
+}
+.md h1,
+.md h2,
+.md h3,
+.md h4,
+.md h5,
+.md h6,
+.md p {
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.55em;
+  color: rgb(var(--text-color));
+  padding: 0.3em 0 0.2em 0;
+  margin-top: 0.5em;
+}
+.md h1 {
+  font-size: 1.5em;
+  font-weight: 600;
+  font-family: var(--font);
+}
+.md h1 span {
+  display: inline-block;
+  margin-right: 0.5em;
+  font-size: 0.8em;
+  font-weight: 400;
+  opacity: 0.8;
+}
+.md h1 span a {
+  font-family: var(--font-barlow);
+  font-weight: 900;
+  margin-right: 0.5em;
+  color: #13d7d7;
+  text-decoration: none;
+}
+.md h1 span a::after {
+  display: none;
+}
+.md h1 span a:hover {
+  filter: drop-shadow(0px 0px 3px #13d7d7);
+  color: #13d7d7;
+  text-decoration: none;
+}
+.md h2 {
+  font-size: 1.8em;
+  font-weight: 600;
+  font-family: var(--font);
+  border-bottom: 1px solid rgb(var(--border-primary-color));
+  margin-bottom: 0.5em;
+}
+.md h2 span {
+  display: inline-block;
+  margin-right: 0.5em;
+  font-size: 0.8em;
+  font-weight: 400;
+  opacity: 0.8;
+}
+.md h2 span a {
+  display: inline-block;
+  font-family: var(--font-barlow);
+  font-weight: 900;
+  margin-right: 0.5em;
+  color: #13d7d7;
+  text-decoration: none;
+}
+.md h2 span a::after {
+  display: none;
+}
+.md h2 span a:hover {
+  filter: drop-shadow(0px 0px 3px #13d7d7);
+  color: #13d7d7;
+  text-decoration: none;
+}
+.md h3 {
+  font-size: 1.25em;
+  font-weight: 600;
+  font-family: var(--font);
+}
+.md h4 {
+  font-size: 1.15em;
+  font-weight: 600;
+  font-family: var(--font);
+}
+.md h5 {
+  font-size: 1.13em;
+  font-weight: 600;
+  font-family: var(--font);
+}
+.md h6 {
+  font-size: 1.1em;
+  font-weight: 600;
+  font-family: var(--font);
+}
+.md p {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0.75em 0 0.75em 0;
+}
+.md strong {
+  font-weight: 600;
+  font-family: var(--font);
+}
+.md a {
+  cursor: pointer;
+  color: #13d7d7;
+  text-decoration: none;
+  position: relative;
+}
+.md a::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.3s ease-in-out;
+}
+.md a:hover::after {
+  width: 100%;
+}
+.md blockquote {
+  overflow: hidden;
+  padding: 0.7em;
+  border-radius: 0.5em;
+  border-left: 5px solid rgb(147, 147, 147);
+  background-color: rgba(175, 175, 175, 0.25);
+  margin: 1em 0;
+  display: flex;
+  gap: 1em;
+  align-items: flex-start;
+}
+.md blockquote::before {
+  content: "";
+  flex-shrink: 0;
+  width: 2em;
+  height: 2em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' fill='%23888'%3E%3Cpath d='M448 296c0 66.3-53.7 120-120 120h-8c-17.7 0-32-14.3-32-32s14.3-32 32-32h8c30.9 0 56-25.1 56-56v-8H320c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h64c35.3 0 64 28.7 64 64v32 32 72zm-256 0c0 66.3-53.7 120-120 120H64c-17.7 0-32-14.3-32-32s14.3-32 32-32h8c30.9 0 56-25.1 56-56v-8H64c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h64c35.3 0 64 28.7 64 64v32 32 72z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.md code {
+  background-color: hsla(0, 0%, 78%, 0.3);
+  padding: 0.15em;
+  border-radius: 2px;
+}
+.md .marker-yellow {
+  --marker-color: var(--ck-highlight-marker-yellow);
+}
+.md .marker-green {
+  --marker-color: var(--ck-highlight-marker-green);
+}
+.md .marker-pink {
+  --marker-color: var(--ck-highlight-marker-pink);
+}
+.md .marker-blue {
+  --marker-color: var(--ck-highlight-marker-blue);
+}
+.md mark {
+  padding-inline: 0.4em;
+  background-color: transparent !important;
+  background-image: linear-gradient(to bottom right, transparent 50%, var(--marker-color) 50%), linear-gradient(var(--marker-color), var(--marker-color)), linear-gradient(to top left, transparent 50%, var(--marker-color) 50%);
+  background-size: 0.55em 2em, calc(100% - 1em + 1px) 2em, 0.55em 2em;
+  background-position: left center, center, right center;
+  background-repeat: no-repeat;
+  color: inherit;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.md img {
+  display: table;
+  clear: both;
+  text-align: center;
+  margin: 0.9em auto;
+  min-width: 50px !important;
+  max-width: 100%;
+  max-height: 400px;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5em;
+  filter: drop-shadow(0px 0px 3px rgb(var(--border-primary-color)));
+}
+.md ol,
+.md ul {
+  margin-left: 2em !important;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0.5em !important;
+}
+.md ol {
+  list-style-type: decimal;
+}
+.md ol ol {
+  list-style-type: lower-latin;
+}
+.md ol ol ol {
+  list-style-type: lower-roman;
+}
+.md ol ol ol ol {
+  list-style-type: upper-latin;
+}
+.md ol ol ol ol ol {
+  list-style-type: upper-roman;
+}
+.md ul {
+  list-style-type: disc;
+}
+.md ul ul {
+  list-style-type: circle;
+}
+.md ul ul ul {
+  list-style-type: square;
+}
+.md ul ul ul ul {
+  list-style-type: square;
+}
+.md li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.md li p {
+  padding: 0.3em 0 0.2em 0;
+}
+.md u {
+  text-decoration: none;
+  border-bottom: 1px solid rgb(var(--text-color));
+}
+.md .table {
+  margin: 0.9em auto;
+  display: table;
+}
+.md .table table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px double hsl(0, 0%, 70%);
+  overflow: hidden;
+}
+.md .table table td {
+  min-width: 2em;
+  padding: 0.4em;
+  border: 1px solid hsl(0, 0%, 75%);
+}
+.md .table table th {
+  min-width: 2em;
+  padding: 0.4em;
+  border: 1px solid hsl(0, 0%, 75%);
+  font-weight: bold;
+  background: hsla(0, 0%, 0%, 0.05);
+}
+.md .table > figcaption {
+  display: table-caption;
+  caption-side: top;
+  word-break: break-word;
+  text-align: center;
+  color: var(--ck-color-table-caption-text);
+  background-color: var(--ck-color-table-caption-background);
+  padding: 0.6em;
+  font-size: 0.75em;
+  outline-offset: -1px;
+}
+.md .table .ck-table-resized {
+  table-layout: fixed;
+}
+.md .table td {
+  position: relative;
+}
+.md .table th {
+  position: relative;
+}
+.md pre {
+  position: relative;
+  background-color: #1c1e26 !important;
+  color: #ffffff !important;
+  padding: 1em;
+  border: 1px solid rgb(var(--border-primary-color)) !important;
+  border-radius: 0.5em !important;
+  overflow-x: auto;
+}
+.md code {
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  hyphens: none;
+}
+.md pre::-moz-selection,
+.md pre ::-moz-selection,
+.md code::-moz-selection,
+.md code ::-moz-selection {
+  text-shadow: none !important;
+  background: rgba(29, 59, 83, 0.99) !important;
+}
+.md pre::-moz-selection, .md pre ::-moz-selection, .md code::-moz-selection, .md code ::-moz-selection {
+  text-shadow: none !important;
+  background: rgba(29, 59, 83, 0.99) !important;
+}
+.md pre::selection,
+.md pre ::selection,
+.md code::selection,
+.md code ::selection {
+  text-shadow: none !important;
+  background: rgba(29, 59, 83, 0.99) !important;
+}
+.md hr {
+  border: 1px solid rgb(var(--border-primary-color));
+  margin: 1em 0;
+}/*# sourceMappingURL=md.module.css.map */
