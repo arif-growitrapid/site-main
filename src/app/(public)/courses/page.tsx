@@ -161,9 +161,6 @@ export default function Page({ }: Props) {
 
                     })}
                 </Swiper>
-
-                {/* <CoursesDisplayCard courses={trendingCourses} type='cards' titleNeeded={false} bgColor={"var(--bg-color)"} swapTheme={true}/> */}
-
             </div>
         </SkeletonTheme>
     )

@@ -9,9 +9,6 @@ import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { formatNumbers } from '@/utils/formatter';
 import { testimonials } from './utils/testimonials';
 import { workflow } from './utils/workflow';
-import Skeleton from 'react-loading-skeleton';
-import { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 
 import style from './page.module.scss'
 import Stars from '@/components/stars'
@@ -357,7 +354,6 @@ export default function Page({ }: {}) {
 
                         mousewheel={{ releaseOnEdges: true }}
                     >
-                        <SkeletonTheme baseColor="#10141F" highlightColor="#161b27">
                             {trendingBlogs.map((card, index) => {
                                 if (card) {
                                     return (
@@ -401,7 +397,6 @@ export default function Page({ }: {}) {
                                 }
 
                             })}
-                        </SkeletonTheme>
 
                     </Swiper>
 
