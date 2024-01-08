@@ -33,7 +33,10 @@
         height: 60px;
         max-height: 60px;
         min-height: 60px;
+
         padding: 0.5em 1em;
+        position: relative;
+        z-index: 999999999;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -151,7 +154,7 @@
             .box {
                 .dropdown_box {
                     position: absolute;
-                    top: 8%;
+                    top: 3em;
                     left: 0;
                     z-index: 99;
                     height: auto;
@@ -198,7 +201,7 @@
 
                 .mega_box {
                     position: absolute;
-                    top: 8%;
+                    top: 3em;
                     left: 50%;
                     z-index: 99;
                     height: auto;
@@ -384,7 +387,7 @@
 
         .dropdown {
             position: absolute;
-            top: 5%;
+            top: 3em;
             right: 20px;
             z-index: 99;
             height: auto;

@@ -7,7 +7,7 @@ import config from '@/utils/config';
 import Stars from '@/components/stars';
 
 import style from './[slug]/style.module.scss';
-import TeamWorkBG2 from '@/assets/image/teamwork2.jpg'
+import TeamWorkBG2 from '../../../assets/image/teamwork2.jpg'
 
 export const metadata: Metadata = {
     title: "Terms & Policies",

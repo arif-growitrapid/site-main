@@ -14,6 +14,7 @@ import Stars from '@/components/stars'
 import Navbar from '@/components/navbar';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import Link from 'next/link';
 
 
 export default function Page({ }: {}) {
@@ -135,11 +136,12 @@ export default function Page({ }: {}) {
                     <div className={style.btns}>
                         <button>
                             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-200h80v-40h40q17 0 28.5-11.5T600-280v-120q0-17-11.5-28.5T560-440H440v-40h160v-80h-80v-40h-80v40h-40q-17 0-28.5 11.5T360-520v120q0 17 11.5 28.5T400-360h120v40H360v80h80v40ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-560v-160H240v640h480v-480H520ZM240-800v160-160 640-640Z" /></svg>
-                            Request Quote
+                            
+                            <Link href={"/services/social-media/content"}>Request Quote</Link>
                         </button>
                         <button>
                             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M517-518 347-688l57-56 113 113 227-226 56 56-283 283ZM280-220l278 76 238-74q-5-9-14.5-15.5T760-240H558q-27 0-43-2t-33-8l-93-31 22-78 81 27q17 5 40 8t68 4q0-11-6.5-21T578-354l-234-86h-64v220ZM40-80v-440h304q7 0 14 1.5t13 3.5l235 87q33 12 53.5 42t20.5 66h80q50 0 85 33t35 87v40L560-60l-280-78v58H40Zm80-80h80v-280h-80v280Z" /></svg>
-                            Apply For Work
+                            <a href={"https://docs.google.com/forms/d/e/1FAIpQLSdbYeJM5jFAKBZgmEuOFos7EB_yqgZ6lPUrLfLVkZDH0yRZ3Q/viewform"}>Apply For Work</a>
                         </button>
                     </div>
                 </div>
@@ -269,7 +271,7 @@ export default function Page({ }: {}) {
                             </button>
                             <button>
                                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M517-518 347-688l57-56 113 113 227-226 56 56-283 283ZM280-220l278 76 238-74q-5-9-14.5-15.5T760-240H558q-27 0-43-2t-33-8l-93-31 22-78 81 27q17 5 40 8t68 4q0-11-6.5-21T578-354l-234-86h-64v220ZM40-80v-440h304q7 0 14 1.5t13 3.5l235 87q33 12 53.5 42t20.5 66h80q50 0 85 33t35 87v40L560-60l-280-78v58H40Zm80-80h80v-280h-80v280Z" /></svg>
-                                Apply For Work
+                                <a href={"https://docs.google.com/forms/d/e/1FAIpQLSdbYeJM5jFAKBZgmEuOFos7EB_yqgZ6lPUrLfLVkZDH0yRZ3Q/viewform"}>Apply For Work</a>
                             </button>
                         </div>
                     </div>
@@ -311,7 +313,7 @@ export default function Page({ }: {}) {
 
                 <div className={style.blogs}>
                     <div className={style.title}>
-                        <img src='https://media.discordapp.net/attachments/1144663357845147790/1189941069387927603/Group_64.png?ex=659ffdfa&is=658d88fa&hm=c96b988bd1457f15033a065a7742df5d3d2cb5e146a3514144ae0bfe5a18db17&=&format=webp&quality=lossless&width=1060&height=207' className={style.headline}/>
+                        <img src='https://media.discordapp.net/attachments/1144663357845147790/1189941069387927603/Group_64.png?ex=659ffdfa&is=658d88fa&hm=c96b988bd1457f15033a065a7742df5d3d2cb5e146a3514144ae0bfe5a18db17&=&format=webp&quality=lossless&width=1060&height=207' className={style.headline} />
                         <div className={style.btns}>
                             <button>
                                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-200h80v-40h40q17 0 28.5-11.5T600-280v-120q0-17-11.5-28.5T560-440H440v-40h160v-80h-80v-40h-80v40h-40q-17 0-28.5 11.5T360-520v120q0 17 11.5 28.5T400-360h120v40H360v80h80v40ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-560v-160H240v640h480v-480H520ZM240-800v160-160 640-640Z" /></svg>
@@ -390,7 +392,7 @@ export default function Page({ }: {}) {
             </div>
 
             <div className={style.courses}>
-                <img className={style.headline} src='https://media.discordapp.net/attachments/1144663357845147790/1189944396263739453/Group_64.png?ex=65a00114&is=658d8c14&hm=b5c953965abf57cab543ccfd87ef9e09bdaae9ffa43e87be57e45ef75f250fc0&=&format=webp&quality=lossless&width=1215&height=207'/>
+                <img className={style.headline} src='https://media.discordapp.net/attachments/1144663357845147790/1189944396263739453/Group_64.png?ex=65a00114&is=658d8c14&hm=b5c953965abf57cab543ccfd87ef9e09bdaae9ffa43e87be57e45ef75f250fc0&=&format=webp&quality=lossless&width=1215&height=207' />
 
                 <div className={style.editorContainer}>
                     <div className={style.tabs}>
@@ -466,8 +468,10 @@ export default function Page({ }: {}) {
                         <h1>Hiring The Best <span>Talents</span> Around The World !!</h1>
                         <p>New Blog Description in today's dynamic job market, where first impressions matter more than ever, your professional online presence can be just as vital as your traditional resume. Enter LinkedIn, the social network for professionals, often referred to as the "virtual resume."</p>
                         <div className={style.btns}>
-                            <button>Apply For Work</button>
-                            <button>Contribute To Blogs</button>
+                            <button>
+                                <a href={"https://docs.google.com/forms/d/e/1FAIpQLSdbYeJM5jFAKBZgmEuOFos7EB_yqgZ6lPUrLfLVkZDH0yRZ3Q/viewform"}>Apply For Work</a>
+                            </button>
+                            <button> Contribute To Blogs</button>
                         </div>
                     </div>
                     <div className={style.right}>
@@ -545,9 +549,6 @@ const ExperienceCard = ({ experience }) => {
         </VerticalTimelineElement>
     );
 };
-
-
-
 
 const courses = [
     {

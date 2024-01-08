@@ -1,5 +1,5 @@
 .toolBar {
-    background: var(--tertiary-color);
+    background: rgb(24, 34, 47);
     border: 1px solid var(--border-primary-color);
     padding: 1em;
     border-radius: 15px;
@@ -10,8 +10,7 @@
     position: fixed;
     bottom: 5%;
     left: 50%;
-    transform: translate(-50%, 0);
-    width: fit-content;
+    transform: translate(-65%, 0);
     z-index: 1000;
     // justify-content: space-around;
 

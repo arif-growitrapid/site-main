@@ -7,6 +7,8 @@ import { FaArrowRight } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { signIn, useSession } from 'next-auth/react';
 import Link from 'next/link';
+import Navbar from '@/components/navbar';
+import Stars from '@/components/stars';
 
 export default function Page({ params, searchParams }: {
     params: {
@@ -76,88 +78,151 @@ export default function Page({ params, searchParams }: {
 
 
     return (
-        <div className={`h-auto md:h-[calc(100%-60px)] w-full relative table bg-[var(--tertiary-color)]`}>
+        // <div className={`h-auto md:h-[calc(100%-60px)] w-full relative table bg-[var(--tertiary-color)]`}>
+        //     {/* <Navbar></Navbar> */}
 
-            <div className={`${style.modal} relative h-full table-cell md:align-middle`}>
+        //     <div className={`${style.modal} relative h-full table-cell md:align-middle`}>
+        //         <div className={`${style.modal__content} relative md:max-w-xl mx-auto px-4 py-5 md:bg-[var(--bg-color)] md:rounded-lg md:shadow-lg overflow-hidden`}>
 
-                <div className={`${style.modal__content} relative md:max-w-xl mx-auto px-4 py-5 md:bg-[var(--bg-color)] md:rounded-lg md:shadow-lg overflow-hidden`}>
+        //             {status === "authenticated" && <div className={`absolute z-10 w-full h-full top-0 left-0 bg-[var(--bg-color)] flex flex-col items-center justify-center gap-3 text-center`}>
+        //                 <div className={`${style.modal__content__header__title} text-2xl font-[var(--font-barlow)] mb-4`}>
+        //                     You are already signed in.
+        //                 </div>
 
-                    {status === "authenticated" && <div className={`absolute z-10 w-full h-full top-0 left-0 bg-[var(--bg-color)] flex flex-col items-center justify-center gap-3 text-center`}>
-                        <div className={`${style.modal__content__header__title} text-2xl font-[var(--font-barlow)] mb-4`}>
-                            You are already signed in.
-                        </div>
+        //                 <div className={``}>
+        //                     <Link
+        //                         href={`/`}
+        //                         className={`${style.modal__content__button} w-full outline-none rounded-md px-4 py-2 bg-[var(--tertiary-color)] border-[1px] border-[var(--border-primary-color)] text-[var(--text-color)] font-[var(--font-barlow)]`}
+        //                     >
+        //                         Go to Home
+        //                         <FaArrowRight
+        //                             className={`inline-block ml-2`}
+        //                         />
+        //                     </Link>
+        //                 </div>
+        //             </div>}
 
-                        <div className={``}>
-                            <Link
-                                href={`/`}
-                                className={`${style.modal__content__button} w-full outline-none rounded-md px-4 py-2 bg-[var(--tertiary-color)] border-[1px] border-[var(--border-primary-color)] text-[var(--text-color)] font-[var(--font-barlow)]`}
-                            >
-                                Go to Home
-                                <FaArrowRight
-                                    className={`inline-block ml-2`}
-                                />
-                            </Link>
-                        </div>
-                    </div>}
+        //             {error && <div className={`${style.modal__content__error} text-sm mb-4 rounded-md px-4 py-2 bg-[var(--danger-color)] border-[1px] border-[var(--border-primary-color)] text-white font-[var(--font-barlow)]`}>
+        //                 <span className={`font-bold`}>{errorType}</span>&nbsp;{errorMessage}
+        //             </div>}
 
-                    {error && <div className={`${style.modal__content__error} text-sm mb-4 rounded-md px-4 py-2 bg-[var(--danger-color)] border-[1px] border-[var(--border-primary-color)] text-white font-[var(--font-barlow)]`}>
-                        <span className={`font-bold`}>{errorType}</span>&nbsp;{errorMessage}
-                    </div>}
+        //             <div className={`${style.modal__content__inner} flex flex-col items-stretch gap-2`}>
+        //                 <div className={`${style.modal__content__header__title} text-2xl font-[var(--font-barlow)] mb-4`}>
+        //                     Log in to Grow It Rapid
+        //                 </div>
 
-                    <div className={`${style.modal__content__inner} flex flex-col items-stretch gap-2`}>
-                        <div className={`${style.modal__content__header__title} text-2xl font-[var(--font-barlow)] mb-4`}>
-                            Log in to Grow It Rapid
-                        </div>
+        //                 <div className={``}>
+        //                     <input
+        //                         type="email"
+        //                         placeholder="Email Address"
+        //                         className={`${style.modal__content__input} w-full outline-none rounded-md px-4 py-2 bg-[var(--bg-color)] border-[1px] border-[var(--border-primary-color)] text-[var(--text-color)] font-[var(--font-barlow)]`}
+        // value={email}
+        // onChange={e => setEmail(e.target.value)}
+        //                     />
+        //                 </div>
 
-                        <div className={``}>
-                            <input
-                                type="email"
-                                placeholder="Email Address"
-                                className={`${style.modal__content__input} w-full outline-none rounded-md px-4 py-2 bg-[var(--bg-color)] border-[1px] border-[var(--border-primary-color)] text-[var(--text-color)] font-[var(--font-barlow)]`}
-                                value={email}
-                                onChange={e => setEmail(e.target.value)}
-                            />
-                        </div>
+        //                 <div className={``}>
+        //                     <button
+        //                         className={`${style.modal__content__button} w-full outline-none rounded-md px-4 py-2 bg-[var(--tertiary-color)] border-[1px] border-[var(--border-primary-color)] text-[var(--text-color)] font-[var(--font-barlow)]`}
+        // onClick={signinWithEmail}
+        //                     >
+        //                         Continue with Email
+        //                         <FaArrowRight
+        //                             className={`inline-block ml-2`}
+        //                         />
+        //                     </button>
+        //                 </div>
 
-                        <div className={``}>
-                            <button
-                                className={`${style.modal__content__button} w-full outline-none rounded-md px-4 py-2 bg-[var(--tertiary-color)] border-[1px] border-[var(--border-primary-color)] text-[var(--text-color)] font-[var(--font-barlow)]`}
-                                onClick={signinWithEmail}
-                            >
-                                Continue with Email
-                                <FaArrowRight
-                                    className={`inline-block ml-2`}
-                                />
-                            </button>
-                        </div>
+        //                 <div className={`${style.modal__content__divider} relative w-full my-3 flex flex-row items-center`}>
+        //                     <span
+        //                         className={`${style.modal__content__divider__line} border-[1px] border-[var(--border-primary-color)] h-[1px] w-full`}
+        //                     />
+        //                     <span className={`px-3`}>OR</span>
+        //                     <span
+        //                         className={`${style.modal__content__divider__line} border-[1px] border-[var(--border-primary-color)] h-[1px] w-full`}
+        //                     />
+        //                 </div>
 
-                        <div className={`${style.modal__content__divider} relative w-full my-3 flex flex-row items-center`}>
-                            <span
-                                className={`${style.modal__content__divider__line} border-[1px] border-[var(--border-primary-color)] h-[1px] w-full`}
-                            />
-                            <span className={`px-3`}>OR</span>
-                            <span
-                                className={`${style.modal__content__divider__line} border-[1px] border-[var(--border-primary-color)] h-[1px] w-full`}
-                            />
-                        </div>
+        //                 <div className={``}>
+        //                     <button
+        //                         className={`${style.modal__content__button} w-full outline-none rounded-md px-4 py-2 bg-[var(--tertiary-color)] border-[1px] border-[var(--border-primary-color)] text-[var(--text-color)] font-[var(--font-barlow)]`}
+        //                         onClick={e => {
+        //                             e.stopPropagation();
+        //                             signIn("google", { redirect: false });
+        //                         }}
+        //                     >
+        //                         <FcGoogle className={`inline-block mr-2 text-xl`} />
+        //                         Continue with Google
+        //                     </button>
+        //                 </div>
+        //             </div>
+        //         </div>
 
-                        <div className={``}>
-                            <button
-                                className={`${style.modal__content__button} w-full outline-none rounded-md px-4 py-2 bg-[var(--tertiary-color)] border-[1px] border-[var(--border-primary-color)] text-[var(--text-color)] font-[var(--font-barlow)]`}
-                                onClick={e => {
+        //     </div>
+
+        // </div>
+
+        <div>
+            <header>
+                <main className={style.hero}>
+                    <div className={style.navbar}>
+                        <Navbar />
+                    </div>
+
+                    <div className={style.blob1}></div>
+                    <div className={style.blob2}></div>
+
+                    <div className={style.parent}>
+                        <div className={style.editorContainer}>
+                            <div className={style.tabs}>
+                                <div className={style.tab}>Sign In/Sign Up</div>
+                            </div>
+                            <div className={style.courseContainer}>
+                                <h1>Ready To <span>Upskill</span> With Us !!</h1>
+                                <p>We Are Hoping Forward To Work With You</p>
+
+                                <div className={style.input}>
+                                    <input value={email} onChange={e => setEmail(e.target.value)} type='text' placeholder='Enter Your E-Mail Address' />
+                                    <button onClick={signinWithEmail}>Submit</button>
+                                </div>
+
+                                <div className={style.label}>
+                                    <div>
+                                        <p>Check Your Spam Folder For Login Link If Not Found In Inbox !!</p>
+                                    </div>
+                                </div>
+
+                                <div className={`${style.modal__content__divider} relative w-full my-3 flex flex-row items-center`}>
+                                    <span
+                                        className={`${style.modal__content__divider__line} border-[1px] border-[#20344D] h-[1px] w-[30%]`}
+                                    />
+                                    <span className={`px-3`}>OR</span>
+                                    <span
+                                        className={`${style.modal__content__divider__line} border-[1px] border-[#20344D] h-[1px] w-[30%]`}
+                                    />
+                                </div>
+
+                                <div className={style.googleSignInBtn} onClick={e => {
                                     e.stopPropagation();
                                     signIn("google", { redirect: false });
-                                }}
-                            >
-                                <FcGoogle className={`inline-block mr-2 text-xl`} />
-                                Continue with Google
-                            </button>
+                                }}>
+                                    <div className={style.icon}>
+                                        <FcGoogle size={25} />
+                                    </div>
+                                    <div>
+                                        <p>Continue With Google Auth</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+                        <div className={style.stars}>
+                            <Stars></Stars>
+                        </div>
+
                     </div>
-                </div>
-
-            </div>
-
+                </main>
+            </header>
         </div>
     )
 }

@@ -8,6 +8,8 @@ import { likeBlog as likeBlogApi, removeLikeBlog as unLikeBlogApi, saveBlog, uns
 import { useSession } from 'next-auth/react';
 import Comments from '../comments/Comments';
 import { formatNumbers, parseNumbers } from '@/utils/formatter';
+import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { FaBook } from "react-icons/fa6";
 
 interface ToolBarProps {
   blogId: string;
@@ -15,7 +17,7 @@ interface ToolBarProps {
   likedBy: { id: string }[];
 }
 
-export default function ToolBar({ blogId, likes, likedBy, savedBy }: ToolBarProps) {
+export default function ToolBar({ blogId, likes, likedBy, saves, savedBy, views, readingTime }: ToolBarProps) {
   const likeText = useRef<HTMLParagraphElement>(null);
   const likeBtn = useRef<HTMLDivElement>(null);
   const commentBox = useRef<HTMLDivElement>(null);
@@ -125,9 +127,9 @@ export default function ToolBar({ blogId, likes, likedBy, savedBy }: ToolBarProp
           <p ref={likeText}>{formatNumbers(likes)}</p>
         </div>
 
-        <div>
+        {/* <div>
           <BiCommentDetail onClick={openCommentBox} size={25} className={style.icon} />
-        </div>
+        </div> */}
 
         <div>
           {savedTheBlog ? (
@@ -135,14 +137,17 @@ export default function ToolBar({ blogId, likes, likedBy, savedBy }: ToolBarProp
           ) : (
             <BiSave onClick={toggleSaveBlog} size={25} className={style.icon} />
           )}
+          <p ref={likeText}>{formatNumbers(saves)}</p>
         </div>
 
         <div>
-          <BiShareAlt size={25} className={style.icon} />
+          <MdOutlineRemoveRedEye size={25} className={style.icon} />
+          <p ref={likeText}>{formatNumbers(views)}</p>
         </div>
 
         <div>
-          <MdBugReport size={25} className={style.icon} />
+          <FaBook size={20} className={style.icon} />
+          <p ref={likeText}>{readingTime} min</p>
         </div>
       </div>
 

@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react'
 import Content from '@/components/editor/content';
 import Stars from '@/components/stars';
 import style from './style.module.scss'
-import formatDate from '@/utils/date';
-import Image from 'next/image';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getBlogBySlug, viewBlog } from '@/functions/blog';
@@ -71,8 +69,8 @@ export default function Page({
                     <div className={style.parent}>
                         <Navbar />
 
-                        <h1>{data?.title}</h1>
-                        <p>{data?.excerpt}</p>
+                        <h1 className='line-clamp-2 '>{data?.title}</h1>
+                        <p className='line-clamp-2 '>{data?.excerpt}</p>
                         <div className={style.btns}>
                             <button>
                                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-200h80v-40h40q17 0 28.5-11.5T600-280v-120q0-17-11.5-28.5T560-440H440v-40h160v-80h-80v-40h-80v40h-40q-17 0-28.5 11.5T360-520v120q0 17 11.5 28.5T400-360h120v40H360v80h80v40ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-560v-160H240v640h480v-480H520ZM240-800v160-160 640-640Z" /></svg>
@@ -90,37 +88,37 @@ export default function Page({
                         </div>
                         <div className={style.numbers}>
                             <div>
-                                <h2 className={style.numeric}>68%</h2>
-                                <p className={`line-clamp-2 ${style.text}`}>Graduates Recieved Jobs</p>
+                                <h2 className={style.numeric}>{data.time_to_read * 60}s</h2>
+                                <p className={`line-clamp-2 text-center ${style.text}`}>Reading Time</p>
                             </div>
 
                             <div>
-                                <h2 className={style.numeric}>80k</h2>
-                                <p className={`line-clamp-2 ${style.text}`}>Avg $ Salary In India</p>
+                                <h2 className={style.numeric}>{formatNumbers(data.views)}</h2>
+                                <p className={`line-clamp-2 text-center ${style.text}`}>Blog Views</p>
                             </div>
 
                             <div>
-                                <h2 className={style.numeric}>1.2k</h2>
-                                <p className={`line-clamp-2 ${style.text}`}>Total Enrolled Studnets</p>
+                                <h2 className={style.numeric}>{formatNumbers(data.saves)}</h2>
+                                <p className={`line-clamp-2 text-center ${style.text}`}>Blog Saves</p>
                             </div>
 
                             <div>
-                                <h2 className={style.numeric}>4.8</h2>
-                                <p className={`line-clamp-2 ${style.text}`}>Rating by 42k</p>
+                                <h2 className={style.numeric}>{formatNumbers(data.likes)}</h2>
+                                <p className={`line-clamp-2 text-center ${style.text}`}>Blog Likes</p>
                             </div>
                         </div>
                     </div>
                 </main>
             </header>
 
-            <div className={`py-20`}>
-                <div className={`max-w-4xl mx-auto px-10`}>
+            <div className={`py-20 bg-[#20344D]`}>
+                <div className={`max-w-4xl mx-auto px-10 ]`}>
                     <Content data={data.content || ""} />
                 </div>
             </div>
 
             <div className={style.toolbarContainer}>
-                <ToolBar blogId={data._id} likes={data.likes} likedBy={data.liked_by} savedBy={data.saved_by}></ToolBar>
+                <ToolBar blogId={data._id} likes={data.likes} likedBy={data.liked_by} saves={data.saves} savedBy={data.saved_by} views={data.views} readingTime={data.time_to_read}></ToolBar>
             </div>
 
 
