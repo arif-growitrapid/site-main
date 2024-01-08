@@ -235,3 +235,19 @@ div {
 ::-webkit-scrollbar-track {
     background-color: #1F2937; /* Color of the track */
 }
+
+.skeletonTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5em;
+    .skeletonTag {
+        padding: .25em .5em;
+    }
+}
+
+.thumbContainer {
+    width: 100%;
+    min-height: 200px;
+    border-radius: 15px;
+    aspect-ratio: 16/9;
+}

@@ -8,6 +8,9 @@ import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { formatNumbers } from '@/utils/formatter';
 import { testimonials } from './utils/testimonials';
 import { workflow } from './utils/workflow';
+import Skeleton from 'react-loading-skeleton';
+import { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 import style from './page.module.scss'
 import Stars from '@/components/stars'
@@ -15,11 +18,12 @@ import Navbar from '@/components/navbar';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Link from 'next/link';
-
+import { filterBlogs } from '@/functions/blog';
 
 export default function Page({ }: {}) {
     const swiperRef = useRef(null);
     const [sliderPosition, setSliderPosition] = useState(0);
+    const [trendingBlogs, setTrendingBlogs] = useState(Array(10).fill(undefined))
 
     useEffect(() => {
         new Typewriter('#typingEffect', {
@@ -45,6 +49,23 @@ export default function Page({ }: {}) {
 
         return () => window.removeEventListener('wheel', handleScroll);
     }, [sliderPosition]);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const trendingResponse = await filterBlogs("likes", 20, 0);
+
+                if (trendingResponse.status === 200) {
+                    setTrendingBlogs(trendingResponse.data.blogs);
+                    console.log(trendingResponse.data.blogs)
+                }
+            } catch (error) {
+                console.error('Error fetching blogs', error);
+            }
+        }
+
+        fetchData();
+    }, []);
 
     return (
         <div>
@@ -136,7 +157,7 @@ export default function Page({ }: {}) {
                     <div className={style.btns}>
                         <button>
                             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-200h80v-40h40q17 0 28.5-11.5T600-280v-120q0-17-11.5-28.5T560-440H440v-40h160v-80h-80v-40h-80v40h-40q-17 0-28.5 11.5T360-520v120q0 17 11.5 28.5T400-360h120v40H360v80h80v40ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-560v-160H240v640h480v-480H520ZM240-800v160-160 640-640Z" /></svg>
-                            
+
                             <Link href={"/services/social-media/content"}>Request Quote</Link>
                         </button>
                         <button>
@@ -335,44 +356,52 @@ export default function Page({ }: {}) {
 
                         mousewheel={{ releaseOnEdges: true }}
                     >
+                        <SkeletonTheme baseColor="#10141F" highlightColor="#161b27">
+                            {trendingBlogs.map((card, index) => {
+                                if (card) {
+                                    return (
+                                        <SwiperSlide key={index} className={style.swiperSlider}>
+                                            <div
+                                                style={{
+                                                    backgroundImage: `url(${card.thumbnail})`,
+                                                    backgroundSize: "cover",
+                                                    backgroundPosition: "center",
+                                                }}
+                                                className={`${style.thumbContainer}`}
+                                            ></div>
+                                            <div>
+                                                <h2><a href={`blogs/${card?.slug}`}>{card.title}</a></h2>
+                                                <p>New Blog Description in today's dynamic job market, where first impressions matter more than ever, your professional online presence can be just as vital as your traditional resume. Enter LinkedIn, the social network for professionals.</p>
+                                            </div>
 
-                        {courses.map((card, index) => {
-                            return (
-                                <SwiperSlide key={index} className={style.swiperSlider}>
-                                    <div
-                                        style={{
-                                            backgroundImage: `url(${card.url})`,
-                                            backgroundSize: "cover",
-                                            backgroundPosition: "center",
-                                        }}
-                                        className={`${style.thumbContainer}`}
-                                    ></div>
-                                    <div>
-                                        <h2><a href='#'>{card.title}</a></h2>
-                                        <p>New Blog Description in today's dynamic job market, where first impressions matter more than ever, your professional online presence can be just as vital as your traditional resume. Enter LinkedIn, the social network for professionals.</p>
-                                    </div>
-
-                                    <div className={style.blogInfo}>
-                                        <div>
-                                            <BiHeart size={25} className={style.icon} />
-                                            <p>{formatNumbers(4254950)}</p>
-                                        </div>
+                                            <div className={style.blogInfo}>
+                                                <div>
+                                                    <BiHeart size={25} className={style.icon} />
+                                                    <p>{formatNumbers(4254950)}</p>
+                                                </div>
 
 
-                                        <div>
-                                            <BiSave size={25} className={style.icon} />
-                                            <p>{formatNumbers(96485214525)}</p>
-                                        </div>
+                                                <div>
+                                                    <BiSave size={25} className={style.icon} />
+                                                    <p>{formatNumbers(96485214525)}</p>
+                                                </div>
 
-                                        <div>
-                                            <MdOutlineRemoveRedEye size={25} className={style.icon} />
-                                            <p>{formatNumbers(86248562)}</p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                            )
+                                                <div>
+                                                    <MdOutlineRemoveRedEye size={25} className={style.icon} />
+                                                    <p>{formatNumbers(86248562)}</p>
+                                                </div>
+                                            </div>
+                                        </SwiperSlide>
+                                    )
+                                } else {
+                                    return (
+                                        <div key={index}></div>
+                                    )
+                                }
 
-                        })}
+                            })}
+                        </SkeletonTheme>
+
                     </Swiper>
 
                     <div className={style.eBooks}>
@@ -390,7 +419,6 @@ export default function Page({ }: {}) {
                 </div>
 
             </div>
-
             <div className={style.courses}>
                 <img className={style.headline} src='https://media.discordapp.net/attachments/1144663357845147790/1189944396263739453/Group_64.png?ex=65a00114&is=658d8c14&hm=b5c953965abf57cab543ccfd87ef9e09bdaae9ffa43e87be57e45ef75f250fc0&=&format=webp&quality=lossless&width=1215&height=207' />
 
@@ -460,6 +488,7 @@ export default function Page({ }: {}) {
                     </div>
                 </div>
             </div>
+
 
             <div className={style.aboutUs}>
 
