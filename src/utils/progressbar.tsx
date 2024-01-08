@@ -36,7 +36,7 @@ Router.events.on("routeChangeComplete", stop);
 Router.events.on("routeChangeError", stop);
 
 const originalFetch = window.fetch;
-window.fetch = async function (...args) {
+window.fetch = async function (...args: any) {
     if (activeRequests === 0) {
         load();
     }

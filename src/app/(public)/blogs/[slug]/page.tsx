@@ -9,6 +9,8 @@ import { getBlogBySlug, viewBlog } from '@/functions/blog';
 import ToolBar from './components/toolBar/ToolBar';
 import Navbar from '@/components/navbar';
 import { formatNumbers } from '@/utils/formatter';
+import { WithId } from 'mongodb';
+import { DBBlogPostType } from '@/types/blog';
 
 export default function Page({
     params
@@ -18,7 +20,7 @@ export default function Page({
     };
 }) {
     const { slug } = params;
-    const [data, setData] = useState(null);
+    const [data, setData] = useState<WithId<DBBlogPostType> | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {

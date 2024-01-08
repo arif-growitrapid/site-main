@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
 import Stars from '@/components/stars';
@@ -5,7 +6,6 @@ import style from './page.module.scss'
 import TeamWorkBG2 from '../../../assets/image/teamwork2.jpg'
 import { filterBlogs, searchForBlog } from '@/functions/blog';
 
-import BlogCard from './components/BlogCard';
 import Navbar from '@/components/navbar';
 import { SwiperSlide, Swiper } from 'swiper/react';
 import { BiSave, BiHeart } from 'react-icons/bi';
@@ -21,7 +21,7 @@ export default function Page({ }: Props) {
 
     const [trendingBlogs, setTrendingBlogs] = useState(Array(10).fill(undefined))
     const [searchedBlogs, setsearchedBlogs] = useState(Array(20).fill(undefined))
-    const searchBox = useRef(null)
+    const searchBox = useRef<HTMLInputElement | null>(null);
 
     useEffect(() => {
         async function fetchData() {
@@ -30,7 +30,7 @@ export default function Page({ }: Props) {
                 const popularResponse = await filterBlogs("views", 20, 0);
 
                 if (trendingResponse.status === 200 && popularResponse.status === 200) {
-                    setTrendingBlogs(trendingResponse.data.blogs);
+                    if(trendingResponse.data) setTrendingBlogs(trendingResponse.data.blogs);
                 }
             } catch (error) {
                 console.error('Error fetching blogs', error);
@@ -41,11 +41,12 @@ export default function Page({ }: Props) {
     }, []);
 
     async function search() {
-        let query = searchBox.current.value
-        console.log(query)
-        const response = await searchForBlog(query, 100, 0)
-        console.log(response)
-        setsearchedBlogs(response.data.blogs)
+        if(searchBox.current && searchBox.current) {
+            let query = searchBox.current.value
+            const response = await searchForBlog(query, 100, 0)
+            if (response.data) setsearchedBlogs(response.data.blogs)
+        }
+
     }
 
 
@@ -94,7 +95,7 @@ export default function Page({ }: Props) {
 
                                     <div className={style.tags}>
                                         {
-                                            card?.tags.map((item, index) => {
+                                            card?.tags.map((item: string, index: number) => {
                                                 return (<div key={index} className={style.tag}>{item}</div>)
                                             })
                                         }

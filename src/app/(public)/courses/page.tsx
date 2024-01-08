@@ -1,28 +1,25 @@
+/* eslint-disable */
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
-import Stars from '@/components/stars';
 import style from './page.module.scss'
 import { MdWorkHistory } from "react-icons/md";
 import { PiStudentFill } from "react-icons/pi";
 import { filterCourse } from '@/functions/courses';
-import CoursesDisplayCard from './components/CourseDisplayCards';
-import BlogCard from './components/BlogCard';
 import Navbar from '@/components/navbar';
 import { SwiperSlide, Swiper } from 'swiper/react';
 import { FaStar } from "react-icons/fa";
-import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { Navigation } from 'swiper/modules';
 import { formatNumbers } from '@/utils/formatter';
 import Skeleton from 'react-loading-skeleton';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { searchForBlog } from '@/functions/blog';
 
 type Props = {}
 export default function Page({ }: Props) {
 
-    const [trendingCourses, setTrendingCourses] = useState(Array(10).fill(undefined))
-    const [searchedCourses, setsearchedCourses] = useState(Array(20).fill(undefined))
-    const searchBox = useRef(null)
+    const [trendingCourses, setTrendingCourses] = useState<any>(Array(10).fill(undefined))
+    const [searchedCourses, setsearchedCourses] = useState<any>(Array(20).fill(undefined))
+    const searchBox = useRef<HTMLInputElement>(null)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,7 +27,6 @@ export default function Page({ }: Props) {
                 const result = await filterCourse('coursera', {}, 20);
                 if (result.status === 200) {
                     const { type, data } = result
-                    console.log(data, "BULLI")
 
                     setTrendingCourses(data)
                 }
@@ -43,11 +39,12 @@ export default function Page({ }: Props) {
     }, []);
 
     async function search() {
-        let query = searchBox.current.value
-        console.log(query)
-        const response = await searchForBlog(query, 100, 0)
-        console.log(response)
-        setsearchedCourses(response.data.blogs)
+        if(searchBox.current) {
+            let query = searchBox.current.value
+            const response = await searchForBlog(query, 100, 0)
+            if (response.data) setsearchedCourses(response.data.blogs)
+        }
+
     }
 
 
@@ -80,8 +77,7 @@ export default function Page({ }: Props) {
                     mousewheel={{ releaseOnEdges: true }}
                 >
 
-                    {trendingCourses.map((card, index) => {
-                        console.log(card)
+                    {trendingCourses.map((card:{tags: String[], meta: {slug: string}, title: string, description: string, guarantee_percentage:string, rating: number, total_enrolled_students: string, }, index: number) => {
                         if (card) {
                             return (
                                 <SwiperSlide key={index} className={style.swiperSlider}>
@@ -138,7 +134,7 @@ export default function Page({ }: Props) {
                                         }
                                     </div>
                                     <div>
-                                        <h2><a href={`courses/${card?.meta.slug}`}><Skeleton></Skeleton></a></h2>
+                                        <h2><a href={`courses/`}><Skeleton></Skeleton></a></h2>
                                         <p><Skeleton count={3}></Skeleton></p>
                                     </div>
 

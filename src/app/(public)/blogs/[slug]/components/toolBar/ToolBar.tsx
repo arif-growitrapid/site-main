@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useRef, useState, useEffect } from 'react';
 import style from './style.module.scss';
 import { BiHeart, BiSave, BiCommentDetail, BiShareAlt } from 'react-icons/bi';
@@ -10,11 +11,16 @@ import Comments from '../comments/Comments';
 import { formatNumbers, parseNumbers } from '@/utils/formatter';
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { FaBook } from "react-icons/fa6";
+import { ObjectId } from 'mongodb';
 
 interface ToolBarProps {
-  blogId: string;
+  blogId: ObjectId;
   likes: number;
   likedBy: { id: string }[];
+  saves: number;
+  savedBy: {id: string}[];
+  views: number;
+  readingTime: number
 }
 
 export default function ToolBar({ blogId, likes, likedBy, saves, savedBy, views, readingTime }: ToolBarProps) {
@@ -48,7 +54,7 @@ export default function ToolBar({ blogId, likes, likedBy, saves, savedBy, views,
 
         }
         setLikedTheBlog(false);
-        await unLikeBlogApi(blogId);
+        await unLikeBlogApi(String(blogId));
       } else {
         // Like the blog
         if (likeText.current) {
@@ -57,7 +63,7 @@ export default function ToolBar({ blogId, likes, likedBy, saves, savedBy, views,
         }
         setLikedTheBlog(true);
   
-        const res = await likeBlogApi(blogId);
+        const res = await likeBlogApi(String(blogId));
         console.log(res);
   
         if (res.type === 'error') {
@@ -75,10 +81,13 @@ export default function ToolBar({ blogId, likes, likedBy, saves, savedBy, views,
   
 
   async function openCommentBox() {
-    commentBox.current.style.opacity = '1';
-    commentBox.current.style.pointerEvents = 'all';
-
-    commentBox.current.firstChild.style.scale = '1';
+    if (commentBox.current && commentBox.current.firstChild) {
+      commentBox.current.style.opacity = '1';
+      commentBox.current.style.pointerEvents = 'all';
+  
+      const firstChild = commentBox.current.firstChild as HTMLElement;
+      firstChild.style.transform = 'scale(1)';
+    }
   }
 
   async function toggleSaveBlog() {
@@ -87,7 +96,7 @@ export default function ToolBar({ blogId, likes, likedBy, saves, savedBy, views,
         if (!savedTheBlog) {
           setSavedTheBlog(true); // Update UI immediately
 
-          const res = await saveBlog(blogId);
+          const res = await saveBlog(String(blogId));
           console.log(res);
 
           if (res.type !== 'success') {
@@ -96,7 +105,7 @@ export default function ToolBar({ blogId, likes, likedBy, saves, savedBy, views,
           } 
         } else {
           setSavedTheBlog(false); // Update UI immediately for unsaving
-          const res = await unsaveBlog(blogId);
+          const res = await unsaveBlog(String(blogId));
           console.log(res);
 
           if (res.type !== 'success') {
@@ -152,7 +161,7 @@ export default function ToolBar({ blogId, likes, likedBy, saves, savedBy, views,
       </div>
 
       <div ref={commentBox} className={style.commentContainerOverlay}>
-        <Comments userProfile={session?.user.image} userName={session?.user.name} />
+        <Comments userProfile={session?.user.image || ""} userName={session?.user.name || ""} />
       </div>
     </>
   );

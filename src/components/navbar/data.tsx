@@ -138,7 +138,7 @@ export default function getNavItems({
             description: string;
             item_slug: string;
         }[];
-    }[];
+    }[] | null;
 }): NavItem[] {
 
     return [
@@ -222,34 +222,33 @@ export default function getNavItems({
             link: "/",
             isMegaMenu: true,
             isMultiMenu: true,
+            items: services?.map((service) => ({
+                title: service.title,
+                icon: null,
+                link: `/services/${service.slug}`,
+                isMegaMenu: true,
+                items: <div className='megaMenu:flex megaMenu:flex-wrap megaMenu:items-stretch megaMenu:justify-start megaMenu:gap-3 megaMenu:p-2'>
+                    {service.items.map((item, index) => (
+                        <Link className={`no-after megaMenu:flex-auto
+                            megaMenu:w-full megaMenu:max-w-[32%]
+                            megaMenu:bg-[var(--bg-color)] megaMenu:hover:bg-[var(--hover-color)]
+                            transition-colors duration-300 ease-in-out
+                            megaMenu:rounded-md megaMenu:border-2 megaMenu:border-[var(--border-primary-color)]
+                            megaMenu:py-2 megaMenu:px-3
+                        `} href={`/services/${service.slug}/${item.item_slug}`} key={index}>
+                            <div className='flex flex-col'>
+                                <p className={`whitespace-pre-wrap`}>{item.item_title}</p>
+                                <p className='text-xs opacity-50 whitespace-pre-wrap'>{item.description}</p>
+                            </div>
             
+                            <FaUpRightFromSquare className={`megaMenu:hidden flex-shrink-0 inline-block align-baseline`} />
+                        </Link>
+                    ))}
+                </div>
+            })),
         },       
     ];
 }
 
 
 // TODO: Remove service items
-// items: services.map((service) => ({
-//     title: service.title,
-//     icon: null,
-//     link: `/services/${service.slug}`,
-//     isMegaMenu: true,
-//     items: <div className='megaMenu:flex megaMenu:flex-wrap megaMenu:items-stretch megaMenu:justify-start megaMenu:gap-3 megaMenu:p-2'>
-//         {service.items.map((item, index) => (
-//             <Link className={`no-after megaMenu:flex-auto
-//                 megaMenu:w-full megaMenu:max-w-[32%]
-//                 megaMenu:bg-[var(--bg-color)] megaMenu:hover:bg-[var(--hover-color)]
-//                 transition-colors duration-300 ease-in-out
-//                 megaMenu:rounded-md megaMenu:border-2 megaMenu:border-[var(--border-primary-color)]
-//                 megaMenu:py-2 megaMenu:px-3
-//             `} href={`/services/${service.slug}/${item.item_slug}`} key={index}>
-//                 <div className='flex flex-col'>
-//                     <p className={`whitespace-pre-wrap`}>{item.item_title}</p>
-//                     <p className='text-xs opacity-50 whitespace-pre-wrap'>{item.description}</p>
-//                 </div>
-
-//                 <FaUpRightFromSquare className={`megaMenu:hidden flex-shrink-0 inline-block align-baseline`} />
-//             </Link>
-//         ))}
-//     </div>
-// })),

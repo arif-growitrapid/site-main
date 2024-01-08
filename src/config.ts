@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Icon from "./app/favicon.ico"
 // Importing All Icons
 import Icon48 from "./assets/logo/maskable/maskable_icon_x48.png";

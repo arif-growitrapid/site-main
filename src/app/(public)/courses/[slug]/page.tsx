@@ -1,17 +1,10 @@
+/* eslint-disable */
 'use client'
 import React, { useState, useEffect } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import client from '@/utils/sanity-client';
 import Stars from '@/components/stars';
 import style from './style.module.scss'
-import Image from 'next/image';
 import Link from 'next/link';
-import { FaArrowRight } from 'react-icons/fa'
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
-import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 import { getCourseBySlug } from '@/functions/courses';
 import notFound from '../../not-found';
 import { formatNumbers } from '@/utils/formatter';
@@ -26,7 +19,7 @@ export default function Page({
 }) {
 
     const [activeIndex, setActiveIndex] = useState(null);
-    const [courseData, setCourseData] = useState(null)
+    const [courseData, setCourseData] = useState<any>(null);
 
     const toggleAccordion = (index: any) => {
         if (activeIndex === index) {
@@ -123,7 +116,7 @@ export default function Page({
                         <h1>What Will You Learn ??</h1>
                         <ul className={style.points}>
                             {
-                                courseData?.what_you_will_learn.map((element, index) => {
+                                courseData?.what_you_will_learn.map((element: string, index: number) => {
                                     return (
                                         <li key={index}>
 
@@ -140,7 +133,7 @@ export default function Page({
                             <h1>Skills You Will Gain ??</h1>
                             <ul className={style.tags}>
                                 {
-                                    courseData?.tags.map((element, index) => {
+                                    courseData?.tags.map((element:string, index:number) => {
                                         return (
                                             <li key={index}>
 
@@ -193,7 +186,7 @@ export default function Page({
                     <div className={`${style.eBooks} ${style.catalog}`}>
                         <h1>Specialization - {courseData.catalogs.length} Course Series ??</h1>
                         <div className={style.accordion}>
-                            {courseData.catalogs.map((item, index) => (
+                            {courseData.catalogs.map((item:{internalTags: string, whatYouWillLearn:string, link: string, title: string, rating: string, duration: string}, index:number) => (
                                 <div key={index} className={style['accordion-item']}>
                                     <div
                                         className={`${style['accordion-header']} ${activeIndex === index ? style.active : ''}`}

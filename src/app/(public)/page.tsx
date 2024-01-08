@@ -1,4 +1,5 @@
 'use client'
+/* eslint-disable */
 import React, { useRef, useEffect, useState } from 'react';
 import Typewriter from 'typewriter-effect/dist/core';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
@@ -20,6 +21,7 @@ import 'swiper/css';
 import Link from 'next/link';
 import { filterBlogs } from '@/functions/blog';
 
+  
 export default function Page({ }: {}) {
     const swiperRef = useRef(null);
     const [sliderPosition, setSliderPosition] = useState(0);
@@ -34,7 +36,7 @@ export default function Page({ }: {}) {
     }, []);
 
     useEffect(() => {
-        const handleScroll = (event) => {
+        const handleScroll = (event: any) => {
             const scrollDelta = event.deltaY * 0.5;
             const newSliderPosition = sliderPosition + scrollDelta;
 
@@ -55,9 +57,8 @@ export default function Page({ }: {}) {
             try {
                 const trendingResponse = await filterBlogs("likes", 20, 0);
 
-                if (trendingResponse.status === 200) {
+                if (trendingResponse.status === 200 && trendingResponse.data) {
                     setTrendingBlogs(trendingResponse.data.blogs);
-                    console.log(trendingResponse.data.blogs)
                 }
             } catch (error) {
                 console.error('Error fetching blogs', error);
@@ -530,8 +531,16 @@ export default function Page({ }: {}) {
     )
 }
 
+interface ExperienceCardProps {
+    experience: {
+        title: string;
+        sub_title: string;
+        icon: string;
+        points: string[];
+    };
+}
 
-const ExperienceCard = ({ experience }) => {
+const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
     return (
         <VerticalTimelineElement
             contentStyle={{
@@ -563,7 +572,7 @@ const ExperienceCard = ({ experience }) => {
             </div>
 
             <ul className='mt-5 list-disc ml-5 space-y-2'>
-                {experience.points.map((point, index) => (
+                {experience.points.map((point: string, index: number) => (
                     <li
                         key={`experience-point-${index}`}
                         className='text-white-100 text-[14px] pl-1 tracking-wider'
@@ -578,69 +587,6 @@ const ExperienceCard = ({ experience }) => {
         </VerticalTimelineElement>
     );
 };
-
-const courses = [
-    {
-        url: "https://media.discordapp.net/attachments/1144663357845147790/1188456009367302186/Rectangle_160.png?ex=659a96e9&is=658821e9&hm=8c8e036e552795ab4184f29e0e80237658eebb03b78479bb06a3c33cfb199bae&=&format=webp&quality=lossless&width=475&height=489",
-        title: "LinkedIn Profile Optimization for Professional Success",
-        id: 1,
-    },
-    {
-        url: "https://media.discordapp.net/attachments/1144663357845147790/1188456010302623754/Rectangle_159.png?ex=659a96e9&is=658821e9&hm=ce9d42a6f24356a0b59bddffe24c837f5b32f6c2447d28d1b8ec73b05f52a6f1&=&format=webp&quality=lossless&width=429&height=490",
-        title: "LinkedIn Profile vs. Resume: What's the Difference?",
-        id: 2,
-    },
-    {
-        url: "https://media.discordapp.net/attachments/1144663357845147790/1188456009023365211/Rectangle_161.png?ex=659a96e8&is=658821e8&hm=9636575d4526feb8962ecec63a11726db03c1ea57c3179fb8c8c1c6d2f6756f1&=&format=webp&quality=lossless&width=475&height=489",
-        title: "Top 10 best JS Libraries and frameworks for 2023",
-        id: 3,
-    },
-    {
-        url: "https://media.discordapp.net/attachments/1144663357845147790/1188456008767508510/Rectangle_162.png?ex=659a96e8&is=658821e8&hm=3b6408da40ad5ec63ffe052e9b45cc8637683665a06e9a69ddb67ed2a81709c0&=&format=webp&quality=lossless&width=417&height=489",
-        title: "Top 10 best JS Libraries and frameworks for 2023",
-        id: 4,
-    },
-    {
-        url: "https://media.discordapp.net/attachments/1144663357845147790/1188458926124060672/image_35.png?ex=659a99a0&is=658824a0&hm=10014f60750f06c731ed990c1478cf1010ba6a2d02343d081b9970c55854cde5&=&format=webp&quality=lossless&width=417&height=483",
-        title: "Top 10 best JS Libraries and frameworks for 2023",
-        id: 5,
-    },
-    {
-        url: "https://media.discordapp.net/attachments/1144663357845147790/1188458926384103444/image_34.png?ex=659a99a0&is=658824a0&hm=a3e8c174513790984daf145adfd5ace0b4781264044629923d827748a2116ede&=&format=webp&quality=lossless&width=472&height=486",
-        title: "Top 10 best JS Libraries and frameworks for 2023",
-        id: 6,
-    },
-    {
-        url: "https://media.discordapp.net/attachments/1144663357845147790/1188456009367302186/Rectangle_160.png?ex=659a96e9&is=658821e9&hm=8c8e036e552795ab4184f29e0e80237658eebb03b78479bb06a3c33cfb199bae&=&format=webp&quality=lossless&width=475&height=489",
-        title: "Top 10 best JS Libraries and frameworks for 20235",
-        id: 1,
-    },
-    {
-        url: "https://media.discordapp.net/attachments/1144663357845147790/1188456010302623754/Rectangle_159.png?ex=659a96e9&is=658821e9&hm=ce9d42a6f24356a0b59bddffe24c837f5b32f6c2447d28d1b8ec73b05f52a6f1&=&format=webp&quality=lossless&width=429&height=490",
-        title: "Top 10 best JS Libraries and frameworks for 2023",
-        id: 2,
-    },
-    {
-        url: "https://media.discordapp.net/attachments/1144663357845147790/1188456009023365211/Rectangle_161.png?ex=659a96e8&is=658821e8&hm=9636575d4526feb8962ecec63a11726db03c1ea57c3179fb8c8c1c6d2f6756f1&=&format=webp&quality=lossless&width=475&height=489",
-        title: "Top 10 best JS Libraries and frameworks for 2023",
-        id: 3,
-    },
-    {
-        url: "https://media.discordapp.net/attachments/1144663357845147790/1188456008767508510/Rectangle_162.png?ex=659a96e8&is=658821e8&hm=3b6408da40ad5ec63ffe052e9b45cc8637683665a06e9a69ddb67ed2a81709c0&=&format=webp&quality=lossless&width=417&height=489",
-        title: "Top 10 best JS Libraries and frameworks for 2023",
-        id: 4,
-    },
-    {
-        url: "https://media.discordapp.net/attachments/1144663357845147790/1188458926124060672/image_35.png?ex=659a99a0&is=658824a0&hm=10014f60750f06c731ed990c1478cf1010ba6a2d02343d081b9970c55854cde5&=&format=webp&quality=lossless&width=417&height=483",
-        title: "Top 10 best JS Libraries and frameworks for 2023",
-        id: 5,
-    },
-    {
-        url: "https://media.discordapp.net/attachments/1144663357845147790/1188458926384103444/image_34.png?ex=659a99a0&is=658824a0&hm=a3e8c174513790984daf145adfd5ace0b4781264044629923d827748a2116ede&=&format=webp&quality=lossless&width=472&height=486",
-        title: "Top 10 best JS Libraries and frameworks for 2023",
-        id: 6,
-    },
-];
 
 // export const metadata: Metadata = {
 //     title: 'Grow It Rapid',

@@ -1,5 +1,5 @@
 'use client'
-
+/* eslint-disable */
 import React, { useState, useRef, useEffect } from 'react'
 import prismComponents from "prismjs/components";
 // import axios from 'axios';

@@ -1,5 +1,5 @@
 'use client';
-
+/* eslint-disable */
 import React, { isValidElement, useEffect, useRef, useState } from 'react'
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
@@ -257,7 +257,7 @@ export default function Structure({
                 </div>
 
                 <div className={style.dropdown} data-open={isDropdownOpen} onClick={e => e.stopPropagation()}>
-                    {((session?.user.role || 0) >= 1) &&
+                    {(((session?.user.roles[0] === "operator")?1: 0) >= 1) &&
                         <span>
                             <Link href="/admin/dashboard" target='_blank' title='Dashboard'>
                                 <div className={style.chip}>
@@ -299,7 +299,7 @@ export default function Structure({
                                 <Link href={config.links.signin}>
                                     <div className={style.chip} style={{ justifyContent: "center" }}>
                                         <div className={style.avatar} style={{ fontSize: "1.1em", height: 20 }}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" className="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
                                             <div className={style.name} style={{ width: "auto" }}>
                                                 <span>Get Started</span>
                                             </div>

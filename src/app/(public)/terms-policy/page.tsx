@@ -6,13 +6,8 @@ import Link from "next/link";
 import config from "@/utils/config";
 import Stars from "@/components/stars";
 
-<<<<<<< HEAD
-import style from './[slug]/style.module.scss';
-import TeamWorkBG2 from '../../../assets/image/teamwork2.jpg'
-=======
 import style from "./[slug]/style.module.scss";
 import TeamWorkBG2 from "@/assets/image/teamwork2.jpg";
->>>>>>> 4cc14c4764dc8dc5af129c28e4fe76b0535e623f
 
 export const metadata: Metadata = {
   title: "Terms & Policies",

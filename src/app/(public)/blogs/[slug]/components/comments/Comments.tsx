@@ -4,24 +4,32 @@ import { FaWindowClose } from "react-icons/fa";
 import Image from 'next/image';
 import Me from '../../../../../../assets/me.png';
 
-export default function Comments({userProfile, userName}) {
-  const commentsContainer = useRef(null)
-  const commentInput = useRef(null)
+export default function Comments({userProfile, userName}: {userProfile: string, userName:string}) {
+  const commentsContainer = useRef<HTMLDivElement>(null);
+  const commentInput = useRef<HTMLTextAreaElement>(null);
 
   function closeCommentsSection() {
-    commentsContainer.current.parentNode.style.opacity = "0"
-    commentsContainer.current.parentNode.style.pointerEvents = "none"
-    commentsContainer.current.style.scale = "0"
-  }
-
-  async function comment() {
-    const content = commentInput.current.value
-
-    if(content) {
-      alert(content)
+    if (commentsContainer.current) {
+      const parentNode = commentsContainer.current.parentNode as HTMLElement; // Explicit cast to HTMLElement
+      if (parentNode) {
+        parentNode.style.opacity = '0';
+        parentNode.style.pointerEvents = 'none';
+      }
+      if (commentsContainer.current.style) {
+        commentsContainer.current.style.transform = 'scale(0)';
+      }
     }
-
   }
+  
+
+  // async function comment() {
+  //   const content = commentInput.current.value
+
+  //   if(content) {
+  //     alert(content)
+  //   }
+  // }
+
   return (
     <div ref={commentsContainer} className={styles.commentsContainer}>
       <nav>
@@ -31,11 +39,12 @@ export default function Comments({userProfile, userName}) {
 
       <div className={styles.comments}>
         <div className={styles.commentBox}>
-          {userProfile? <Image src={userProfile} width={100} height={100} alt='user'/>: <Image width={100} height={100} src={Me.src}/>}
+          {userProfile? <Image src={userProfile} width={100} height={100} alt='user'/>: <Image width={100} height={100} alt={"PROFILE PIC"} src={Me.src}/>}
           <textarea ref={commentInput} placeholder={`Write A Thoughtfull Comment ${userName?userName:"User"}`}>
             
           </textarea>
-          <button onClick={comment}>Comment</button>
+          <button>Comment</button>
+          {/* <button onClick={comment}>Comment</button> */}
         </div>
       </div>
     </div>

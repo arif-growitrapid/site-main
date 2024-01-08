@@ -48,8 +48,6 @@ export default async function page({ params }: {
 
             <header className={`relative w-full grid place-items-center
                 [min-height:calc(100vh-4rem)]
-                [min-height:calc(100dvh-4rem)]
-                [min-height:calc(100svh-4rem)]
             `}>
 
                 {/* <div className={`${style.bg__image} absolute right-0 top-0 h-full w-full md:w-[50%] bg-cover bg-bottom`}

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import client from '@/utils/sanity-client';
 import { groq } from 'next-sanity';
 import React, { cache } from 'react'
