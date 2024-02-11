@@ -1,16 +1,13 @@
 /* eslint-disable */
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
-import Stars from '@/components/stars';
 import style from './page.module.scss'
-import TeamWorkBG2 from '../../../assets/image/teamwork2.jpg'
 import { filterBlogs, searchForBlog } from '@/functions/blog';
 
 import Navbar from '@/components/navbar';
 import { SwiperSlide, Swiper } from 'swiper/react';
 import { BiSave, BiHeart } from 'react-icons/bi';
 import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { Navigation } from 'swiper/modules';
 import { formatNumbers } from '@/utils/formatter';
 import Skeleton from 'react-loading-skeleton';
 import { SkeletonTheme } from 'react-loading-skeleton';
@@ -80,18 +77,19 @@ export default function Page({ }: Props) {
                 >
 
                     {trendingBlogs.map((card, index) => {
-
+                        console.log(card)
                         if (card) {
                             return (
                                 <SwiperSlide key={index} className={style.swiperSlider}>
                                     <div
                                         style={{
-                                            backgroundImage: `url(${card?.thumbnail})`,
+                                            backgroundImage: `url(${card.thumbnail})`,
                                             backgroundSize: "cover",
                                             backgroundPosition: "center",
                                         }}
                                         className={`${style.thumbContainer}`}
                                     ></div>
+                                    
 
                                     <div className={style.tags}>
                                         {

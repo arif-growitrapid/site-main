@@ -227,21 +227,21 @@ export default function getNavItems({
                 icon: null,
                 link: `/services/${service.slug}`,
                 isMegaMenu: true,
-                items: <div className='megaMenu:flex megaMenu:flex-wrap megaMenu:items-stretch megaMenu:justify-start megaMenu:gap-3 megaMenu:p-2'>
+                items: <div className='flex flex-wrap items-stretch justify-start gap-3 p-2'>
                     {service.items.map((item, index) => (
-                        <Link className={`no-after megaMenu:flex-auto
-                            megaMenu:w-full megaMenu:max-w-[32%]
-                            megaMenu:bg-[var(--bg-color)] megaMenu:hover:bg-[var(--hover-color)]
+                        <Link className={`no-after flex-auto
+                            w-full max-w-[32%]
+                            bg-[#101520] hover:bg-[#02070b]
                             transition-colors duration-300 ease-in-out
-                            megaMenu:rounded-md megaMenu:border-2 megaMenu:border-[var(--border-primary-color)]
-                            megaMenu:py-2 megaMenu:px-3
+                            rounded-md border-2 border-[var(--border-primary-color)]
+                            py-2 px-3
                         `} href={`/services/${service.slug}/${item.item_slug}`} key={index}>
                             <div className='flex flex-col'>
                                 <p className={`whitespace-pre-wrap`}>{item.item_title}</p>
                                 <p className='text-xs opacity-50 whitespace-pre-wrap'>{item.description}</p>
                             </div>
             
-                            <FaUpRightFromSquare className={`megaMenu:hidden flex-shrink-0 inline-block align-baseline`} />
+                            <FaUpRightFromSquare className={`hidden flex-shrink-0 inline-block align-baseline`} />
                         </Link>
                     ))}
                 </div>

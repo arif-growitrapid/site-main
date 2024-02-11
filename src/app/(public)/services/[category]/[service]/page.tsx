@@ -12,6 +12,7 @@ import Textpreview from '@/components/text_preview/textpreview';
 import { notFound } from 'next/navigation';
 import Form from './form';
 import Image from 'next/image';
+import Navbar from '@/components/navbar';
 
 const clientFetch = cache(client.fetch.bind(client));
 
@@ -45,7 +46,7 @@ export default async function page({ params }: {
 
     return (
         <div className={`bg`}>
-
+            <Navbar />
             <header className={`relative w-full grid place-items-center
                 [min-height:calc(100vh-4rem)]
             `}>

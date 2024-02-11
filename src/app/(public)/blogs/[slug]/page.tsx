@@ -11,6 +11,7 @@ import Navbar from '@/components/navbar';
 import { formatNumbers } from '@/utils/formatter';
 import { WithId } from 'mongodb';
 import { DBBlogPostType } from '@/types/blog';
+import Preloader from '@/components/preloader/Preloader';
 
 export default function Page({
     params
@@ -54,7 +55,7 @@ export default function Page({
     }, [slug]);
 
     if (loading) {
-        return <h1>Loading....</h1>;
+        return <Preloader/>;
     }
 
     if (!data) {

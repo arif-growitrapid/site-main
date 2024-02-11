@@ -9,6 +9,8 @@ import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { formatNumbers } from '@/utils/formatter';
 import { testimonials } from './utils/testimonials';
 import { workflow } from './utils/workflow';
+import { Autoplay } from 'swiper/modules';
+import { HTMLMotionProps, motion } from 'framer-motion'
 
 import style from './page.module.scss'
 import Stars from '@/components/stars'
@@ -18,18 +20,85 @@ import 'swiper/css';
 import Link from 'next/link';
 import { filterBlogs } from '@/functions/blog';
 
-  
 export default function Page({ }: {}) {
     const swiperRef = useRef(null);
     const [sliderPosition, setSliderPosition] = useState(0);
     const [trendingBlogs, setTrendingBlogs] = useState(Array(10).fill(undefined))
 
+    const [contentIndex, setContentIndex] = useState<number>(0)
+    const coursesContent = [
+        {
+            title: "Expand Your Job Oppurtunities With Our Top Professional <span>Web</span> <span>Development</span> <span>Courses</span> <span>!!</span>",
+            description: "Dive into the dynamic world of web development, a crucial skill sought after in today's tech-driven landscape. From crafting responsive websites to mastering the latest frameworks, our web development courses empower you to thrive in the digital realm. ",
+            courses: [
+                {
+                    link: "",
+                    img: "https://media.discordapp.net/attachments/1144663357845147790/1194165447889797191/Frame_2.png?ex=65af5c3d&is=659ce73d&hm=1f129c23fa02436f6e57d24bb26f55920aee89508e7e309a461d8a67bd34afa9&=&format=webp&quality=lossless&width=967&height=544"
+                },
+                {
+                    link: "",
+                    img: "https://media.discordapp.net/attachments/1144663357845147790/1194165447889797191/Frame_2.png?ex=65af5c3d&is=659ce73d&hm=1f129c23fa02436f6e57d24bb26f55920aee89508e7e309a461d8a67bd34afa9&=&format=webp&quality=lossless&width=967&height=544"
+                }
+
+            ]
+        },
+        {
+            title: "Lead Data-Driven Decisions With The Best <span>Data</span> <span>Analysis</span> <span>Courses</span> <span>!!</span>",
+            description: "Dive into the dynamic world of data analysis, a crucial skill sought after across diverse industries such as finance, transportation, education, manufacturing, and banking. Our courses cover essential aspects of data science, incorporating Python, statistics, and machine learning to enhance your expertise.",
+            courses: [
+                {
+                    link: "https://imp.i384100.net/jr549M",
+                    img: "https://media.discordapp.net/attachments/1144663357845147790/1194158971217514516/Frame_1.png?ex=65af5635&is=659ce135&hm=f2d83b32e7cb0f6ec29a4dc81afd034a845a917d308d09d957ad63e831fe3481&=&format=webp&quality=lossless&width=967&height=544"
+                },
+                {
+                    link: "https://imp.i384100.net/5g07zj",
+                    img: "https://media.discordapp.net/attachments/1144663357845147790/1194165447889797191/Frame_2.png?ex=65af5c3d&is=659ce73d&hm=1f129c23fa02436f6e57d24bb26f55920aee89508e7e309a461d8a67bd34afa9&=&format=webp&quality=lossless&width=967&height=544"
+                },
+                {
+                    link: "",
+                    img: "https://media.discordapp.net/attachments/1144663357845147790/1194165447889797191/Frame_2.png?ex=65af5c3d&is=659ce73d&hm=1f129c23fa02436f6e57d24bb26f55920aee89508e7e309a461d8a67bd34afa9&=&format=webp&quality=lossless&width=967&height=544"
+                },
+                {
+                    link: "",
+                    img: "https://media.discordapp.net/attachments/1144663357845147790/1194165447889797191/Frame_2.png?ex=65af5c3d&is=659ce73d&hm=1f129c23fa02436f6e57d24bb26f55920aee89508e7e309a461d8a67bd34afa9&=&format=webp&quality=lossless&width=967&height=544"
+                },
+                {
+                    link: "",
+                    img: "https://media.discordapp.net/attachments/1144663357845147790/1194165447889797191/Frame_2.png?ex=65af5c3d&is=659ce73d&hm=1f129c23fa02436f6e57d24bb26f55920aee89508e7e309a461d8a67bd34afa9&=&format=webp&quality=lossless&width=967&height=544"
+                }
+            ]
+        },
+        {
+            title: "Unlock Your Leadership Potencial With Our Top Professional <span>Leadership</span> <span>Courses</span> <span>!!</span>",
+            description: "Leadership is a universally sought-after skill that transcends industries. From finance to education, manufacturing to banking, strong leadership is pivotal for success. Our comprehensive leadership courses empower you with essential skills, equipping you for impactful decision-making and effective team management.",
+            courses: [
+                {
+                    link: "https://imp.i384100.net/daJ7PK",
+                    img: "https://media.discordapp.net/attachments/1144663357845147790/1194169277608120431/Frame_4.png?ex=65af5fce&is=659ceace&hm=bc4ea1a2a90641aee10843dddf79b49e9a5a5c754527f24fceb6de284e525c15&=&format=webp&quality=lossless&width=967&height=544"
+                }
+            ]
+        }
+    ]
     useEffect(() => {
         new Typewriter('#typingEffect', {
             strings: ['Courses', 'E-Books', 'Blogs', 'Cheat Sheets', 'Web Dev', 'Content Creation', 'Web Design', 'SEO Ranking', 'Logo Design', "Promotions", "Marketing", "Social Media Management"],
             autoStart: true,
             loop: true
         });
+
+        async function fetchData() {
+            try {
+                const trendingResponse = await filterBlogs("likes", 20, 0);
+
+                if (trendingResponse.status === 200 && trendingResponse.data) {
+                    setTrendingBlogs(trendingResponse.data.blogs);
+                }
+            } catch (error) {
+                console.error('Error fetching blogs', error);
+            }
+        }
+
+        fetchData();
     }, []);
 
     useEffect(() => {
@@ -48,22 +117,6 @@ export default function Page({ }: {}) {
 
         return () => window.removeEventListener('wheel', handleScroll);
     }, [sliderPosition]);
-
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const trendingResponse = await filterBlogs("likes", 20, 0);
-
-                if (trendingResponse.status === 200 && trendingResponse.data) {
-                    setTrendingBlogs(trendingResponse.data.blogs);
-                }
-            } catch (error) {
-                console.error('Error fetching blogs', error);
-            }
-        }
-
-        fetchData();
-    }, []);
 
     return (
         <div>
@@ -354,49 +407,49 @@ export default function Page({ }: {}) {
 
                         mousewheel={{ releaseOnEdges: true }}
                     >
-                            {trendingBlogs.map((card, index) => {
-                                if (card) {
-                                    return (
-                                        <SwiperSlide key={index} className={style.swiperSlider}>
-                                            <div
-                                                style={{
-                                                    backgroundImage: `url(${card.thumbnail})`,
-                                                    backgroundSize: "cover",
-                                                    backgroundPosition: "center",
-                                                }}
-                                                className={`${style.thumbContainer}`}
-                                            ></div>
+                        {trendingBlogs.map((card, index) => {
+                            if (card) {
+                                return (
+                                    <SwiperSlide key={index} className={style.swiperSlider}>
+                                        <div
+                                            style={{
+                                                backgroundImage: `url(${card.thumbnail})`,
+                                                backgroundSize: "cover",
+                                                backgroundPosition: "center",
+                                            }}
+                                            className={`${style.thumbContainer}`}
+                                        ></div>
+                                        <div>
+                                            <h2><a href={`blogs/${card?.slug}`}>{card.title}</a></h2>
+                                            <p>New Blog Description in today's dynamic job market, where first impressions matter more than ever, your professional online presence can be just as vital as your traditional resume. Enter LinkedIn, the social network for professionals.</p>
+                                        </div>
+
+                                        <div className={style.blogInfo}>
                                             <div>
-                                                <h2><a href={`blogs/${card?.slug}`}>{card.title}</a></h2>
-                                                <p>New Blog Description in today's dynamic job market, where first impressions matter more than ever, your professional online presence can be just as vital as your traditional resume. Enter LinkedIn, the social network for professionals.</p>
+                                                <BiHeart size={25} className={style.icon} />
+                                                <p>{formatNumbers(4254950)}</p>
                                             </div>
 
-                                            <div className={style.blogInfo}>
-                                                <div>
-                                                    <BiHeart size={25} className={style.icon} />
-                                                    <p>{formatNumbers(4254950)}</p>
-                                                </div>
 
-
-                                                <div>
-                                                    <BiSave size={25} className={style.icon} />
-                                                    <p>{formatNumbers(96485214525)}</p>
-                                                </div>
-
-                                                <div>
-                                                    <MdOutlineRemoveRedEye size={25} className={style.icon} />
-                                                    <p>{formatNumbers(86248562)}</p>
-                                                </div>
+                                            <div>
+                                                <BiSave size={25} className={style.icon} />
+                                                <p>{formatNumbers(96485214525)}</p>
                                             </div>
-                                        </SwiperSlide>
-                                    )
-                                } else {
-                                    return (
-                                        <div key={index}></div>
-                                    )
-                                }
 
-                            })}
+                                            <div>
+                                                <MdOutlineRemoveRedEye size={25} className={style.icon} />
+                                                <p>{formatNumbers(86248562)}</p>
+                                            </div>
+                                        </div>
+                                    </SwiperSlide>
+                                )
+                            } else {
+                                return (
+                                    <div key={index}></div>
+                                )
+                            }
+
+                        })}
 
                     </Swiper>
 
@@ -420,13 +473,32 @@ export default function Page({ }: {}) {
 
                 <div className={style.editorContainer}>
                     <div className={style.tabs}>
-                        <div className={style.tab}>Python</div>
-                        <div className={style.tab}>Java Script</div>
-                        <div className={style.tab}>PPT</div>
+                        <div className={style.tab} onClick={() => setContentIndex(0)}>Web Dev</div>
+                        <div className={style.tab} onClick={() => setContentIndex(1)}>Data Analysis</div>
+                        <div className={style.tab} onClick={() => setContentIndex(2)}>Leadership</div>
                     </div>
                     <div className={style.courseContainer}>
-                        <h1>Expand Your Job Oppurtunities With Our Top Professional <span>Python Courses !!</span></h1>
-                        <p>New Blog Description in today's dynamic job market, where first impressions matter more than ever, your professional online presence can be just as vital as your traditional resume. Enter LinkedIn, the social network for professionals, often referred to as the "virtual resume."</p>
+                        <motion.h1
+                            initial={{ opacity: 1 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                        >
+                            <SplitText
+                                initial={{ y: '100%' }}
+                                animate="visible"
+                                variants={{
+                                    visible: (i: number) => ({
+                                        y: 0,
+                                        transition: {
+                                            delay: i * 0.1
+                                        }
+                                    })
+                                }}
+                                text={coursesContent[contentIndex].title}
+                            />
+                            {/* <h1 dangerouslySetInnerHTML={{ __html: coursesContent[contentIndex].title }}></h1> */}
+                        </motion.h1>
+                        <p>{coursesContent[contentIndex].description}</p>
                         <Swiper
                             slidesPerView={"auto"}
                             spaceBetween={30}
@@ -434,26 +506,27 @@ export default function Page({ }: {}) {
                             freeMode={true}
                             loop={true}
                             mousewheel={{ releaseOnEdges: true }}
+                            modules={[Autoplay]} // Add the Autoplay module here
+                            autoplay={{
+                                delay: 3000, // Delay between transitions in milliseconds (adjust as needed)
+                                disableOnInteraction: false, // Continue autoplay after user interactions
+                                pauseOnMouseEnter: true, // Pause autoplay on mouse hover
+                            }}
                         >
 
-                            {testimonials.map((card, index) => {
+                            {coursesContent[contentIndex].courses.map((card, index) => {
                                 return (
                                     <SwiperSlide key={index} className={style.swiperSlider}>
-                                        <div
-                                            style={{
-                                                backgroundImage: `url(${card.url})`,
-                                                backgroundSize: "cover",
-                                                backgroundPosition: "center",
-
-                                            }}
-                                            className={`absolute inset-0 z-0 w-[100%] h-[100%] rounded-[15px] ${style.thumbContainer}`}
-                                        ></div>
-                                        <div>
-                                            <p className={style.box}>
-                                                <div className="profile"></div>
-                                                <span>{card.title}</span>
-                                            </p>
-                                        </div>
+                                        <a href={card.link}>
+                                            <div
+                                                style={{
+                                                    backgroundImage: `url(${card.img})`,
+                                                    backgroundSize: "cover",
+                                                    backgroundPosition: "center",
+                                                }}
+                                                className={`border-5 border-solid border-[#fff] absolute inset-0 z-0 w-[100%] h-[100%] rounded-[15px] ${style.thumbContainer}`}
+                                            ></div>
+                                        </a>
                                     </SwiperSlide>
                                 )
 
@@ -506,7 +579,7 @@ export default function Page({ }: {}) {
                 </div>
             </div>
 
-            {/* Work On Process */}
+            {/* TODO: Work On Process */}
             {/* 
             <div className={style.notYetConvinced}>
                 <h2>Still Not Yet <span>Convinced !?</span></h2>
@@ -534,6 +607,29 @@ interface ExperienceCardProps {
         points: string[];
     };
 }
+
+function SplitText({ text, ...rest }: HTMLMotionProps<"div"> & {
+    text: string
+}) {
+    let words = text.split(' ')
+    return words.map((word, i) => {
+        return (
+            <div
+                key={text + i}
+                style={{ display: 'inline-block', overflow: 'hidden' }}
+            >
+                <motion.div
+                    {...rest}
+                    style={{ display: 'inline-block', willChange: 'transform' }}
+                    custom={i}
+                    dangerouslySetInnerHTML={{ __html: word + (i !== words.length - 1 ? '\u00A0' : '') }}
+                >
+                </motion.div>
+            </div>
+        )
+    })
+}
+
 
 const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
     return (

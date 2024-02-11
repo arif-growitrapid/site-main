@@ -9,6 +9,7 @@ import { getCourseBySlug } from '@/functions/courses';
 import notFound from '../../not-found';
 import { formatNumbers } from '@/utils/formatter';
 import Navbar from '@/components/navbar';
+import Preloader from '@/components/preloader/Preloader';
 
 export default function Page({
     params
@@ -20,6 +21,7 @@ export default function Page({
 
     const [activeIndex, setActiveIndex] = useState(null);
     const [courseData, setCourseData] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
 
     const toggleAccordion = (index: any) => {
         if (activeIndex === index) {
@@ -30,26 +32,22 @@ export default function Page({
     };
     const testimonials = [1, 2, 3, 5, 5]
 
-    function scrollToSection(sectionName: String) {
-        const section = document.getElementById(String(sectionName));
-
-        if (section) {
-            section.scrollIntoView({
-                behavior: "smooth",
-            });
-        }
-    }
-
     const { slug } = params;
     useEffect(() => {
         async function getCourseDetails() {
-            const { type, data: courseData } = await getCourseBySlug("coursera", slug);
+            try {
+                const { type, data: courseData } = await getCourseBySlug("coursera", slug);
 
-            if (type === "success") {
-                setCourseData(courseData);
-                console.log(courseData, "MAIN");
-            } else {
-                return notFound({});
+                if (type === "success") {
+                    setCourseData(courseData);
+                    console.log(courseData, "MAIN");
+                } else {
+                    return notFound({});
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            } finally {
+                setLoading(false);
             }
         }
 
@@ -58,9 +56,13 @@ export default function Page({
 
     const items = [{ title: "Programming for Everybody (Getting Started with Python)", content: "Hjkkgfghkjhv" }, { title: "Python Data Structures", content: "Hjkkgfghkjhv" }, { title: "PyGame Tutorial With Python", content: "Hjkkgfghkjhv" }, { title: "Programming for Everybody (Getting Started with Python)", content: "Hjkkgfghkjhv" }, { title: "Python Data Structures", content: "Hjkkgfghkjhv" }, { title: "PyGame Tutorial With Python", content: "Hjkkgfghkjhv" }]
 
+    if (loading) {
+        return <Preloader/>;
+    }
+
     if (courseData !== null) {
         return (
-            <>
+            <div>
                 <header>
                     <main className={style.hero}>
                         <div className={style.blob1}></div>
@@ -133,7 +135,7 @@ export default function Page({
                             <h1>Skills You Will Gain ??</h1>
                             <ul className={style.tags}>
                                 {
-                                    courseData?.tags.map((element:string, index:number) => {
+                                    courseData?.tags.map((element: string, index: number) => {
                                         return (
                                             <li key={index}>
 
@@ -186,14 +188,14 @@ export default function Page({
                     <div className={`${style.eBooks} ${style.catalog}`}>
                         <h1>Specialization - {courseData.catalogs.length} Course Series ??</h1>
                         <div className={style.accordion}>
-                            {courseData.catalogs.map((item:{internalTags: string, whatYouWillLearn:string, link: string, title: string, rating: string, duration: string}, index:number) => (
+                            {courseData.catalogs.map((item: { internalTags: string, whatYouWillLearn: string, link: string, title: string, rating: string, duration: string }, index: number) => (
                                 <div key={index} className={style['accordion-item']}>
                                     <div
                                         className={`${style['accordion-header']} ${activeIndex === index ? style.active : ''}`}
                                         onClick={() => toggleAccordion(index)}
                                     >
                                         <div>
-                                            <Link href={item.link}>{item.title}</Link>
+                                            <Link href={item.link} className={'underline underline-offset-4'}>{item.title}</Link>
 
                                             <div className={style.tags}>
                                                 <span key={0} className={`inline-block px-2 py-1 mr-2 text-[.65rem] font-semibold rounded-md bg-[var(--bg-color)] text-[var(--text-color)]`}>
@@ -249,7 +251,7 @@ export default function Page({
                         </div>
                     </div>
                 </div>
-            </>
+            </div>
         )
     } else {
         return <h1>Not Found</h1>
