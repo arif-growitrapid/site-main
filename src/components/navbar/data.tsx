@@ -124,7 +124,7 @@ const menuItems = [
 })[];
 
 export default function getNavItems({
-    services
+    services, session, status
 }: {
     services: {
         _id: string;
@@ -139,9 +139,14 @@ export default function getNavItems({
             item_slug: string;
         }[];
     }[] | null;
+    session: {
+        user: {roles: string}
+    } | null;
+    status: string;
 }): NavItem[] {
 
-    return [
+    console.log(status, session)
+    const data = [
         {
             title: "Home",
             icon: null,
@@ -240,15 +245,29 @@ export default function getNavItems({
                                 <p className={`whitespace-pre-wrap`}>{item.item_title}</p>
                                 <p className='text-xs opacity-50 whitespace-pre-wrap'>{item.description}</p>
                             </div>
-            
+
                             <FaUpRightFromSquare className={`hidden flex-shrink-0 inline-block align-baseline`} />
                         </Link>
                     ))}
                 </div>
             })),
-        },       
-    ];
+        },
+
+
+    ]
+    if (status === "authenticated") {
+
+        if (session?.user.roles[0] === 'operator') {
+            data.push({
+                title: "Upload Courses",
+                icon: null,
+                link: "/uploader",
+                isMegaMenu: false,
+                items: null,
+            },)
+        }
+
+
+    }
+    return data;
 }
-
-
-// TODO: Remove service items

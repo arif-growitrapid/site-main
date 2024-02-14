@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu } = require("electron");
+const { app, BrowserWindow, Menu, ipcMain } = require("electron");
 const serve = require("electron-serve");
 const path = require("path");
 
@@ -30,6 +30,8 @@ const createWindow = () => {
     });
   }
 }
+
+
 
 app.on("ready", () => {
   createWindow();

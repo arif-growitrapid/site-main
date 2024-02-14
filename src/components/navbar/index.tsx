@@ -4,6 +4,7 @@ import Structure from './structure';
 import getNavItems from './data';
 import client from '@/utils/sanity-client';
 import { groq } from 'next-sanity';
+import { useSession } from 'next-auth/react';
 
 const clientFetch = cache(client.fetch.bind(client));
 
@@ -11,6 +12,7 @@ export default function Navbar() {
   const [services, setServices] = useState(null);
   // const cookieStore = cookies();
   // const theme = cookieStore.get('theme');
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     // Fetch services
@@ -42,10 +44,10 @@ export default function Navbar() {
   // }
 
   const menuItems = getNavItems({
-    services
+    // @ts-ignore
+    services, session, status
   }); 
 
-  console.log(services)
 
   return (
     <Structure
