@@ -235,7 +235,7 @@ export default function getNavItems({
                             transition-colors duration-300 ease-in-out
                             rounded-md border-2 border-[var(--border-primary-color)]
                             py-2 px-3
-                        `} href={`/services/${service.slug}/${item.item_slug}`} key={index}>
+                        `} href={`/services`} key={index}>
                             <div className='flex flex-col'>
                                 <p className={`whitespace-pre-wrap`}>{item.item_title}</p>
                                 <p className='text-xs opacity-50 whitespace-pre-wrap'>{item.description}</p>
