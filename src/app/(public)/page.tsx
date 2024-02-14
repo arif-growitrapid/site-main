@@ -81,7 +81,7 @@ export default function Page({ }: {}) {
     ]
     useEffect(() => {
         new Typewriter('#typingEffect', {
-            strings: ['Courses', 'E-Books', 'Blogs', 'Cheat Sheets', 'Web Dev', 'Content Creation', 'Web Design', 'SEO Ranking', 'Logo Design', "Promotions", "Marketing", "Social Media Management"],
+            strings: ['Courses', 'E-Books', 'Blogs', 'Cheat Sheets', 'Website Development', 'Content Creation', 'Web Design', 'SEO Ranking', 'Logo Design', "Promotions", "Marketing", "Social Media Management"],
             autoStart: true,
             loop: true
         });
