@@ -46,8 +46,8 @@ export default function Page() {
         setIsSubmitting(true);
 
         const promise = databases.createDocument(
-            '65cc76b4baa2558b5a2b',
-            '65cc76e010bfaadb4692',
+            '65cdb25e4f93ca89667a',
+            '65cdb297099b3f0402b2',
             ID.unique(),
             JSON.stringify(data)
         );
