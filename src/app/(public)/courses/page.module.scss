@@ -153,17 +153,17 @@
             justify-content: space-between;
 
             .tags {
+                display: flex;
+                flex-wrap: wrap;
                 font-size: .7rem;
                 margin: 0;
                 gap: .5em;
                 display: -webkit-inline-box;
                 -webkit-box-orient: horizontal;
-                height: 10em !important;
-                overflow-x: scroll;
-                overflow-y: hidden;
-                ::-webkit-scrollbar {
-                    width: 2px !important; /* Set the width of the scrollbar */
-                }
+                overflow: hidden;
+                -webkit-line-clamp: 1;
+                max-height: 6em;
+                overflow: hidden;
 
                 .tag {
                     background: #10141F;
@@ -171,7 +171,7 @@
                     height: fit-content;
                     border-radius: 5px;
                     margin: 0;
-                }                
+                }                  
             }
 
             .skeletonTags {

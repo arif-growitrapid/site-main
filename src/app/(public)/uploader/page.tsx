@@ -2,6 +2,8 @@
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import * as XLSX from 'xlsx';
+import { scrapeCourse } from '@/functions/courses';
+import { COURSE_PROVIDER_NAMES } from '@/types/courses.type';
 
 const Page: React.FC = () => {
     const onDrop = useCallback((acceptedFiles: File[]) => {
@@ -23,7 +25,12 @@ const Page: React.FC = () => {
             const worksheet = workbook.Sheets[sheetName];
             const data = XLSX.utils.sheet_to_json(worksheet);
             setFileUploaded(data as File[])
-            console.log(data as File[])
+            console.log(data)
+            async function name() {
+                const res = await scrapeCourse("coursera", JSON.parse(JSON.stringify(data)))
+                console.log(res)
+            }
+            name()
         };
         reader.readAsArrayBuffer(file);
     };

@@ -29,6 +29,7 @@ export default function Page({ }: Props) {
                     const { type, data } = result
 
                     setTrendingCourses(data)
+                    console.log(data)
                 }
             } catch (error) {
                 console.error('Error fetching courses BULL:', error);
@@ -77,13 +78,13 @@ export default function Page({ }: Props) {
                     mousewheel={{ releaseOnEdges: true }}
                 >
 
-                    {trendingCourses.map((card:{tags: String[], meta: {slug: string}, title: string, description: string, guarantee_percentage:string, rating: number, total_enrolled_students: string, }, index: number) => {
+                    {trendingCourses.map((card:{meta: {slug: string}, data: {tags: String[], title: string, description: string, guarantee_percentage:string, rating: number, total_enrolled_students: string,} }, index: number) => {
                         if (card) {
                             return (
                                 <SwiperSlide key={index} className={style.swiperSlider}>
                                     <div
                                         style={{
-                                            backgroundImage: `url(https://random.imagecdn.app/1600/900)`,
+                                            backgroundImage: `url(https://picsum.photos/1600/900)`,
                                             backgroundSize: "cover",
                                             backgroundPosition: "center",
                                         }}
@@ -92,31 +93,31 @@ export default function Page({ }: Props) {
 
                                     <div className={style.tags}>
                                         {
-                                            card?.tags.map((item, index) => {
+                                            card.data?.tags ? card.data?.tags.map((item, index) => {
                                                 return (<div key={index} className={style.tag}>{item}</div>)
-                                            })
+                                            }): ""
                                         }
                                     </div>
                                     <div>
-                                        <h2><a href={`courses/${card?.meta.slug}`}>{card?.title}</a></h2>
-                                        <p>{card?.description}</p>
+                                        <h2><a href={`courses/${card?.meta.slug}`}>{card.data?.title}</a></h2>
+                                        <p>{card.data?.description}</p>
                                     </div>
 
                                     <div className={style.blogInfo}>
                                         <div>
                                             <PiStudentFill size={25} className={style.icon} />
-                                            <p>{formatNumbers(parseInt((card?.total_enrolled_students || '').replace(/,/g, '')))}</p>
+                                            <p>{formatNumbers(parseInt((card.data?.total_enrolled_students || '').replace(/,/g, '')))}</p>
                                         </div>
 
 
                                         <div>
                                             <MdWorkHistory size={25} className={style.icon} />
-                                            <p>{card?.guarantee_percentage}</p>
+                                            <p>{card.data?.guarantee_percentage || "82%"}</p>
                                         </div>
 
                                         <div>
                                             <FaStar size={25} className={style.icon} />
-                                            <p>{formatNumbers(card?.rating)}</p>
+                                            <p>{(card.data?.rating)}</p>
                                         </div>
                                     </div>
                                 </SwiperSlide>
