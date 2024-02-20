@@ -35,7 +35,8 @@ export async function createCourse(provider: keyof typeof COURSE_PROVIDER_NAMES,
             _id: new ObjectId(),
             meta: {
                 ...(newCourse as CourseMetaType<"coursera"> || {}),
-                "is_published": true
+                "is_published": true,
+                slug: newCourse.data?.title?.toLowerCase().replace(/\s+/g, '-') ?? ''
             },
             data: {
                 ...(newCourse as CoursesTypes["coursera"] || {}),
