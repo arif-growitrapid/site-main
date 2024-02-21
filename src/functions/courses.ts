@@ -275,7 +275,7 @@ export async function filterCourse(
         // Return the course
         return Response("success", courses, 200, "Course fetched successfully");
     } catch (error) {
-        console.error(error);
+        console.error(error, "ERRRRRRRR");
         return Response("error", null, 500, "Internal server error");
     }
 }

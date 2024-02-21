@@ -5,7 +5,7 @@ import Stars from '@/components/stars';
 import style from './style.module.scss'
 import Link from 'next/link';
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
-import { getCourseBySlug } from '@/functions/courses';
+import { getCourseById, getCourseBySlug } from '@/functions/courses';
 import notFound from '../../not-found';
 import { formatNumbers } from '@/utils/formatter';
 import Navbar from '@/components/navbar';
@@ -36,11 +36,10 @@ export default function Page({
     useEffect(() => {
         async function getCourseDetails() {
             try {
-                const { type, data: courseData } = await getCourseBySlug("coursera", slug);
+                const { type, data: courseData } = await getCourseById("coursera", slug);
 
                 if (type === "success") {
-                    setCourseData(courseData);
-                    console.log(courseData, "MAIN");
+                    setCourseData(courseData?.data);
                 } else {
                     return notFound({});
                 }
@@ -95,7 +94,7 @@ export default function Page({
                                 </div>
 
                                 <div>
-                                    <h2 className={style.numeric}>{formatNumbers((courseData.avg_salary.match(/[0-9,]+/) || [])[0].replace(/,/g, '') || 0) || "80k"}</h2>
+                                    <h2 className={style.numeric}>{formatNumbers((courseData.avg_salary.match(/[0-9,]+/) || [])[0] || 0) || "80k"}</h2>
                                     <p className={`line-clamp-2 ${style.text}`}>Avg $ Salary In India</p>
                                 </div>
 
@@ -186,9 +185,9 @@ export default function Page({
                     </div>
 
                     <div className={`${style.eBooks} ${style.catalog}`}>
-                        <h1>Specialization - {courseData.catalogs.length} Course Series ??</h1>
+                        <h1>Specialization - {courseData.catalog.length} Course Series ??</h1>
                         <div className={style.accordion}>
-                            {courseData.catalogs.map((item: { internalTags: string, whatYouWillLearn: string, link: string, title: string, rating: string, duration: string }, index: number) => (
+                            {courseData.catalog.map((item: { internalTags: string, whatYouWillLearn: string, link: string, title: string, rating: string, duration: string }, index: number) => (
                                 <div key={index} className={style['accordion-item']}>
                                     <div
                                         className={`${style['accordion-header']} ${activeIndex === index ? style.active : ''}`}

@@ -13,6 +13,7 @@ import Skeleton from 'react-loading-skeleton';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { searchForBlog } from '@/functions/blog';
+import Link from 'next/link';
 
 type Props = {}
 export default function Page({ }: Props) {
@@ -24,7 +25,7 @@ export default function Page({ }: Props) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const result = await filterCourse('coursera', {}, 20);
+                const result = await filterCourse('coursera', {}, 10);
                 if (result.status === 200) {
                     const { type, data } = result
 
@@ -78,7 +79,7 @@ export default function Page({ }: Props) {
                     mousewheel={{ releaseOnEdges: true }}
                 >
 
-                    {trendingCourses.map((card:{meta: {slug: string}, data: {tags: String[], title: string, description: string, guarantee_percentage:string, rating: number, total_enrolled_students: string,} }, index: number) => {
+                    {trendingCourses.map((card:{_id: string, meta: {slug: string}, data: {tags: String[], title: string, outcomes: string, guarantee_percentage:string, rating: number, total_enrolled_students: string,} }, index: number) => {
                         if (card) {
                             return (
                                 <SwiperSlide key={index} className={style.swiperSlider}>
@@ -99,8 +100,8 @@ export default function Page({ }: Props) {
                                         }
                                     </div>
                                     <div>
-                                        <h2><a href={`courses/${card?.meta.slug}`}>{card.data?.title}</a></h2>
-                                        <p>{card.data?.description}</p>
+                                        <h2><Link href={`courses/${card._id}`}>{card.data?.title}</Link></h2>
+                                        <p className='line-clamp-3'>{card.data?.outcomes}</p>
                                     </div>
 
                                     <div className={style.blogInfo}>
