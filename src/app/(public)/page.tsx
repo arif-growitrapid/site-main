@@ -385,7 +385,7 @@ export default function Page({ }: {}) {
 
                 <div className={style.blogs}>
                     <div className={style.title}>
-                        <img src='https://media.discordapp.net/attachments/1144663357845147790/1189941069387927603/Group_64.png?ex=659ffdfa&is=658d88fa&hm=c96b988bd1457f15033a065a7742df5d3d2cb5e146a3514144ae0bfe5a18db17&=&format=webp&quality=lossless&width=1060&height=207' className={style.headline} />
+                        <img src='https://media.discordapp.net/attachments/1144663357845147790/1189944396263739453/Group_64.png?ex=65f30f94&is=65e09a94&hm=56c7f70d1f1a5d6510c9054ae7732020937d3cc241025b330b8cdf72b54c14e4&=&format=webp&quality=lossless&width=1215&height=207' className={style.headline} />
                         <div className={style.btns}>
                             <button>
                                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-200h80v-40h40q17 0 28.5-11.5T600-280v-120q0-17-11.5-28.5T560-440H440v-40h160v-80h-80v-40h-80v40h-40q-17 0-28.5 11.5T360-520v120q0 17 11.5 28.5T400-360h120v40H360v80h80v40ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-560v-160H240v640h480v-480H520ZM240-800v160-160 640-640Z" /></svg>
@@ -469,7 +469,7 @@ export default function Page({ }: {}) {
 
             </div>
             <div className={style.courses}>
-                <img className={style.headline} src='https://media.discordapp.net/attachments/1144663357845147790/1189944396263739453/Group_64.png?ex=65a00114&is=658d8c14&hm=b5c953965abf57cab543ccfd87ef9e09bdaae9ffa43e87be57e45ef75f250fc0&=&format=webp&quality=lossless&width=1215&height=207' />
+                <img className={style.headline} src='https://media.discordapp.net/attachments/1144663357845147790/1189944396263739453/Group_64.png?ex=65f30f94&is=65e09a94&hm=56c7f70d1f1a5d6510c9054ae7732020937d3cc241025b330b8cdf72b54c14e4&=&format=webp&quality=lossless&width=1215&height=207' />
 
                 <div className={style.editorContainer}>
                     <div className={style.tabs}>

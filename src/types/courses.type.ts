@@ -94,6 +94,7 @@ export interface CoursesTypes {
     coursera: {
         title: string;
         description: string;
+        thumbnail: string;
         instructors: string;
         total_enrolled_students: string;
         rating: string;

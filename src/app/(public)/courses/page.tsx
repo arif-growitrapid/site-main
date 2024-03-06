@@ -14,6 +14,7 @@ import { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { searchForBlog } from '@/functions/blog';
 import Link from 'next/link';
+import PublicationPosts from '@/components/publication-post/publication-post';
 
 type Props = {}
 export default function Page({ }: Props) {
@@ -25,7 +26,7 @@ export default function Page({ }: Props) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const result = await filterCourse('coursera', {}, 10);
+                const result = await filterCourse('coursera', {}, 20);
                 if (result.status === 200) {
                     const { type, data } = result
 
@@ -41,7 +42,7 @@ export default function Page({ }: Props) {
     }, []);
 
     async function search() {
-        if(searchBox.current) {
+        if (searchBox.current) {
             let query = searchBox.current.value
             const response = await searchForBlog(query, 100, 0)
             if (response.data) setsearchedCourses(response.data.blogs)
@@ -57,12 +58,12 @@ export default function Page({ }: Props) {
                 <div className={style.eBooks}>
                     <div className={style.left}>
                         <h1>GROWITRAPID FREE COURSES</h1>
-                        <div className={style.searchbar}>
+                        {/* <div className={style.searchbar}>
                             <input ref={searchBox} type='text' placeholder='Search For Courses' />
                             <button onClick={search}>
                                 <img src='https://www.jsmastery.pro/assets/resources/icons/magnifying-glass.svg'></img>
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                     <div className={style.right}>
                         <div className={style.blob1}></div>
@@ -79,13 +80,13 @@ export default function Page({ }: Props) {
                     mousewheel={{ releaseOnEdges: true }}
                 >
 
-                    {trendingCourses.map((card:{_id: string, meta: {slug: string}, data: {tags: String[], title: string, outcomes: string, guarantee_percentage:string, rating: number, total_enrolled_students: string,} }, index: number) => {
+                    {trendingCourses.map((card: { _id: string, meta: { slug: string }, data: { thumbnail: string, tags: String[], title: string, outcomes: string, guarantee_percentage: string, rating: number, total_enrolled_students: string, } }, index: number) => {
                         if (card) {
                             return (
                                 <SwiperSlide key={index} className={style.swiperSlider}>
                                     <div
                                         style={{
-                                            backgroundImage: `url(https://picsum.photos/1600/900)`,
+                                            backgroundImage: `url('${card.data.thumbnail}')`,
                                             backgroundSize: "cover",
                                             backgroundPosition: "center",
                                         }}
@@ -96,7 +97,7 @@ export default function Page({ }: Props) {
                                         {
                                             card.data?.tags ? card.data?.tags.map((item, index) => {
                                                 return (<div key={index} className={style.tag}>{item}</div>)
-                                            }): ""
+                                            }) : ""
                                         }
                                     </div>
                                     <div>
@@ -163,6 +164,11 @@ export default function Page({ }: Props) {
 
                     })}
                 </Swiper>
+
+                {
+                    trendingCourses.length !== 0 ? <PublicationPosts posts={trendingCourses} />: <h1>H</h1>
+                }
+
             </div>
         </SkeletonTheme>
     )

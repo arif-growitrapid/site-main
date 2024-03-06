@@ -91,7 +91,7 @@ export async function deleteCourse(provider: keyof typeof COURSE_PROVIDER_NAMES,
     }
 }
 
-export async function scrapeCourse(provider: keyof typeof COURSE_PROVIDER_NAMES, links: Array<{links: string}>) {
+export async function scrapeCourse(provider: keyof typeof COURSE_PROVIDER_NAMES, links: Array<{links: string, thumbnailLink: string}>) {
     // @ts-ignore
     function extractTexts($, selector: string, type?: string) {
         if (type === "href") {
@@ -148,6 +148,7 @@ export async function scrapeCourse(provider: keyof typeof COURSE_PROVIDER_NAMES,
 
                 const courseInfo = {
                     title: $('h1').first().text(),
+                    thumbnail: link.thumbnailLink,
                     description: $('.cds-119.css-80vnnb.cds-121').first().text(),
                     instructors: $('.cds-119.css-80vnnb .cds-121').text(),
                     total_enrolled_students: $('.cds-119.css-80vnnb.cds-121 span strong').text(),

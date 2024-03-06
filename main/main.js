@@ -35,8 +35,6 @@ const createWindow = () => {
   }
 }
 
-
-
 app.on("ready", () => {
   createWindow();
 });
