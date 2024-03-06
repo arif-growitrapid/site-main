@@ -95,8 +95,8 @@ export default function Page({
                                 </div>
 
                                 <div>
-                                    <h2 className={style.numeric}>{formatNumbers((courseData.avg_salary.match(/[0-9,]+/) || [])[0] || 0) || "80k"}</h2>
-                                    <p className={`line-clamp-2 ${style.text}`}>Avg $ Salary In India</p>
+                                    <h2 className={style.numeric}>{formatNumbers((courseData.avg_salary.match(/[0-9,]+/) || [])[0] || "80k") + "k" || "80k"}</h2>
+                                    <p className={`line-clamp-2 ${style.text}`}>Avg $ Salary Earned</p>
                                 </div>
 
                                 <div>

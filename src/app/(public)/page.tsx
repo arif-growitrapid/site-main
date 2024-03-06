@@ -642,15 +642,9 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
             className={style.element}
             contentArrowStyle={{ borderRight: "20px solid  #20344D" }}
             iconStyle={{
-                background: 'rgb(33, 150, 243)', color: '#fff', visibility: "visible"
+                background: '#325c8f', color: '#fff', visibility: "visible"
             }}
-            icon={<div className='flex justify-center items-center w-full h-full'>
-                <img
-                    src={experience.icon}
-                    alt={experience.sub_title}
-                    className='w-[60%] h-[60%] object-contain'
-                />
-            </div>}
+            
         >
             <div>
                 <h3 className='text-white text-[24px] font-bold'>{experience.title}</h3>
