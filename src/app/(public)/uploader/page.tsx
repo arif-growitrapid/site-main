@@ -143,12 +143,12 @@ const Page: React.FC = () => {
 
                 <div className='h-[60%] p-2 overflow-y-scroll mt-2 w-[60%] bg-[#20344D] shadow-lg rounded-xl'>
                     {
-                        trendingCourses.map((item: { id: string, data: { title: string } }, index: number) => {
+                        trendingCourses.map((item: { _id: string, data: { title: string } }, index: number) => {
                             return (
                                 <div key={index} className='flex rounded-lg mt-2 justify-between items-center p-4 bg-[#101420]'>
                                     <h1 className='text-[1rem]'>{item?.data?.title}</h1>
                                     <div>
-                                        <button onClick={() => deleteCourseFunc(item.id)} className='bg-[#20344D] p-2 rounded-md'>
+                                        <button onClick={() => deleteCourseFunc(item._id)} className='bg-[#20344D] p-2 rounded-md'>
                                             <MdDelete size={20} />
                                         </button>
                                         <button className='ml-2 bg-[#20344D] p-2 rounded-md'>

@@ -36,7 +36,6 @@ export async function createCourse(provider: keyof typeof COURSE_PROVIDER_NAMES,
             meta: {
                 ...(newCourse as CourseMetaType<"coursera"> || {}),
                 "is_published": true,
-                slug: newCourse.data?.title?.toLowerCase().replace(/\s+/g, '-') ?? ''
             },
             data: {
                 ...(newCourse as CoursesTypes["coursera"] || {}),
@@ -51,6 +50,40 @@ export async function createCourse(provider: keyof typeof COURSE_PROVIDER_NAMES,
             return Response("success", createdCourse, 201, "Course created successfully");
         } else {
             return Response("error", null, 500, "Failed to create course");
+        }
+    } catch (error) {
+        console.error(error);
+        return Response("error", null, 500, "Internal server error");
+    }
+}
+
+export async function deleteCourse(provider: keyof typeof COURSE_PROVIDER_NAMES, id: string): Promise<ServerFunctionResponse<DBCourseType<typeof provider> | null>> {
+    try {
+        // Match permissions to delete course
+        const t = await matchPermissions(["course_delete"]);
+        const { session, isMatched } = t ?? { session: null, isMatched: false };
+
+        if (!isMatched) {
+            return Response("error", null, 403, "Permission denied");
+        }
+
+        const client = await clientPromise;
+        const db = client.db(config.db.course_name);
+
+        // Get the courses collection: Provider
+        const collection = db.collection<DBCourseType<typeof provider>>(provider);
+
+        // Convert the provided id string to MongoDB ObjectId
+        const objectId = new ObjectId(id);
+
+        // Delete the course based on its id
+        const result = await collection.deleteOne({ _id: objectId });
+
+        // Check if the deletion was successful
+        if (result.deletedCount === 1) {
+            return Response("success", null, 200, "Course deleted successfully");
+        } else {
+            return Response("error", null, 404, "Course not found or failed to delete");
         }
     } catch (error) {
         console.error(error);
@@ -129,6 +162,7 @@ export async function scrapeCourse(provider: keyof typeof COURSE_PROVIDER_NAMES,
                     guarantee_percentage: $('.cds-119.css-dmxkm1.cds-121 .cds-119.css-bbd009.cds-121').eq(2).text(),
                     outcomes: $('.css-1g9t2fb').text(),
                     catalog: courseCatalogs,
+                    redirectLink: link
                 };
 
                 const result = await createCourse("coursera", JSON.parse(JSON.stringify(courseInfo)));
@@ -275,7 +309,6 @@ export async function filterCourse(
         // Return the course
         return Response("success", courses, 200, "Course fetched successfully");
     } catch (error) {
-        console.error(error, "ERRRRRRRR");
         return Response("error", null, 500, "Internal server error");
     }
 }

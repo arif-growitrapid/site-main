@@ -8,8 +8,12 @@ const appServe = app.isPackaged ? serve({
 
 const createWindow = () => {
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    
+
+    // Alternatively, set dimensions to match screen size:
+    fullscreen: true,
+    width: screen.getPrimaryDisplay().workAreaSize.width,
+    height: screen.getPrimaryDisplay().workAreaSize.height,
     webPreferences: {
       preload: path.join(__dirname, "preload.js")
     },
