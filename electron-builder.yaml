@@ -1,0 +1,13 @@
+appId: "io.github.growitrapid.site-main"
+productName: "Grow IT Rapid"
+copyright: "Copyright (c) 2023 NeuroNexul"
+win:
+  target: ["dir", "portable", "zip"]
+  icon: "resources/icon.ico"
+  files: ["dist/**/*", "package.json", "main/**/*", "node_modules/**/*"]
+linux:
+  target: ["dir", "appimage", "zip"]
+  icon: "resources/icon.png"
+mac:
+  target: ["dir", "dmg", "zip"]
+  icon: "resources/icon.icns"

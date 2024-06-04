@@ -1,36 +1,39 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import { cookies } from 'next/headers';
-import Providers from '@/redux/provider'
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { cookies } from "next/headers";
+import Providers from "@/redux/provider";
 
-import './globals.css'
-import './globals.scss'
-import Structure from '@/app/structure'
-import config from '@/config';
-import { getServerSession } from 'next-auth';
-import { nextAuthOptions } from './api/auth/[...nextauth]/authOptions';
-import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
+import "./globals.css";
+import "./globals.scss";
+import "@/components/editor/styles/content.scss";
+import Structure from "@/app/structure";
+import config from "@/config";
+import { getServerSession } from "next-auth";
+import { nextAuthOptions } from "./api/auth/[...nextauth]/authOptions";
+import { Icon } from "next/dist/lib/metadata/types/metadata-types";
 
 // Add your custom fonts here
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const session = await getServerSession(nextAuthOptions);
 
   const cookieStore = cookies();
   const theme = cookieStore.get(config.theme_key);
 
   return (
-    <html lang='en'>
+    <html lang="en">
       <body className={`${inter.className} ${theme?.value || "dark"}`}>
         <Providers theme={theme?.value} session={session}>
-          <Structure theme={theme?.value || ""}>
-            {children}
-          </Structure>
+          <Structure theme={theme?.value || ""}>{children}</Structure>
         </Providers>
       </body>
     </html>
-  )
+  );
 }
 
 /**
@@ -45,30 +48,33 @@ export const metadata: Metadata = {
   applicationName: config.name,
   appleWebApp: {
     title: config.name,
-    statusBarStyle: 'black-translucent',
+    statusBarStyle: "black-translucent",
     capable: true,
   },
-  colorScheme: 'dark light',
+  colorScheme: "dark light",
   creator: config.author,
   publisher: config.author,
-  referrer: 'origin-when-cross-origin',
+  referrer: "origin-when-cross-origin",
   description: config.description,
   icons: {
     icon: [
-      ...config.icons.map((icon) => ({
-        url: icon.href,
-        sizes: icon.sizes,
-        type: icon.type,
-        rel: icon.rel,
-      }) as Icon),
+      ...config.icons.map(
+        (icon) =>
+          ({
+            url: icon.href,
+            sizes: icon.sizes,
+            type: icon.type,
+            rel: icon.rel,
+          } as Icon)
+      ),
     ],
   },
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f6f8fa' },
-    { media: '(prefers-color-scheme: dark)', color: '#161b22' },
+    { media: "(prefers-color-scheme: light)", color: "#f6f8fa" },
+    { media: "(prefers-color-scheme: dark)", color: "#161b22" },
   ],
   viewport: {
-    width: 'device-width',
+    width: "device-width",
     initialScale: 1,
     maximumScale: 1,
     userScalable: true,
@@ -87,14 +93,13 @@ export const metadata: Metadata = {
       index: false,
       follow: false,
       noimageindex: false,
-      'max-video-preview': 1,
-      'max-image-preview': 'standard',
-      'max-snippet': 200,
+      "max-video-preview": 1,
+      "max-image-preview": "standard",
+      "max-snippet": 200,
     },
   },
   other: {
-    'Content-Type': 'text/html;charset=UTF-8',
-    'X-UA-Compatible': 'IE=7; IE=edge',
+    "Content-Type": "text/html;charset=UTF-8",
+    "X-UA-Compatible": "IE=7; IE=edge",
   },
 };
-

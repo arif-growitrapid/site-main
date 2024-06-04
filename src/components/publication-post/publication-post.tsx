@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import styles from './publication-posts.module.scss';
-import { FaChevronDown } from 'react-icons/fa';
-import BlogPostPreview from '../blog-post-preview/blog-post-preview';
+import React, { useState } from "react";
+import styles from "./publication-posts.module.scss";
+import { FaChevronDown } from "react-icons/fa";
+import BlogPostPreview from "../blog-post-preview/blog-post-preview";
+import { DBCourseType } from "@/types/courses.type";
 
 const PublicationPosts = (props: {
-  posts: any;
+  posts: DBCourseType<"coursera">[] | null;
 }) => {
   const { posts } = props;
 
@@ -17,9 +18,9 @@ const PublicationPosts = (props: {
 
   return (
     <>
-      <div className={'flex flex-row flex-wrap items-start'}>
+      <div className={"flex flex-row flex-wrap items-start"}>
         <div className={styles.grid}>
-          {posts.slice(0, visiblePosts).map((node: any, index: number) => (
+          {posts?.slice(0, visiblePosts).map((node, index: number) => (
             <BlogPostPreview key={index} post={node} />
           ))}
         </div>

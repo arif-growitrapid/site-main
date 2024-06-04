@@ -603,7 +603,7 @@ interface ExperienceCardProps {
     experience: {
         title: string;
         sub_title: string;
-        icon: string;
+        icon?: string;
         points: string[];
     };
 }
