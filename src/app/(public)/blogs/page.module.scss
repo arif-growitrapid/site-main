@@ -1,383 +1,377 @@
-.skeleton{
-    width: 100px;
-    height: 100px;
-    display: block;
+.skeleton {
+  width: 100px;
+  height: 100px;
+  display: block;
 }
 
 .thumbContainer {
-    width: 100%;
-    aspect-ratio: 16/9;
-    border-radius: 15px;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 15px;
 }
 
 .aboutUs {
-    padding: 0em 0 2em 0;
+  padding: 0em 0 2em 0;
+  height: fit-content;
+  background: #101420;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .eBooks {
+    width: 95%;
     height: fit-content;
-    background: #101420;
+    background: #18222f;
+    position: relative;
+    border-radius: 20px;
+    padding: 2em;
+    margin-top: 1em;
     display: flex;
-    align-items: center;
-    flex-direction: column;
+    z-index: 5;
 
-    .eBooks {
-        width: 95%;
+    .left {
+      width: 100%;
+      height: fit-content;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      .searchbar {
+        width: 60%;
         height: fit-content;
-        background: #18222f;
         position: relative;
-        border-radius: 20px;
-        padding: 2em;
-        margin-top: 1em;
-        display: flex;
-        z-index: 5;
+        margin-top: 0.5em;
 
-        .left {
-            width: 100%;
-            height: fit-content;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-
-            .searchbar {
-                width: 60%;
-                height: fit-content;
-                position: relative;
-                margin-top: .5em;
-
-                input {
-                    width: 100%;
-                    padding: 1em;
-                    font-size: 1.5rem;
-                    border-radius: 20px;
-                    background: #10141F;
-                    border: none;
-                    outline: none;
-                }
-                button {
-                    position: absolute;
-                    top: 50%;
-                    right: 1%;
-                    height: 80%;
-                    transform: translate(0%, -50%);
-                    padding: .5em 1em;
-                    border-radius: 15px;
-                    background: #20344D;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 1em 1.5em;
-                    font-size: 1.2rem;
-                    z-index: 9999;
-                }
-            }
-            
-
-            h1 {
-                font-size: 4rem;
-                font-weight: 800;
-                line-height: 1.2;
-                color: #949a9c;
-                width: 100%;
-                text-align: center;
-
-                span {
-                    color: #20344D;
-                }
-            }
+        input {
+          width: 100%;
+          padding: 1em;
+          font-size: 1.5rem;
+          border-radius: 20px;
+          background: #10141f;
+          border: none;
+          outline: none;
         }
-
-        .right {
-            width: 40%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            position: absolute;
-            right: 0;
-            border-radius: 20px;
-            bottom: 0;
-            z-index: 2;
-
-            .blob1 {
-                width: 308px;
-                height: 308px;
-                background: rgba(251, 39, 39, 0.5);
-                filter: blur(150px);
-                bottom: 0%;
-                right: 0%;
-                position: absolute;
-            }
+        button {
+          position: absolute;
+          top: 50%;
+          right: 1%;
+          height: 80%;
+          transform: translate(0%, -50%);
+          padding: 0.5em 1em;
+          border-radius: 15px;
+          background: #20344d;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 1em 1.5em;
+          font-size: 1.2rem;
+          z-index: 9999;
         }
+      }
+
+      h1 {
+        font-size: 4rem;
+        font-weight: 800;
+        line-height: 1.2;
+        color: #949a9c;
+        width: 100%;
+        text-align: center;
+
+        span {
+          color: #20344d;
+        }
+      }
     }
 
-    .eBooks::before,
-    .eBooks::after {
+    .right {
+      width: 40%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      right: 0;
+      border-radius: 20px;
+      bottom: 0;
+      z-index: 2;
+
+      .blob1 {
+        width: 308px;
+        height: 308px;
+        background: rgba(251, 39, 39, 0.5);
+        filter: blur(150px);
+        bottom: 0%;
+        right: 0%;
+        position: absolute;
+      }
+    }
+  }
+
+  .eBooks::before,
+  .eBooks::after {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 3%;
+    left: 1%;
+    z-index: -1;
+    background: #fff;
+    border-radius: 20px;
+    border: 2px solid #10141f;
+    transform: translateZ(-50px);
+    /* Adjust the translateZ value for the desired depth */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* Adjust the box-shadow for a shadow effect */
+  }
+
+  .eBooks::after {
+    background: rgb(24, 34, 47);
+    left: 0;
+    top: 0;
+  }
+
+  .swiper {
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+    margin-top: 1em;
+
+    > div {
+      display: flex;
+      align-items: center;
+    }
+
+    .swiperSlider {
+      margin: 1.5em 0;
+      position: relative;
+      min-width: 350px;
+      max-width: 350px;
+      height: 500px;
+      //   background: rgb(24, 34, 47);
+      background-color: #20344d;
+      border-radius: 20px;
+      padding: 0.4em 0.8em 0em 0.8em;
+      margin-left: 1em;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .skeletonTags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5em;
+        .skeletonTag {
+          padding: 0.25em 0.5em;
+        }
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 0.7rem;
+        margin: 0;
+        gap: 0.5em;
+        display: -webkit-inline-box;
+        -webkit-box-orient: horizontal;
+        overflow: hidden;
+        -webkit-line-clamp: 1;
+        max-height: 6em;
+        overflow: hidden;
+
+        .tag {
+          background: #10141f;
+          padding: 0.5em 1em;
+          height: fit-content;
+          border-radius: 5px;
+          margin: 0;
+        }
+      }
+      .blogInfo {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        font-size: 1em;
+
+        div {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          background: #20344d;
+          border-radius: 5px;
+          padding: 0.5em;
+          gap: 0.5em;
+
+          p {
+            margin: 0;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            -webkit-line-clamp: 3;
+          }
+        }
+
+        div:first-child {
+          border-bottom-left-radius: 20px;
+        }
+
+        div:last-child {
+          border-bottom-right-radius: 20px;
+        }
+
+        .icon {
+          cursor: pointer;
+          transition: all 0.5s ease;
+          box-sizing: content-box;
+          padding: 0.25em;
+          // background-color: green;
+
+          &:hover {
+            background-color: #10141f;
+            border-radius: 50%;
+          }
+        }
+      }
+
+      div {
+        margin: 0.5em 0.25em 0.5em 0;
+
+        h2 {
+          font-size: 1.08rem;
+          font-weight: 500;
+          cursor: pointer;
+          display: inline-block;
+          position: relative;
+          z-index: 9;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          -webkit-line-clamp: 2;
+        }
+
+        h2:after {
+          content: "";
+          position: absolute;
+          border-radius: 5px;
+          width: 100%;
+          height: 100%;
+          transform: scaleX(0);
+          // height: 2px;
+          z-index: -1;
+          bottom: 0;
+          left: 0;
+          background-color: #20344d;
+          transform-origin: bottom right;
+          transition: transform 0.25s ease-out;
+        }
+
+        h2:hover:after {
+          transform: scaleX(1);
+          transform-origin: bottom left;
+        }
+
+        h2:hover {
+          color: #fff;
+          transition: all 0.5s ease;
+          padding: 0.2em 0em 0.2em 1em;
+          font-weight: 700;
+        }
+
+        h2:not(:hover) {
+          padding: 0.2em 0em;
+          transition: all 0.5s ease;
+        }
+
+        p {
+          color: #ffffff77;
+          font-size: 0.8rem;
+          margin-top: 0.5em;
+        }
+      }
+
+      div::after {
         content: " ";
         width: 100%;
         height: 100%;
         position: absolute;
-        top: 3%;
-        left: 1%;
-        z-index: -1;
-        background: #fff;
+        top: 2.5%;
+        left: 3%;
+        // background: #fff;
         border-radius: 20px;
-        border: 2px solid #10141F;
-        transform: translateZ(-50px);
-        /* Adjust the translateZ value for the desired depth */
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        /* Adjust the box-shadow for a shadow effect */
+        z-index: -1;
+        border: 2px solid #20344d;
+      }
     }
-
-    .eBooks::after {
-        background: rgb(24, 34, 47);
-        left: 0;
-        top: 0;
-    }
-
-    .swiper {
-        width: 100%;
-        height: 100%;
-        cursor: grab;
-        margin-top: 1em;
-
-        >div {
-            display: flex;
-            align-items: center;
-        }
-
-        .swiperSlider {
-            margin: 1.5em 0;
-            position: relative;
-            min-width: 350px;
-            max-width: 350px;
-            height: 500px;
-            background: rgb(24, 34, 47);
-            border-radius: 20px;
-            padding: .4em .8em 0em .8em;
-            margin-left: 1em;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            .skeletonTags {
-                display: flex;
-                flex-wrap: wrap;
-                gap: .5em;
-                .skeletonTag {
-                    padding: .25em .5em;
-                }
-            }
-            .tags {
-                display: flex;
-                flex-wrap: wrap;
-                font-size: .7rem;
-                margin: 0;
-                gap: .5em;
-                display: -webkit-inline-box;
-                -webkit-box-orient: horizontal;
-                overflow: hidden;
-                -webkit-line-clamp: 1;
-                max-height: 6em;
-                overflow: hidden;
-
-                .tag {
-                    background: #10141F;
-                    padding: .5em 1em;
-                    height: fit-content;
-                    border-radius: 5px;
-                    margin: 0;
-                }                
-            }
-            .blogInfo {
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: space-around;
-                font-size: 1em;
-
-                div {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    width: 100%;
-                    background: #20344D;
-                    border-radius: 5px;
-                    padding: .5em;
-                    gap: .5em;
-
-                    p {
-                        margin: 0;
-                        display: -webkit-box;
-                        -webkit-box-orient: vertical;
-                        overflow: hidden;
-                        -webkit-line-clamp: 3;
-                    }
-
-                }
-
-
-                div:first-child {
-                    border-bottom-left-radius: 20px;
-                }
-
-                div:last-child {
-                    border-bottom-right-radius: 20px;
-                }
-
-                .icon {
-                    cursor: pointer;
-                    transition: all .5s ease;
-                    box-sizing: content-box;
-                    padding: .25em;
-                    // background-color: green;
-
-                    &:hover {
-                        background-color: #10141F;
-                        border-radius: 50%;
-                    }
-                }
-
-
-            }
-
-            div {
-                margin: .5em .25em .5em 0;
-
-                h2 {
-                    font-size: 1.08rem;
-                    font-weight: 500;
-                    cursor: pointer;
-                    display: inline-block;
-                    position: relative;
-                    z-index: 9;
-                    display: -webkit-box;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                    -webkit-line-clamp: 2;
-                }
-
-                h2:after {
-                    content: '';
-                    position: absolute;
-                    border-radius: 5px;
-                    width: 100%;
-                    height: 100%;
-                    transform: scaleX(0);
-                    // height: 2px;
-                    z-index: -1;
-                    bottom: 0;
-                    left: 0;
-                    background-color: #20344D;
-                    transform-origin: bottom right;
-                    transition: transform 0.25s ease-out;
-                }
-
-                h2:hover:after {
-                    transform: scaleX(1);
-                    transform-origin: bottom left;
-                }
-
-                h2:hover {
-                    color: #fff;
-                    transition: all .5s ease;
-                    padding: .2em 0em .2em 1em;
-                    font-weight: 700;
-                }
-
-                h2:not(:hover) {
-                    padding: .2em 0em;
-                    transition: all .5s ease;
-                }
-
-                p {
-                    color: #ffffff77;
-                    font-size: .8rem;
-                    margin-top: .5em;
-                }
-            }
-
-            div::after {
-                content: " ";
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                top: 2.5%;
-                left: 3%;
-                background: #fff;
-                border-radius: 20px;
-                z-index: -1;
-                border: 2px solid #10141F;
-            }
-
-
-        }
-    }
+  }
 }
 
 @media screen and (max-width: 1000px) {
-    .eBooks h1 {
-        font-size: 3.5rem !important;
-    }
+  .eBooks h1 {
+    font-size: 3.5rem !important;
+  }
 
-    .eBooks input {
-        padding: .5em 1em !important;
-    }
+  .eBooks input {
+    padding: 0.5em 1em !important;
+  }
 
-    .eBooks .searchbar button {
-        right: 2% !important;
-    }
+  .eBooks .searchbar button {
+    right: 2% !important;
+  }
 }
 
 @media screen and (max-width: 900px) {
-    .eBooks h1 {
-        font-size: 3rem !important;
-    }
+  .eBooks h1 {
+    font-size: 3rem !important;
+  }
 
-    .eBooks input {
-        padding: .5em 1em !important;
-    }
+  .eBooks input {
+    padding: 0.5em 1em !important;
+  }
 
-    .eBooks .searchbar button {
-        right: 2% !important;
-    }
+  .eBooks .searchbar button {
+    right: 2% !important;
+  }
 }
 
 @media screen and (max-width: 800px) {
-    .eBooks h1 {
-        font-size: 2.5rem !important;
-    }
+  .eBooks h1 {
+    font-size: 2.5rem !important;
+  }
 
-    .eBooks input {
-        padding: .5em 1em !important;
-    }
+  .eBooks input {
+    padding: 0.5em 1em !important;
+  }
 }
 
 @media screen and (max-width: 700px) {
-    .eBooks h1 {
-        font-size: 2rem !important;
-    }
+  .eBooks h1 {
+    font-size: 2rem !important;
+  }
 
-    .eBooks .searchbar {
-        width: 100% !important;
-    }
+  .eBooks .searchbar {
+    width: 100% !important;
+  }
 
-    .eBooks input {
-        font-size: 1rem !important;
-        padding: 1em !important;
-    }
+  .eBooks input {
+    font-size: 1rem !important;
+    padding: 1em !important;
+  }
 }
 
 @media screen and (max-width: 550px) {
-    .eBooks h1 {
-        font-size: 1.5rem !important;
-    }
-    
-    .eBooks .searchbar {
-        width: 100% !important;
-    }
+  .eBooks h1 {
+    font-size: 1.5rem !important;
+  }
+
+  .eBooks .searchbar {
+    width: 100% !important;
+  }
 }
 
 @media screen and (max-width: 450px) {
-    .eBooks h1 {
-        font-size: 1.2rem !important;
-        width: 100% !important;
-    }
+  .eBooks h1 {
+    font-size: 1.2rem !important;
+    width: 100% !important;
+  }
 }

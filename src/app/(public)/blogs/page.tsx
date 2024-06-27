@@ -110,7 +110,7 @@ export default function Page({}: Props) {
                     <h2>
                       <a href={`blogs/${card?.slug}`}>{card?.title}</a>
                     </h2>
-                    <p>{card?.excerpt}</p>
+                    <p className="line-clamp-4">{card?.excerpt}</p>
                   </div>
 
                   <div className={style.blogInfo}>

@@ -199,7 +199,7 @@ export default function Page({}: Props) {
         {trendingCourses?.length !== 0 ? (
           <PublicationPosts posts={trendingCourses} />
         ) : (
-          <h1>H</h1>
+          <h1>Couldn&apos;t found any courses</h1>
         )}
       </div>
     </SkeletonTheme>
