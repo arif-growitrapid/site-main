@@ -120,6 +120,7 @@
 
   .numbers {
     width: 80%;
+    max-width: 60rem !important;
     height: fit-content;
     background: #20344d;
     border: 2px solid #fff;
@@ -202,8 +203,11 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    max-width: 90rem;
     place-items: center;
-    margin: 2em;
+    margin: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
 
     .gridItem {
       border: 2px solid #10141f;
@@ -327,6 +331,7 @@
   .numbers {
     // width: 100% !important;
     display: grid !important;
+
     grid-template-columns: 1fr 1fr !important;
     align-items: center;
     grid-area: 1em;
@@ -439,6 +444,7 @@
 
   .numbers {
     width: 80%;
+    max-width: 60rem !important;
     height: fit-content;
     background: #20344d;
     border: 2px solid #fff;
@@ -636,6 +642,7 @@
     border-radius: 20px;
     padding: 2em;
     z-index: 5;
+    max-width: 90rem;
 
     .left {
       width: 60%;
@@ -748,6 +755,7 @@
 
   .editorContainer {
     width: 95vw;
+    max-width: 90rem;
     height: fit-content;
     background: #20344d;
     border: 2px solid #000;
@@ -821,13 +829,15 @@
 
   .numbers {
     width: 80%;
+    max-width: 60rem !important;
+    
     height: fit-content;
     background: #20344d;
     border: 2px solid #fff;
     z-index: 9;
     border-radius: 20px;
     position: absolute;
-    bottom: -5%;
+    bottom: -7%;
     left: 50%;
     transform: translateX(-50%);
 
@@ -856,12 +866,15 @@
   padding-top: 5em;
   display: flex;
   align-items: center;
+
   flex-direction: column;
   gap: 2em;
   padding-bottom: 2em;
 
   .eBooks {
     width: 95%;
+    max-width: 90rem !important;
+    margin: auto;
     height: fit-content;
     background: #10141f;
     position: relative;

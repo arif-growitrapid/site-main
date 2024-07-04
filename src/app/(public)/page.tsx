@@ -487,9 +487,7 @@ export default function Page({}: {}) {
               </button>
             </div>
           </div>
-          <div className={style.stars}>
-            <Stars></Stars>
-          </div>
+      
           <div className={style.timeline}>
             <VerticalTimeline>
               {workflow.map((experience, index) => (
@@ -726,7 +724,7 @@ export default function Page({}: {}) {
 
         <div className={style.numbers}>
           <div>
-            <p className={style.numeric}>47k</p>
+            <p className={style.numeric}>4k</p>
             <p className={`line-clamp-2 ${style.text}`}>Top Notch Courses</p>
           </div>
 
