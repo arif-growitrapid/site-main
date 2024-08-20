@@ -14,6 +14,12 @@ import { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { WithId } from "mongodb";
 import { DBBlogPostType } from "@/types/blog";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Blogs',
+  description: '',
+};
 
 type Props = {};
 export default function Page({}: Props) {

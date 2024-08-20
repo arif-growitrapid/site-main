@@ -11,6 +11,7 @@ import { formatNumbers } from "@/utils/formatter";
 import Navbar from "@/components/navbar";
 import Preloader from "@/components/preloader/Preloader";
 import { DBCourseType } from "@/types/courses.type";
+import { Metadata } from "next";
 
 export default function Page({
   params,
@@ -377,5 +378,57 @@ export default function Page({
     );
   } else {
     return <h1>Not Found</h1>;
+  }
+}
+
+/**
+ * Generating meta data for the page
+ */
+type MetaDataProps = {
+  params: { slug: string };
+};
+
+export async function generateMetadata({
+  params,
+}: MetaDataProps): Promise<Metadata> {
+  const { slug } = params;
+
+  const { data: d } = await getCourseById("coursera", slug);
+
+  if (d) {
+    const { data, meta } = d as DBCourseType<"coursera">;
+    return {
+      title: data.title,
+      description: data.description,
+      authors: data.instructors.map((instructor) => ({
+        name: instructor,
+      })),
+      assets: [data.thumbnail],
+      openGraph: {
+        type: "article",
+        title: data.title,
+        description: data.description,
+        images: [data.thumbnail],
+        authors: data.instructors.map((instructor) => instructor),
+        url: `https://www.growitrapid.com/blogs/${meta.slug}`,
+        tags: data.tags,
+        section: "Blogs",
+      },
+      twitter: {
+        site: "@site",
+        card: "summary_large_image",
+        title: data.title,
+        description: data.description,
+        images: [data.thumbnail],
+      },
+      appleWebApp: {
+        title: data.title,
+      },
+    };
+  } else {
+    return {
+      title: "Grow It Rapid",
+      description: "Grow It Rapid",
+    };
   }
 }

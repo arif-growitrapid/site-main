@@ -38,55 +38,8 @@ const menuItems = [
     },
     {
         name: "Services",
-        link: "#",
+        link: "/services",
         icon: null,
-        items: [
-            {
-                name: "Web Development",
-                link: "#",
-                icon: null
-            },
-            {
-                name: "SEO Optimisation",
-                link: "#",
-                icon: null
-            },
-            {
-                name: "Logo designing",
-                link: "#",
-                icon: null
-            },
-            {
-                name: "Linkedin Profile Optimisation",
-                link: "#",
-                icon: null
-            },
-            {
-                name: "Content Creation",
-                link: "#",
-                icon: null
-            },
-            {
-                name: "Influencer Marketing",
-                link: "#",
-                icon: null
-            },
-            {
-                name: "Product marketing",
-                link: "#",
-                icon: null
-            },
-            {
-                name: "Social Media Management",
-                link: "#",
-                icon: null
-            },
-            {
-                name: "Brand Promotion",
-                link: "#",
-                icon: null
-            },
-        ]
     },
     // {
     //     name: "Researches",

@@ -16,6 +16,12 @@ import { searchForBlog } from "@/functions/blog";
 import Link from "next/link";
 import PublicationPosts from "@/components/publication-post/publication-post";
 import { CoursesTypes, DBCourseType } from "@/types/courses.type";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Courses",
+  description: 'Find the best courses to learn from',
+};
 
 type Props = {};
 export default function Page({}: Props) {
