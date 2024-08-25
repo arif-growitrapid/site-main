@@ -121,59 +121,7 @@ export default function getNavItems({
             isMegaMenu: false,
             items: null,
         },
-        {
-            title: "Resources",
-            icon: null,
-            link: "/",
-            isMegaMenu: true,
-            onlyMobile: true,
-            items: <div>
-                <Link className={``} href={`/about`}>
-                    <p className={``}>E-Books</p>
-                    <FaUpRightFromSquare className={`inline-block align-baseline`} />
-                </Link>
-
-                <Link className={``} href={`/blog`}>
-                    <p className={``}>Cheat Sheets</p>
-                    <FaUpRightFromSquare className={`inline-block align-baseline`} />
-                </Link>
-
-                <Link className={``} href={`/courses`}>
-                    <p className={``}>Roadmaps</p>
-                    <FaUpRightFromSquare className={`inline-block align-baseline`} />
-                </Link>
-            </div>
-        },
-        {
-            title: "Resources",
-            icon: null,
-            link: "/",
-            isMegaMenu: false,
-            onlyDesktop: true,
-            items: [
-                {
-                    title: "E-Books",
-                    icon: null,
-                    link: `/about`,
-                    isMegaMenu: false,
-                    items: null
-                },
-                {
-                    title: "Roadmaps",
-                    icon: null,
-                    link: `/blogs`,
-                    isMegaMenu: false,
-                    items: null
-                },
-                {
-                    title: "Cheatsheets",
-                    icon: null,
-                    link: `/courses`,
-                    isMegaMenu: false,
-                    items: null
-                }
-            ]
-        },
+       
         {
             title: "Services",
             icon: null,
@@ -219,8 +167,6 @@ export default function getNavItems({
                 items: null,
             },)
         }
-
-
     }
     return data;
 }

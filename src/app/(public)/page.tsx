@@ -27,7 +27,6 @@ import ImageAsset1 from "@/assets/image/home_asset_1.png";
 import Image from "next/image";
 import { WithId } from "mongodb";
 import { DBBlogPostType } from "@/types/blog";
-import { Metadata } from "next";
 
 export default function Page({}: {}) {
   const swiperRef = useRef(null);
@@ -887,7 +886,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
   );
 };
 
-export const metadata: Metadata = {
-    title: 'Grow It Rapid',
-    description: 'Empower Your Brand\'s Digital Growth with GrowItRapid',
-};
+// export const metadata: Metadata = {
+//     title: 'Grow It Rapid',
+//     description: 'Empower Your Brand\'s Digital Growth with GrowItRapid',
+// };

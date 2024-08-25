@@ -14,12 +14,6 @@ import { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { WithId } from "mongodb";
 import { DBBlogPostType } from "@/types/blog";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: 'Blogs',
-  description: '',
-};
 
 type Props = {};
 export default function Page({}: Props) {
@@ -49,14 +43,6 @@ export default function Page({}: Props) {
     fetchData();
   }, []);
 
-  async function search() {
-    if (searchBox.current && searchBox.current) {
-      let query = searchBox.current.value;
-      const response = await searchForBlog(query, 100, 0);
-      if (response.data) setsearchedBlogs(response.data.blogs);
-    }
-  }
-
   return (
     <SkeletonTheme baseColor="#10141F" highlightColor="#161b27">
       <div className={style.aboutUs}>
@@ -64,7 +50,7 @@ export default function Page({}: Props) {
         <div className={style.eBooks}>
           <div className={style.left}>
             <h1>GROWITRAPID RESOURCES</h1>
-            <div className={style.searchbar}>
+            {/* <div className={style.searchbar}>
               <input
                 ref={searchBox}
                 type="text"
@@ -73,7 +59,7 @@ export default function Page({}: Props) {
               <button onClick={search}>
                 <img src="https://www.jsmastery.pro/assets/resources/icons/magnifying-glass.svg"></img>
               </button>
-            </div>
+            </div> */}
           </div>
           <div className={style.right}>
             <div className={style.blob1}></div>
