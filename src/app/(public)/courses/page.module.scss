@@ -7,7 +7,6 @@
 .aboutUs {
     padding: 0em 0 2em 0;
     height: fit-content;
-    background: #101420;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -15,10 +14,9 @@
     .eBooks {
         width: 95%;
         height: fit-content;
-        background: rgb(24, 34, 47);
         position: relative;
         border-radius: 20px;
-        padding: 2em;
+        padding-top: 2em;
         margin-top: 1em;
         display: flex;
         z-index: 5;
@@ -103,30 +101,6 @@
         }
     }
 
-    .eBooks::before,
-    .eBooks::after {
-        content: " ";
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 3%;
-        left: 1%;
-        z-index: -1;
-        background: #fff;
-        border-radius: 20px;
-        border: 2px solid #10141F;
-        transform: translateZ(-50px);
-        /* Adjust the translateZ value for the desired depth */
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        /* Adjust the box-shadow for a shadow effect */
-    }
-
-    .eBooks::after {
-        background: rgb(24, 34, 47);
-        left: 0;
-        top: 0;
-    }
-
     .swiper {
         width: 100%;
         height: 100%;
@@ -145,6 +119,8 @@
             max-width: 350px;
             height: 500px;
             background: rgb(24, 34, 47);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
             border-radius: 20px;
             padding: .4em .8em 0em .8em;
             margin-left: 1em;

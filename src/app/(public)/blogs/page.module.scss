@@ -1,15 +1,3 @@
-.skeleton {
-  width: 100px;
-  height: 100px;
-  display: block;
-}
-
-.thumbContainer {
-  width: 100%;
-  aspect-ratio: 16/9;
-  border-radius: 15px;
-}
-
 .aboutUs {
   padding: 0em 0 2em 0;
   height: fit-content;
@@ -21,10 +9,9 @@
   .eBooks {
     width: 95%;
     height: fit-content;
-    background: #18222f;
     position: relative;
     border-radius: 20px;
-    padding: 2em;
+    padding-top: 2em;
     margin-top: 1em;
     display: flex;
     z-index: 5;
@@ -38,39 +25,6 @@
       justify-content: center;
       flex-direction: column;
 
-      .searchbar {
-        width: 60%;
-        height: fit-content;
-        position: relative;
-        margin-top: 0.5em;
-
-        input {
-          width: 100%;
-          padding: 1em;
-          font-size: 1.5rem;
-          border-radius: 20px;
-          background: #10141f;
-          border: none;
-          outline: none;
-        }
-        button {
-          position: absolute;
-          top: 50%;
-          right: 1%;
-          height: 80%;
-          transform: translate(0%, -50%);
-          padding: 0.5em 1em;
-          border-radius: 15px;
-          background: #20344d;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 1em 1.5em;
-          font-size: 1.2rem;
-          z-index: 9999;
-        }
-      }
-
       h1 {
         font-size: 4rem;
         font-weight: 800;
@@ -78,10 +32,6 @@
         color: #949a9c;
         width: 100%;
         text-align: center;
-
-        span {
-          color: #20344d;
-        }
       }
     }
 
@@ -92,8 +42,8 @@
       background-position: center;
       position: absolute;
       right: 0;
-      border-radius: 20px;
       bottom: 0;
+      border-radius: 20px;
       z-index: 2;
 
       .blob1 {
@@ -106,30 +56,6 @@
         position: absolute;
       }
     }
-  }
-
-  .eBooks::before,
-  .eBooks::after {
-    content: " ";
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 3%;
-    left: 1%;
-    z-index: -1;
-    background: #fff;
-    border-radius: 20px;
-    border: 2px solid #10141f;
-    transform: translateZ(-50px);
-    /* Adjust the translateZ value for the desired depth */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    /* Adjust the box-shadow for a shadow effect */
-  }
-
-  .eBooks::after {
-    background: rgb(24, 34, 47);
-    left: 0;
-    top: 0;
   }
 
   .swiper {
@@ -149,43 +75,42 @@
       min-width: 350px;
       max-width: 350px;
       height: 500px;
-      //   background: rgb(24, 34, 47);
-      background-color: #20344d;
+      background: #18222f;
+      box-shadow: 10px 10px 0 rgba(255, 255, 255);
       border-radius: 20px;
-      padding: 0.4em 0.8em 0em 0.8em;
+      padding: .4em .8em 0em .8em;
       margin-left: 1em;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      .skeletonTags {
+      z-index: 1; /* Ensure it's above the pseudo-element */
+
+      .tags, .skeletonTags {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.5em;
-        .skeletonTag {
-          padding: 0.25em 0.5em;
-        }
-      }
-      .tags {
-        display: flex;
-        flex-wrap: wrap;
-        font-size: 0.7rem;
+        font-size: .7rem;
         margin: 0;
-        gap: 0.5em;
-        display: -webkit-inline-box;
-        -webkit-box-orient: horizontal;
+        gap: .5em;
         overflow: hidden;
-        -webkit-line-clamp: 1;
         max-height: 6em;
-        overflow: hidden;
 
         .tag {
-          background: #10141f;
-          padding: 0.5em 1em;
-          height: fit-content;
+          background: #10141F;
+          padding: .5em 1em;
           border-radius: 5px;
           margin: 0;
         }
       }
+
+      .thumbContainer {
+        width: 100%;
+        min-height: 200px;
+        border-radius: 15px;
+        aspect-ratio: 16/9;
+        background-size: cover;
+        background-position: center;
+      }
+
       .blogInfo {
         width: 100%;
         display: flex;
@@ -198,10 +123,10 @@
           align-items: center;
           justify-content: center;
           width: 100%;
-          background: #20344d;
+          background: #20344D;
           border-radius: 5px;
-          padding: 0.5em;
-          gap: 0.5em;
+          padding: .5em;
+          gap: .5em;
 
           p {
             margin: 0;
@@ -222,20 +147,18 @@
 
         .icon {
           cursor: pointer;
-          transition: all 0.5s ease;
-          box-sizing: content-box;
-          padding: 0.25em;
-          // background-color: green;
+          transition: all .5s ease;
+          padding: .25em;
 
           &:hover {
-            background-color: #10141f;
+            background-color: #10141F;
             border-radius: 50%;
           }
         }
       }
 
       div {
-        margin: 0.5em 0.25em 0.5em 0;
+        margin: .5em .25em .5em 0;
 
         h2 {
           font-size: 1.08rem;
@@ -243,7 +166,7 @@
           cursor: pointer;
           display: inline-block;
           position: relative;
-          z-index: 9;
+          z-index: 2; /* Ensure it's above the pseudo-element */
           display: -webkit-box;
           -webkit-box-orient: vertical;
           overflow: hidden;
@@ -251,17 +174,16 @@
         }
 
         h2:after {
-          content: "";
+          content: '';
           position: absolute;
           border-radius: 5px;
           width: 100%;
           height: 100%;
           transform: scaleX(0);
-          // height: 2px;
-          z-index: -1;
+          z-index: -1; /* Ensure it doesn't cover the text */
           bottom: 0;
           left: 0;
-          background-color: #20344d;
+          background-color: #20344D;
           transform-origin: bottom right;
           transition: transform 0.25s ease-out;
         }
@@ -273,39 +195,27 @@
 
         h2:hover {
           color: #fff;
-          transition: all 0.5s ease;
-          padding: 0.2em 0em 0.2em 1em;
+          transition: all .5s ease;
+          padding: .2em 0em .2em 1em;
           font-weight: 700;
         }
 
         h2:not(:hover) {
-          padding: 0.2em 0em;
-          transition: all 0.5s ease;
+          padding: .2em 0em;
+          transition: all .5s ease;
         }
 
         p {
           color: #ffffff77;
-          font-size: 0.8rem;
-          margin-top: 0.5em;
+          font-size: .8rem;
+          margin-top: .5em;
         }
-      }
-
-      div::after {
-        content: " ";
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 2.5%;
-        left: 3%;
-        // background: #fff;
-        border-radius: 20px;
-        z-index: -1;
-        border: 2px solid #20344d;
       }
     }
   }
 }
 
+// Media queries remain the same
 @media screen and (max-width: 1000px) {
   .eBooks h1 {
     font-size: 3.5rem !important;
