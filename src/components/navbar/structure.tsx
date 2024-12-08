@@ -215,7 +215,7 @@ export default function Structure({
                         </Link>
                     })}
 
-                    <button
+                    {/* <button
                         onClick={e => toggleTheme()}
                         className={style.avatar}
                         style={{
@@ -228,7 +228,7 @@ export default function Structure({
                             :
                             <BsMoonStarsFill fill='currentColor' />
                         }
-                    </button>
+                    </button> */}
 
                     {status === "authenticated" ?
                         <button onClick={e => setIsDropdownOpen(!isDropdownOpen)}>
